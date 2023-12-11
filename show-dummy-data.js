@@ -46,3 +46,7 @@ const SHOW_DATA = [
   export function getFeaturedShows() {
     return SHOW_DATA.filter(show => show.isFeatured)
   }
+
+  export function getShowById(id) {
+    return SHOW_DATA.find((show) => show.id === id);
+  }
