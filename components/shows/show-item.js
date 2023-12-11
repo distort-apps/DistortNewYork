@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import DateIcon from '../icons/date-icon'
 import AddressIcon from '../icons/address-icon'
+import classes from './show-item.module.css'
 
 function ShowItem ({ show }) {
   const {
@@ -26,9 +27,9 @@ function ShowItem ({ show }) {
   const exploreLink = `/shows/${id}`
 
   return (
-    <li>
-      <Link href={exploreLink}>
-        <div>
+    <li className={classes.post}>
+      <Link href={exploreLink} className={classes.link}>
+        <div className={classes.image}>
           <Image
             src={image}
             alt={title}
@@ -37,13 +38,13 @@ function ShowItem ({ show }) {
             responsive
           />
         </div>
-        <div>
+        <div className={classes.content}>
           <h3>{title}</h3>
-          <div>
+          <div className={classes.date}>
             <DateIcon />
             <time>{readableDate}</time>
           </div>
-          <div>
+          <div className={classes.address}>
             <AddressIcon />
             <address>{formattedAddress}</address>
           </div>
