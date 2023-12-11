@@ -1,7 +1,7 @@
 
 function ShowFooter ({ excerpt }) {
   return (
-        <p>{excerpt}</p>
+        <p className="center">{excerpt}</p>
   )
 }
 export default ShowFooter
