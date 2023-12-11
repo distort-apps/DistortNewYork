@@ -1,5 +1,5 @@
 import FeaturedShows from "@/components/home-page/featured-shows"
-import { getFeaturedSHows } from "@/show-dummy-data"
+import { getFeaturedShows } from "@/show-dummy-data"
 
 function HomePage(props) {
   return (
@@ -11,9 +11,8 @@ export default HomePage
 
 export async function getStaticProps(){
 
-  // const featuredShows = await getFeaturedShows()
-
-  const featuredShows = getFeaturedSHows()
+  const featuredShows = getFeaturedShows()
+  console.log(featuredShows)
 
   return {
     props: {

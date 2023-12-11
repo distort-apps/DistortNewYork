@@ -43,6 +43,6 @@ const SHOW_DATA = [
     return SHOW_DATA
   }
 
-  export function getFeaturedSHows() {
+  export function getFeaturedShows() {
     return SHOW_DATA.filter(show => show.isFeatured)
   }
