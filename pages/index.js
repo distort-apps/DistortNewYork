@@ -1,10 +1,24 @@
 import FeaturedShows from "@/components/home-page/featured-shows"
+import { getFeaturedSHows } from "@/show-dummy-data"
 
-export default function Home() {
+function HomePage(props) {
   return (
-    <FeaturedShows />
+    <FeaturedShows shows={props.shows}/>
   )
 }
 
+export default HomePage
 
-// will later use getStaticProps here to retrieve and set shows. 
+export async function getStaticProps(){
+
+  // const featuredShows = await getFeaturedShows()
+
+  const featuredShows = getFeaturedSHows()
+
+  return {
+    props: {
+      shows: featuredShows
+    },
+    revalidate: 60
+  }
+}
