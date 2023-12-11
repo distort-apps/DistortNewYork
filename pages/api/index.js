@@ -1,6 +1,9 @@
+import fs from 'fs'
+import path from 'path'
 import {
   connectDatabase,
   getAllDocuments,
+  insertDocument
 } from '../../helpers/db-util'
 
 async function handler (req, res) {
