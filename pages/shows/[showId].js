@@ -1,4 +1,5 @@
 import ShowContent from '@/components/shows/show-detail/show-content'
+import Comments from '@/components/input/comments';
 
 function ShowDetailPage (props) {
   const show = props.selectedShow;
@@ -14,7 +15,8 @@ function ShowDetailPage (props) {
 
   return (
     <>
-      <ShowContent show={show[0]} />s
+      <ShowContent show={show[0]} />
+      <Comments showId={show[0]._id} />
     </>
   )
 }
