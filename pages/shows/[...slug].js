@@ -70,7 +70,8 @@ function FilteredEventsPage (props) {
     numYear > 2030 ||
     numYear < 2021 ||
     numMonth < 1 ||
-    numMonth > 12
+    numMonth > 12 ||
+    error
   ) {
     return (
       <>
@@ -88,8 +89,7 @@ function FilteredEventsPage (props) {
   const filteredEvents = loadedEvents.filter(show => {
     const showDate = new Date(show.date)
     return (
-      showDate.getFullYear() === numYear &&
-      showDate.getMonth() === numMonth - 1
+      showDate.getFullYear() === numYear && showDate.getMonth() === numMonth - 1
     )
   })
 
