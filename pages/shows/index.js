@@ -1,6 +1,22 @@
-function AllShowsPage () {
+import ShowGrid from "@/components/shows/show-grid"
+import { getAllShows } from "@/show-dummy-data"
+
+function AllShowsPage ({shows}) {
     return (
-        <h3>All shows</h3>
+        <ShowGrid items={shows}/>
     )
 }
+
+
+export async function getStaticProps() {
+    const shows = getAllShows()
+    
+    return {
+        props: {
+            shows: shows
+        },
+        revalidate: 60
+    }
+}
+
 export default AllShowsPage

@@ -12,7 +12,6 @@ export default HomePage
 export async function getStaticProps(){
 
   const featuredShows = getFeaturedShows()
-  console.log(featuredShows)
 
   return {
     props: {
