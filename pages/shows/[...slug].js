@@ -3,6 +3,8 @@ import { useRouter } from 'next/router'
 import Head from 'next/head'
 import ShowGrid from '@/components/shows/show-grid'
 import { getAllShows } from '@/show-dummy-data'
+import Button from '@/components/ui/button'
+import ErrorAlert from '@/components/ui/error-alert'
 
 function FilteredEventsPage (props) {
   const [loadedEvents, setLoadedEvents] = useState([])
@@ -64,9 +66,9 @@ function FilteredEventsPage (props) {
     return (
       <>
         {pageHeadData}
-        <div>
+        <ErrorAlert>
           <p>Invalid filter. Please adjust your values!</p>
-        </div>
+        </ErrorAlert>
         <div className='center'>
           <Button link='/events'>Show All Events</Button>
         </div>
@@ -87,11 +89,11 @@ function FilteredEventsPage (props) {
     return (
       <>
         {pageHeadData}
-        <div>
+        <ErrorAlert>
           <p>No events found for the chosen filter!</p>
-        </div>
+        </ErrorAlert>
         <div className='center'>
-          <button link='/events'>Show All Events</button>
+          <Button link='/events'>Show All Events</Button>
         </div>
       </>
     )
