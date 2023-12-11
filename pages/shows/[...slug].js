@@ -8,38 +8,37 @@ import Head from 'next/head'
 import ShowGrid from '@/components/shows/show-grid'
 
 function FilteredEventsPage (props) {
-  const [loadedEvents, setLoadedEvents] = useState([])
+  const [loadedShows, setLoadedShows] = useState([])
   const router = useRouter()
 
   const filterData = router.query.slug
 
-  const { data, error } = useSWR('http://localhost:3000/api/shows', url =>
-    fetch(url).then(res => res.json())
+  const { data, error } = useSWR(
+    'http://localhost:3000/api/shows',
+    url => fetch(url).then(res => res.json())
   )
 
   useEffect(() => {
     if (data) {
-      const shows = []
+      const showsArr = []
 
       for (const key in data.shows) {
-        shows.push({
-          id: key,
+        showsArr.push({
           ...data.shows[key]
         })
       }
-      console.log('shows', shows)
-      setLoadedEvents(shows)
+      setLoadedShows(showsArr)
     }
   }, [data])
 
   let pageHeadData = (
     <Head>
-      <title>Filtered Events</title>
+      <title>Filtered Shows</title>
       <meta name='description' content={`A list of filtered shows.`} />
     </Head>
   )
 
-  if (!loadedEvents) {
+  if (!loadedShows) {
     return (
       <>
         {pageHeadData}
@@ -56,7 +55,7 @@ function FilteredEventsPage (props) {
 
   pageHeadData = (
     <Head>
-      <title>Filtered Events</title>
+      <title>Filtered Shows</title>
       <meta
         name='description'
         content={`All shows for ${numMonth}/${numYear}.`}
@@ -85,15 +84,16 @@ function FilteredEventsPage (props) {
       </>
     )
   }
-
-  const filteredEvents = loadedEvents.filter(show => {
-    const showDate = new Date(show.date)
+  console.log("loadedShows", loadedShows)
+  const filteredShows = loadedShows.filter(loadedShow => {
+    console.log("loaded show", loadedShow)
+    const showDate = new Date(loadedShow.date)
     return (
       showDate.getFullYear() === numYear && showDate.getMonth() === numMonth - 1
     )
   })
 
-  if (!filteredEvents || filteredEvents.length === 0) {
+  if (!filteredShows || filteredShows.length === 0) {
     return (
       <>
         {pageHeadData}
@@ -113,7 +113,7 @@ function FilteredEventsPage (props) {
     <>
       {pageHeadData}
       <Results date={date} />
-      <ShowGrid items={filteredEvents} />
+      <ShowGrid items={filteredShows} />
     </>
   )
 }
