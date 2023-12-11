@@ -1,18 +1,19 @@
-import { useEffect, useState } from "react"
-import { useRouter } from "next/router"
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
+import ShowContent from '@/components/shows/show-detail/show-content'
+import { getShowById } from '@/show-dummy-data'
 
 function ShowDetailPage (selectedShow) {
-    const [show, setShow] = useState([])
+  const [show, setShow] = useState([])
   const router = useRouter()
 
-  const id = router.query.id
+  const showId = router.query.showId
+  console.log('showId: ', showId)
 
-    useEffect(() => {
-    fetch(`/api/shows/${id}`)
-      .then(res => res.json())
-      .then(data => {
-        setShow(data.show)
-      })
+  useEffect(() => {
+    console.log('running')
+    const show = getShowById(showId)
+    setShow(show)
   }, [])
 
   // if not show
@@ -25,7 +26,7 @@ function ShowDetailPage (selectedShow) {
   }
 
   // if show
-  return <h3>shows</h3>
+  return <ShowContent show={show} />
 }
 
 export default ShowDetailPage
