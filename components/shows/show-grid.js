@@ -5,7 +5,7 @@ function ShowGrid ({ items }) {
     return (
         <ul className={classes.grid}>
             {items.map(item => (
-                <ShowItem key={item.id} show={item} />
+                <ShowItem key={item._id} show={item} />
             ))}
         </ul>
     )

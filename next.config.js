@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   env: {
-    ENVTEST: '123'
+    MONGO: 'danielgenedev:QILIi3U5vkaqoOZ2@gigz.9yoyfht.'
   },
   images: {
     remotePatterns: [
