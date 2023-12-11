@@ -1,8 +1,10 @@
+import FeaturedShows from "@/components/home-page/featured-shows"
 
 export default function Home() {
   return (
-    <>
-    <h2>hello {process.env.ENVTEST}</h2>
-     </>
+    <FeaturedShows />
   )
 }
+
+
+// will later use getStaticProps here to retrieve and set shows. 
