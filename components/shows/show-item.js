@@ -6,7 +6,7 @@ import classes from './show-item.module.css'
 
 function ShowItem ({ show }) {
   const {
-    id,
+    _id,
     title,
     date,
     genre,
@@ -24,7 +24,7 @@ function ShowItem ({ show }) {
   })
 
   const formattedAddress = location.replace(',', '\n')
-  const exploreLink = `/shows/${id}`
+  const exploreLink = `/shows/${_id}`
 
   return (
     <li className={classes.post}>
