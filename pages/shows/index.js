@@ -19,7 +19,6 @@ function AllShowsPage ({ shows }) {
 
 export async function getStaticProps() {
   // const shows = await getAllShows()
-  console.log("this is running ")
 
  const shows = await fetch('http://localhost:3000/api/shows')
   .then(res => res.json()).then(data => {

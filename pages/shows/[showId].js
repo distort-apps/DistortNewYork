@@ -23,7 +23,6 @@ function ShowDetailPage (props) {
 
 export async function getStaticProps(context) {
   const showId = context.params.showId;
-  console.log("showId", showId)
   const show = await fetch(`http://localhost:3000/api/shows/${showId}`)
   .then(res => res.json()).then(data => {
       let show = data.shows

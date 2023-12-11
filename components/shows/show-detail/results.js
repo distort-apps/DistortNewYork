@@ -12,7 +12,7 @@ function Results(props) {
   return (
     <section className={classes.title}>
       <h1>Events in {humanReadableDate}</h1>
-      <Button link='/shows'>Show all events</Button>
+      <Button link='/shows'>Show All Shows</Button>
     </section>
   );
 }

@@ -3,7 +3,6 @@ async function handler (req, res) {
     
     if (req.method === 'POST') {
         const { email, info } = req.body
-        console.log("email", email)
         
         if (!email || !email.includes('@') || !info || info.length === 0) {
             res.status(422).json({ message: 'Invalid email address' })

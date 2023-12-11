@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+import useSWR from 'swr'
 import Results from '@/components/shows/show-detail/results'
 import ErrorAlert from '@/components/ui/error-alert'
 import Button from '@/components/ui/button'
@@ -11,21 +12,30 @@ function FilteredEventsPage (props) {
   const router = useRouter()
 
   const filterData = router.query.slug
-  console.log(filterData)
+
+  const { data, error } = useSWR('http://localhost:3000/api/shows', url =>
+    fetch(url).then(res => res.json())
+  )
 
   useEffect(() => {
-  fetch('http://localhost:3000/api/shows')
-  .then(res => res.json()).then(data => {
-      const shows = data.shows
+    if (data) {
+      const shows = []
+
+      for (const key in data.shows) {
+        shows.push({
+          id: key,
+          ...data.shows[key]
+        })
+      }
+      console.log('shows', shows)
       setLoadedEvents(shows)
-      console.log("loadedEvents", loadedEvents)
-  })
-  }, [])
+    }
+  }, [data])
 
   let pageHeadData = (
     <Head>
       <title>Filtered Events</title>
-      <meta name='description' content={`A list of filtered events.`} />
+      <meta name='description' content={`A list of filtered shows.`} />
     </Head>
   )
 
@@ -44,15 +54,12 @@ function FilteredEventsPage (props) {
   const numYear = +filteredYear
   const numMonth = +filteredMonth
 
-  console.log("filteredYear", filteredYear)
-  console.log("filterMonth", filteredMonth)
-
   pageHeadData = (
     <Head>
       <title>Filtered Events</title>
       <meta
         name='description'
-        content={`All events for ${numMonth}/${numYear}.`}
+        content={`All shows for ${numMonth}/${numYear}.`}
       />
     </Head>
   )
@@ -78,13 +85,11 @@ function FilteredEventsPage (props) {
     )
   }
 
-  const filteredEvents = loadedEvents.filter(event => {
-    const eventDate = new Date(event.date)
-    console.log("LOADED EVENTS FILTER : " ,event)
-    console.log("event.genre", event.genre)
+  const filteredEvents = loadedEvents.filter(show => {
+    const showDate = new Date(show.date)
     return (
-      eventDate.getFullYear() === numYear &&
-      eventDate.getMonth() === numMonth - 1 
+      showDate.getFullYear() === numYear &&
+      showDate.getMonth() === numMonth - 1
     )
   })
 
@@ -114,4 +119,3 @@ function FilteredEventsPage (props) {
 }
 
 export default FilteredEventsPage
-
