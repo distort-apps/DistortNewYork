@@ -1,8 +1,9 @@
 import Link from 'next/link'
 import Logo from './logo'
+import classes from './main-nav.module.css'
 function MainNav () {
   return (
-          <header>
+          <header className={classes.header}>
       <Link href='/' >
         <Logo />
       </Link>

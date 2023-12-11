@@ -1,4 +1,7 @@
+import classes from './logo.module.css'
+
+
 function Logo () {
-  return <div>cloutSurfer</div>
+  return <div className={classes.logo}>SHOWS</div>
 }
 export default Logo
