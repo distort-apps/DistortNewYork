@@ -19,7 +19,7 @@ function Comments (props) {
     }
   }, [showComments])
 
-  console.log(comments)
+  (comments)
   function toggleCommentsHandler () {
     setShowComments(prevStatus => !prevStatus)
   }
@@ -34,7 +34,7 @@ function Comments (props) {
       }
     })
       .then(res => res.json())
-      .then(data => console.log(data))
+      .then(data => (data))
   }
 
 

@@ -42,7 +42,7 @@ function ShowDateFilter (props) {
             </select>
           </div>
         </div>
-        <button>search GⒶgz</button>
+        <button>search</button>
       </form>
   )
 }

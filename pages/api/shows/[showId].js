@@ -17,7 +17,6 @@ async function handler (req, res) {
   // GET ALL shows
   if (req.method === 'GET') {
     const id = new ObjectId(showId)
-    console.log("id", id)
     let documents
     try {
       documents = await getAllDocuments(

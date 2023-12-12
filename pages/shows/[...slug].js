@@ -84,9 +84,7 @@ function FilteredEventsPage (props) {
       </>
     )
   }
-  console.log("loadedShows", loadedShows)
   const filteredShows = loadedShows.filter(loadedShow => {
-    console.log("loaded show", loadedShow)
     const showDate = new Date(loadedShow.date)
     return (
       showDate.getFullYear() === numYear && showDate.getMonth() === numMonth - 1
