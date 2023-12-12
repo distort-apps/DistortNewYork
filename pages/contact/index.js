@@ -1,45 +1,51 @@
-import {useRef} from 'react'
+import { useRef } from 'react'
+import Head from 'next/head'
 
 function ContactPage () {
   const emailInputRef = useRef()
   const enteredInfoRef = useRef()
 
-  function submitFormHandler(e) {
+  function submitFormHandler (e) {
     e.preventDefault()
 
     const enteredEmail = emailInputRef.current.value
     const enteredInfo = enteredInfoRef.current.value
-  
+
     fetch(`/api/contact`, {
       method: 'POST',
-      body: JSON.stringify({email: enteredEmail, info: enteredInfo}),
+      body: JSON.stringify({ email: enteredEmail, info: enteredInfo }),
       headers: {
-        'Content-Type' : 'application/json'
+        'Content-Type': 'application/json'
       }
     })
-    .then(res => res.json())
-    .then(data => console.log(data))
-  
+      .then(res => res.json())
+      .then(data => console.log(data))
   }
 
   return (
     <div>
-    <form onClick={submitFormHandler}>
-      <div>
-        <label htmlFor='email'>Your Email Address</label>
-        <input type='email' id='email' ref={emailInputRef}/>
-      </div>
-      <div>
-        <label htmlFor='info'>Event Info</label>
-        <textarea id='info' rows="5" ref={enteredInfoRef}></textarea>
-      </div>
-      <button>Submit</button>
-    </form>
-  </div>
+      <Head>
+        <title>theCorkBoⒶrd Contact Page</title>
+        <meta
+          name='description'
+          content='Share your thoughts, or promote a show / event'
+        />
+      </Head>
+      <form onClick={submitFormHandler}>
+        <div>
+          <label htmlFor='email'>Your Email Address</label>
+          <input type='email' id='email' ref={emailInputRef} />
+        </div>
+        <div>
+          <label htmlFor='info'>Event Info</label>
+          <textarea id='info' rows='5' ref={enteredInfoRef}></textarea>
+        </div>
+        <button>Submit</button>
+      </form>
+    </div>
   )
 }
 export default ContactPage
-
 
 // function ContactPage () {
 //   return (
