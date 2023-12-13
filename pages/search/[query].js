@@ -7,15 +7,14 @@ import Button from '@/components/ui/button'
 import Head from 'next/head'
 import ShowGrid from '@/components/shows/show-grid'
 
-function FilteredEventsPage (props) {
+function GenSearchPage (props) {
   const [loadedShows, setLoadedShows] = useState([])
   const router = useRouter()
 
-  const filterData = router.query.slug
+  const query = router.query.query.toLowerCase()
 
-  const { data, error } = useSWR(
-    'http://localhost:3000/api/shows',
-    url => fetch(url).then(res => res.json())
+  const { data, error } = useSWR(`http://localhost:3000/api/search/${query}`, url =>
+    fetch(url).then(res => res.json())
   )
 
   useEffect(() => {
@@ -31,10 +30,11 @@ function FilteredEventsPage (props) {
     }
   }, [data])
 
+  console.log("loadedShows", loadedShows)
   let pageHeadData = (
     <Head>
-      <title>Filtered Shows</title>
-      <meta name='description' content={`A list of filtered shows.`} />
+      <title>General Search Page</title>
+      <meta name='description' content='A list of search results' />
     </Head>
   )
 
@@ -47,31 +47,15 @@ function FilteredEventsPage (props) {
     )
   }
 
-  const filteredYear = filterData[0]
-  const filteredMonth = filterData[1]
-
-  const numYear = +filteredYear
-  const numMonth = +filteredMonth
 
   pageHeadData = (
     <Head>
       <title>Filtered Shows</title>
-      <meta
-        name='description'
-        content={`All shows for ${numMonth}/${numYear}.`}
-      />
+      <meta name='description' content={`All shows for ${query}.`} />
     </Head>
   )
 
-  if (
-    isNaN(numYear) ||
-    isNaN(numMonth) ||
-    numYear > 2030 ||
-    numYear < 2021 ||
-    numMonth < 1 ||
-    numMonth > 12 ||
-    error
-  ) {
+  if (!query || query.trim().length === 0 || error) {
     return (
       <>
         {pageHeadData}
@@ -84,14 +68,8 @@ function FilteredEventsPage (props) {
       </>
     )
   }
-  const filteredShows = loadedShows.filter(loadedShow => {
-    const showDate = new Date(loadedShow.date)
-    return (
-      showDate.getFullYear() === numYear && showDate.getMonth() === numMonth - 1
-    )
-  })
 
-  if (!filteredShows || filteredShows.length === 0) {
+  if (!loadedShows || loadedShows.length === 0) {
     return (
       <>
         {pageHeadData}
@@ -105,15 +83,15 @@ function FilteredEventsPage (props) {
     )
   }
 
-  const date = new Date(numYear, numMonth - 1)
-
   return (
     <>
       {pageHeadData}
-      <Results date={date} />
-      <ShowGrid items={filteredShows} />
+      <Results date={loadedShows[0].date} />
+      <ShowGrid items={loadedShows} />
     </>
   )
 }
 
-export default FilteredEventsPage
+export default GenSearchPage
+
+

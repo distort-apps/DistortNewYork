@@ -30,7 +30,6 @@ async function handler (req, res) {
     }
 
     const newComment = {
-      id: new Date().toISOString(),
       email,
       name,
       text,

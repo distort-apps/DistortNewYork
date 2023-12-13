@@ -33,8 +33,8 @@ function ShowItem ({ show }) {
           <Image
             src={image}
             alt={title}
-            width={490}
-            height={400}
+            width={600}
+            height={600}
             responsive
           />
         </div>
