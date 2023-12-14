@@ -4,7 +4,7 @@ import classes from './logo.module.css'
 function Logo () {
   return <>
   <div className={classes.logo}>theCorkBoⒶrd</div>
-  nyc & all boroughs 💀
+  serving the ny area 💀
   </>
 }
 export default Logo
