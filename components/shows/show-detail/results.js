@@ -1,20 +1,29 @@
-import classes from './results.module.css';
-import Button from '@/components/ui/button';
+import classes from './results.module.css'
+import Button from '@/components/ui/button'
 
-function Results(props) {
-  const { date } = props;
+function Results (props) {
+  const { date, query } = props
 
   const humanReadableDate = new Date(date).toLocaleDateString('en-US', {
     month: 'long',
-    year: 'numeric',
-  });
+    year: 'numeric'
+  })
+
+  if (query) {
+    return (
+      <section className={classes.title}>
+        <h1>{query} shows ...</h1>
+        <Button link='/shows'>Show All Shows</Button>
+      </section>
+    )
+  }
 
   return (
     <section className={classes.title}>
-      <h1>Events in {humanReadableDate}</h1>
+      <h1>Shows in {humanReadableDate}</h1>
       <Button link='/shows'>Show All Shows</Button>
     </section>
-  );
+  )
 }
 
-export default Results;
+export default Results
