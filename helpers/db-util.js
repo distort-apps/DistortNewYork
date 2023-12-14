@@ -1,9 +1,8 @@
 import { MongoClient } from 'mongodb'
 
 export async function connectDatabase () {
-  const client = await MongoClient.connect(
-    `mongodb+srv://${process.env.MONGO}mongodb.net/?retryWrites=true&w=majority`
-  )
+  const connectionString = `mongodb+srv://${process.env.mongodb_username}:${process.env.mongodb_password}@${process.env.mongodb_clustername}.${process.env.mongodb_database}.mongodb.net/?retryWrites=true&w=majority`
+  const client = await MongoClient.connect(connectionString)
 
   return client
 }
