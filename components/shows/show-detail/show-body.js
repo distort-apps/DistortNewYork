@@ -5,7 +5,7 @@ function ShowBody ({ title, image, excerpt, date, price, location }) {
   return (
     <div className={classes.body}>
       <div>
-        <Image src={image} alt={title} width={700} height={650} layout='responsive' />
+        <Image src={image} alt={title} width={700} height={650} responsive={+true} />
       </div>
       <div className='center'>
         <p>{location}</p>

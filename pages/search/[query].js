@@ -30,7 +30,6 @@ function GenSearchPage (props) {
     }
   }, [data])
 
-  console.log("loadedShows", loadedShows)
   let pageHeadData = (
     <Head>
       <title>General Search Page</title>
@@ -38,7 +37,7 @@ function GenSearchPage (props) {
     </Head>
   )
 
-  if (!loadedShows) {
+  if (!data) {
     return (
       <>
         {pageHeadData}
@@ -86,7 +85,7 @@ function GenSearchPage (props) {
   return (
     <>
       {pageHeadData}
-      <Results date={loadedShows[0].date} />
+      <Results query={query} />
       <ShowGrid items={loadedShows} />
     </>
   )

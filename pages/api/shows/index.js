@@ -13,7 +13,6 @@ async function handler (req, res) {
     const { title, date, genre, location, price, isFeatured, image, excerpt } =
       req.body
 
-      console.log(title, date, genre, location, price, isFeatured, image, excerpt)
 
     if (
       !title ||
@@ -29,7 +28,6 @@ async function handler (req, res) {
       !image ||
       image.trim().length === 0 
     ) {
-      console.log("propblem with data")
       res.status(422).json({ message: 'invalid info' })
       client.close()
       return

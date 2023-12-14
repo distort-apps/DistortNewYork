@@ -33,9 +33,9 @@ function ShowItem ({ show }) {
           <Image
             src={image}
             alt={title}
-            width={600}
-            height={600}
-            responsive
+            width={750}
+            height={650}
+            responsive={+true}
           />
         </div>
         <div className={classes.content}>
