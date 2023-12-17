@@ -7,11 +7,12 @@ import Button from '@/components/ui/button'
 import Head from 'next/head'
 import ShowGrid from '@/components/shows/show-grid'
 
-function GenSearchPage (props) {
+function GenSearchPage () {
   const [loadedShows, setLoadedShows] = useState([])
   const router = useRouter()
 
-  const query = router.query.query.toLowerCase()
+  const query = (router.query.query || '').toLowerCase();
+
 
   const { data, error } = useSWR(`http://localhost:3000/api/search/${query}`, url =>
     fetch(url).then(res => res.json())
