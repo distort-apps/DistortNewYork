@@ -1,6 +1,7 @@
 import FeaturedShows from '@/components/home-page/featured-shows'
 import Newsletter from '@/components/input/newsletter'
 import Head from 'next/head'
+import { connectDatabase } from '@/helpers/db-util'
 function HomePage (props) {
   return (
     <>
@@ -15,21 +16,22 @@ function HomePage (props) {
 }
 
 export async function getStaticProps () {
-  // const featuredShows = await getFeaturedShows()
-
-  const featuredShows = await fetch('http://localhost:3000/api')
-    .then(res => res.json())
-    .then(data => {
-      let shows = data.shows
-      return shows
-    })
-
+  const client = await connectDatabase()
+  const db = client.db('gagz')
+  const shows = await db
+  .collection('shows')
+  .find({ isFeatured: true })
+  .sort({_id: -1})
+  .limit(50)
+  .toArray()
+  
   return {
     props: {
-      shows: featuredShows
+      shows: JSON.parse(JSON.stringify(shows))
     },
     revalidate: 60
   }
+
 }
 
 export default HomePage

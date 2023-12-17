@@ -41,7 +41,6 @@ export async function getStaticProps (context) {
 }
 
 export async function getStaticPaths () {
-  // const shows = await getFeaturedShows();
   const shows = await fetch('http://localhost:3000/api')
     .then(res => res.json())
     .then(data => {
