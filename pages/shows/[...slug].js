@@ -38,7 +38,7 @@ function FilteredEventsPage (props) {
     </Head>
   )
 
-  if (!loadedShows) {
+  if (!data) {
     return (
       <>
         {pageHeadData}
