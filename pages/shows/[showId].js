@@ -1,6 +1,7 @@
 import ShowContent from '@/components/shows/show-detail/show-content'
 import Comments from '@/components/input/comments'
 import Head from 'next/head'
+import { getShowById } from '@/helpers/api-util'
 
 function ShowDetailPage (props) {
   const show = props.selectedShow
@@ -30,12 +31,7 @@ function ShowDetailPage (props) {
 
 export async function getStaticProps (context) {
   const showId = context.params.showId
-  const show = await fetch(`http://localhost:3000/api/shows/${showId}`)
-    .then(res => res.json())
-    .then(data => {
-      let show = data.shows
-      return show
-    })
+  const show = await getShowById(showId)
   return {
     props: {
       selectedShow: show
@@ -65,3 +61,4 @@ export default ShowDetailPage
 //     {params: {id: 'e1'}}
 //   ]
 // }
+
