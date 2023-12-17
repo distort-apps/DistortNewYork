@@ -1,6 +1,8 @@
 import ShowContent from '@/components/shows/show-detail/show-content'
 import Comments from '@/components/input/comments'
 import Head from 'next/head'
+import { connectDatabase } from '@/helpers/db-util'
+import { ObjectId } from 'mongodb'
 
 function ShowDetailPage (props) {
   const show = props.selectedShow
@@ -17,10 +19,7 @@ function ShowDetailPage (props) {
     <>
       <Head>
         <title>{show[0].title}</title>
-        <meta
-          name='description'
-          content={show[0].excerpt}
-        />
+        <meta name='description' content={show[0].excerpt} />
       </Head>
       <ShowContent show={show[0]} />
       <Comments showId={show[0]._id} />
@@ -30,29 +29,34 @@ function ShowDetailPage (props) {
 
 export async function getStaticProps (context) {
   const showId = context.params.showId
-  const show = await fetch(`http://localhost:3000/api/shows/${showId}`)
-    .then(res => res.json())
-    .then(data => {
-      let show = data.shows
-      return show
-    })
+  const id = new ObjectId(showId)
+
+  const client = await connectDatabase()
+  const db = client.db('gagz')
+  const show = await db
+    .collection('shows')
+    .find({ _id: id })
+    .toArray()
+
   return {
     props: {
-      selectedShow: show
+      selectedShow: JSON.parse(JSON.stringify(show))
     },
     revalidate: 30
   }
 }
 
 export async function getStaticPaths () {
-  // const shows = await getFeaturedShows();
-  const shows = await fetch('http://localhost:3000/api')
-    .then(res => res.json())
-    .then(data => {
-      let shows = data.shows
-      return shows
-    })
-  const paths = shows.map(show => ({ params: { showId: show._id } }))
+  const client = await connectDatabase()
+  const db = client.db('gagz')
+  const shows = await db
+    .collection('shows')
+    .find({ isFeatured: true })
+    .sort({ _id: -1 })
+    .limit(50)
+    .toArray()
+    
+  const paths = shows.map(show => ({ params: { showId: show._id.toString() } }))
   return {
     paths: paths,
     fallback: 'blocking'
@@ -65,3 +69,5 @@ export default ShowDetailPage
 //     {params: {id: 'e1'}}
 //   ]
 // }
+
+// const id = new ObjectId(showId)
