@@ -13,6 +13,7 @@ function ShowContent ({ show }) {
           image={show.image}
           date={show.date}
           location={show.location}
+          time={show.time}
           price={show.price}
           genre={show.genre}
         />
