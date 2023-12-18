@@ -3,7 +3,7 @@ import ShowDateFilter from '@/components/shows/show-date-filter'
 import GenSearch from '@/components/shows/gen-search'
 import router from 'next/router'
 import Head from 'next/head'
-import { connectDatabase } from '@/helpers/db-util'
+import { getAllShows } from '@/helpers/api-util'
 
 function AllShowsPage ({ shows }) {
   function findShowsByDateHandler (year, month) {
@@ -31,24 +31,27 @@ function AllShowsPage ({ shows }) {
   )
 }
 
-export async function getStaticProps () {
-    const client = await connectDatabase()
-    const db = client.db('gagz')
-    const shows = await db
-    .collection('shows')
-    .find({})
-    .sort({_id: -1})
-    .limit(500)
-    .toArray()
-    
+export async function getStaticProps() {
+  try {
+    const shows = await getAllShows();
+
     return {
       props: {
-        shows: JSON.parse(JSON.stringify(shows))
+        shows: JSON.parse(JSON.stringify(shows)),
       },
-      revalidate: 60
-    }
+      revalidate: 60,
+    };
+  } catch (error) {
+    console.error('Error in getStaticProps:', error);
 
+    return {
+      props: {
+        shows: [],
+        error: 'Error in getFeaturedShows',
+      },
+      revalidate: 60,
+    };
+  }
 }
-
 export default AllShowsPage
 
