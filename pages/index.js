@@ -28,7 +28,6 @@ export async function getStaticProps() {
   } catch (error) {
     console.error('Error in getStaticProps:', error);
 
-    // Return a default props object with an error message
     return {
       props: {
         shows: [],

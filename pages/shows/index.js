@@ -47,7 +47,7 @@ export async function getStaticProps() {
     return {
       props: {
         shows: [],
-        error: 'Error in getFeaturedShows',
+        error: 'Error in getAllShows',
       },
       revalidate: 60,
     };

@@ -24,7 +24,7 @@ function ContactPage () {
   return (
     <div>
       <Head>
-        <title>theCorkBoⒶrd Contact Page</title>
+        <title>DistortNewYork Contact Page</title>
         <meta
           name='description'
           content='Share your thoughts, or promote a show / event'

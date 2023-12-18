@@ -11,7 +11,7 @@ async function handler (req, res) {
     res.status(500).json({ message: 'Connecting to db failed🚬💀💀💀' })
     return
   }
-  // GET ALL shows
+
   if (req.method === 'GET') {
     let documents
     try {

@@ -6,7 +6,7 @@ export default function App ({ Component, pageProps }) {
   return (
     <Layout>
       <Head>
-        <title>theCorkBoⒶrd</title>
+        <title>DistortNewYork</title>
         <meta name="description" content="Shows in NYC and all boroughs"/>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
