@@ -1,4 +1,8 @@
-import { connectDatabase, getAllDocuments, insertDocument } from '../../../helpers/db-util'
+import {
+  connectDatabase,
+  getAllDocuments,
+  insertDocument
+} from '../../../helpers/db-util'
 
 async function handler (req, res) {
   let client
@@ -13,7 +17,6 @@ async function handler (req, res) {
     const { title, date, genre, location, price, isFeatured, image, excerpt } =
       req.body
 
-
     if (
       !title ||
       title.trim().length === 0 ||
@@ -26,7 +29,7 @@ async function handler (req, res) {
       !price ||
       price.trim().length === 0 ||
       !image ||
-      image.trim().length === 0 
+      image.trim().length === 0
     ) {
       res.status(422).json({ message: 'invalid info' })
       client.close()
@@ -34,16 +37,16 @@ async function handler (req, res) {
     }
 
     const newShow = {
-       title,
-       date,
-       genre,
-       location,
-       price,
-       isFeatured,
-       image,
-       excerpt
+      title,
+      date,
+      genre,
+      location,
+      price,
+      isFeatured,
+      image,
+      excerpt
     }
-    
+
     try {
       await insertDocument(client, 'shows', newShow)
       res.status(201).json({ message: 'New Show Added', show: newShow })
@@ -52,7 +55,6 @@ async function handler (req, res) {
     }
   }
 
-  // GET ALL shows
   if (req.method === 'GET') {
     let documents
     try {
