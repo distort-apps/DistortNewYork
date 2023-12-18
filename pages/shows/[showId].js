@@ -1,11 +1,10 @@
 import ShowContent from '@/components/shows/show-detail/show-content'
 import Comments from '@/components/input/comments'
 import Head from 'next/head'
-import { connectDatabase } from '@/helpers/db-util'
-import { ObjectId } from 'mongodb'
+import { getShowById, getFeaturedShows } from '@/helpers/api-util'
 
 function ShowDetailPage (props) {
-  const show = props.selectedShow
+  const show = props.show
 
   if (!show) {
     return (
@@ -18,48 +17,57 @@ function ShowDetailPage (props) {
   return (
     <>
       <Head>
-        <title>{show[0].title}</title>
-        <meta name='description' content={show[0].excerpt} />
+        <title>{show.title}</title>
+        <meta name='description' content={show.excerpt} />
       </Head>
-      <ShowContent show={show[0]} />
-      <Comments showId={show[0]._id} />
+      <ShowContent show={show} />
+      <Comments showId={show._id} />
     </>
   )
 }
 
-export async function getStaticProps (context) {
-  const showId = context.params.showId
-  const id = new ObjectId(showId)
+export async function getStaticProps(context) {
+  const showId = context.params.showId;
 
-  const client = await connectDatabase()
-  const db = client.db('gagz')
-  const show = await db
-    .collection('shows')
-    .find({ _id: id })
-    .toArray()
+  try {
+    const show = await getShowById(showId);
 
-  return {
-    props: {
-      selectedShow: JSON.parse(JSON.stringify(show))
-    },
-    revalidate: 30
+    return {
+      props: {
+        show: JSON.parse(JSON.stringify(show)),
+      },
+      revalidate: 60,
+    };
+  } catch (error) {
+    console.error('Error in getStaticProps:', error);
+
+    return {
+      props: {
+        show: null,
+        error: 'Error in getShowById',
+      },
+      revalidate: 60,
+    };
   }
 }
 
-export async function getStaticPaths () {
-  const client = await connectDatabase()
-  const db = client.db('gagz')
-  const shows = await db
-    .collection('shows')
-    .find({ isFeatured: true })
-    .sort({ _id: -1 })
-    .limit(50)
-    .toArray()
-    
-  const paths = shows.map(show => ({ params: { showId: show._id.toString() } }))
-  return {
-    paths: paths,
-    fallback: 'blocking'
+export async function getStaticPaths() {
+  try {
+    const shows = await getFeaturedShows();
+
+    const paths = shows.map((show) => ({ params: { showId: show._id.toString() } }));
+
+    return {
+      paths: paths,
+      fallback: 'blocking',
+    };
+  } catch (error) {
+    console.error('Error in getStaticPaths:', error);
+
+    return {
+      paths: [],
+      fallback: 'blocking',
+    };
   }
 }
 
