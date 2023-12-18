@@ -1,15 +1,21 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import classes from './gen-search.module.css'
 
 function GenSearch (props) {
-const inputRef = useRef()
+  const [placeholder , setPlaceholder] = useState('')
+  const inputRef = useRef()
+
 
   function submitHandler (event) {
     event.preventDefault()
 
     const query = inputRef.current.value
-
-    props.onSearch(query)
+    if (!query || query.trim() === 0) {
+      setPlaceholder('you have to type something first')
+    } else {
+      props.onSearch(query)
+    }
+    
   }
 
   return (
@@ -17,7 +23,7 @@ const inputRef = useRef()
       <div className={classes.controls}>
         <div className={classes.control}>
           <label htmlFor='search'>Search</label>
-          <input id='search' ref={inputRef} />
+          <input id='search' ref={inputRef} placeholder={placeholder}/>
         </div>
       </div>
       <button>search</button>
