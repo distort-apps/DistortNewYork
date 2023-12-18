@@ -15,14 +15,14 @@ async function handler (req, res) {
       res.status(500).json({
         message: 'Connecting to db failed🚬💀💀💀'
       })
-      return 
+      return
     }
 
     try {
       await insertDocument(client, 'newsletter', { email: userEmail })
       client.close()
     } catch (error) {
-        res.status(500).json({message: 'Data insertion failed🚬💀💀💀'})
+      res.status(500).json({ message: 'Data insertion failed🚬💀💀💀' })
     }
 
     res.status(201).json({ message: 'success' })

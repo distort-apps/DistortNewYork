@@ -12,7 +12,7 @@ function AllShowsPage ({ shows }) {
     router.push(fullPath)
   }
 
-  function genSearchHandler(query) {
+  function genSearchHandler (query) {
     const fullPath = `/search/${query}`
 
     router.push(fullPath)
@@ -22,36 +22,38 @@ function AllShowsPage ({ shows }) {
     <>
       <Head>
         <title>All Shows</title>
-        <meta name="description" content="Find all shows in NYC and its boroughs"/>
+        <meta
+          name='description'
+          content='Find all shows in NYC and its boroughs'
+        />
       </Head>
       <ShowDateFilter onSearch={findShowsByDateHandler} />
-      <GenSearch onSearch={genSearchHandler}/>
+      <GenSearch onSearch={genSearchHandler} />
       <ShowGrid items={shows} />
     </>
   )
 }
 
-export async function getStaticProps() {
+export async function getStaticProps () {
   try {
-    const shows = await getAllShows();
+    const shows = await getAllShows()
 
     return {
       props: {
-        shows: JSON.parse(JSON.stringify(shows)),
+        shows: JSON.parse(JSON.stringify(shows))
       },
-      revalidate: 60,
-    };
+      revalidate: 60
+    }
   } catch (error) {
-    console.error('Error in getStaticProps:', error);
+    console.error('Error in getStaticProps:', error)
 
     return {
       props: {
         shows: [],
-        error: 'Error in getAllShows',
+        error: 'Error in getAllShows'
       },
-      revalidate: 60,
-    };
+      revalidate: 60
+    }
   }
 }
 export default AllShowsPage
-
