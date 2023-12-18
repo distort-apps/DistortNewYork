@@ -40,7 +40,7 @@ export async function getAllShows () {
 
     return shows
   } catch (error) {
-    console.error('Error in getFeaturedShows:', error)
+    console.error('Error in getAllShows:', error)
     throw new Error('Internal Server Error')
   } finally {
     if (client) {

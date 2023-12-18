@@ -24,7 +24,6 @@ function Comments (props) {
   }
 
   function addCommentHandler (commentData) {
-    // send data to API
     fetch('/api/comments/' + showId, {
       method: 'POST',
       body: JSON.stringify(commentData),

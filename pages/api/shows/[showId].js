@@ -14,7 +14,6 @@ async function handler (req, res) {
     return
   }
 
-  // GET ALL shows
   if (req.method === 'GET') {
     const id = new ObjectId(showId)
     let documents
