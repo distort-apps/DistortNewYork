@@ -24,7 +24,7 @@ function ContactForm () {
 
   return (
     <>
-      <section className={classes.contact}>Or submit event info 
+      <section className={classes.contact}><h2>Submit event info</h2> 
       <form onSubmit={submitFormHandler} className={classes.form}>
         <div className={classes.control}>
           <label htmlFor='email'>Your Email Address</label>
