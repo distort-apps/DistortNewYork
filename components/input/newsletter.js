@@ -1,8 +1,9 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import classes from './newsletter.module.css'
 import Button from '../ui/button'
 
 function Newsletter () {
+  const [placeholder , setPlaceholder] = useState('Your Email')
   const emailInputRef = useRef()
 
   function registrationHandler(e) {
@@ -18,6 +19,9 @@ function Newsletter () {
       }
     })
     .then(res => res.json())
+
+    emailInputRef.current.value = ''
+    setPlaceholder("nom nom nom")
   }
 
   return (
@@ -28,7 +32,7 @@ function Newsletter () {
           <input
             type='email'
             id='email'
-            placeholder='Your email'
+            placeholder={placeholder}
             aria-label='Your email'
             ref={emailInputRef}
           />
