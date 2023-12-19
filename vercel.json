@@ -1,0 +1,21 @@
+{
+    "images": {
+        "remotePatterns": [
+            {
+              "hostname": "d1htavafy9m5bl.cloudfront.net"
+            },
+            {
+              "hostname": "dice-media.imgix.net"
+            },
+            {
+              "hostname": "assets0.dostuffmedia.com"
+            },
+            {
+              "hostname": "s1.ticketm.net"
+            },
+            {
+              "hostname": "img.evbuc.com"
+            }
+          ]
+    }
+  }
