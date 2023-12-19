@@ -2,22 +2,23 @@
 
 
 .post {
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 1px 12px 2px rgba(0, 0, 0, 0.2);
-    background-color: var(--color-grey-800);
-    text-align: center;
-    border-radius: 8px;
-    overflow: hidden; 
-    margin: 1rem;
-    gap: 1rem; 
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 1px 12px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: var(--color-grey-800);
+  margin: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
   }
   
   .post a {
     color: var(--color-grey-100);
   }
   
-  .image {
-    width: 640px;
-    max-height: auto;
+  .post img {
+    width: 100%;
+    height: 20rem;
     overflow: hidden;
     object-fit: cover;
   
@@ -29,6 +30,7 @@
   
   .content {
     padding: var(--size-4);
+    width: 100%;
   }
   
   .content h3 {

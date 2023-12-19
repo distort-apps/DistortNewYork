@@ -1,6 +1,6 @@
 .body img {
   object-fit: contain;
-  width: 656px;
+  width: 100%;
   height: auto;
 }
 

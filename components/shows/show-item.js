@@ -27,12 +27,9 @@ function ShowItem ({ show }) {
     <li className={classes.post}>
       <Link href={exploreLink} className={classes.link}>
         <div className={classes.image}>
-          <Image
+          <img
             src={image}
             alt={title}
-            width={640}
-            height={640}
-            responsive={+true}
           />
         </div>
         <div className={classes.content}>
