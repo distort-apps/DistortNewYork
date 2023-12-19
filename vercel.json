@@ -1,5 +1,6 @@
 {
     "images": {
+        "sizes": [256, 656, 1080, 2048, 3840],
         "remotePatterns": [
             {
               "hostname": "d1htavafy9m5bl.cloudfront.net"
