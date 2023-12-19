@@ -1,15 +1,16 @@
 import classes from './contact-body.module.css'
+import MailToButton from '../ui/mail-to-button'
 function ContactBodyPage () {
   return (
     <div className={classes.contact}>
       <h2>Write DistortNewYork @:</h2>
-      <p>distortNewYork@gmail.com</p>
-      <h3>or send a flyer to:</h3>
-      <p>POBOx: asdfjfkjfle </p>
-      <p>BRKLYN NY, 11237</p>
+      <MailToButton
+        label='DistortNewYork@gmail.com'
+        mailto='mailto:distortnewyork@gmail.com'
+      />
       <hr />
     </div>
   )
 }
-export default ContactBodyPage
 
+export default ContactBodyPage

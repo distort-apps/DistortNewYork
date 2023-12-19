@@ -26,56 +26,51 @@ function ShowDetailPage (props) {
   )
 }
 
-export async function getStaticProps(context) {
-  const showId = context.params.showId;
+export async function getStaticProps (context) {
+  const showId = context.params.showId
 
   try {
-    const show = await getShowById(showId);
+    const show = await getShowById(showId)
 
     return {
       props: {
-        show: JSON.parse(JSON.stringify(show)),
+        show: JSON.parse(JSON.stringify(show))
       },
-      revalidate: 60,
-    };
+      revalidate: 60
+    }
   } catch (error) {
-    console.error('Error in getStaticProps:', error);
+    console.error('Error in getStaticProps:', error)
 
     return {
       props: {
         show: null,
-        error: 'Error in getShowById',
+        error: 'Error in getShowById'
       },
-      revalidate: 60,
-    };
+      revalidate: 60
+    }
   }
 }
 
-export async function getStaticPaths() {
+export async function getStaticPaths () {
   try {
-    const shows = await getFeaturedShows();
+    const shows = await getFeaturedShows()
 
-    const paths = shows.map((show) => ({ params: { showId: show._id.toString() } }));
+    const paths = shows.map(show => ({
+      params: { showId: show._id.toString() }
+    }))
 
     return {
       paths: paths,
-      fallback: 'blocking',
-    };
+      fallback: 'blocking'
+    }
   } catch (error) {
-    console.error('Error in getStaticPaths:', error);
+    console.error('Error in getStaticPaths:', error)
 
     return {
       paths: [],
-      fallback: 'blocking',
-    };
+      fallback: 'blocking'
+    }
   }
 }
 
 export default ShowDetailPage
-
-//   paths: [
-//     {params: {id: 'e1'}}
-//   ]
-// }
-
-// const id = new ObjectId(showId)

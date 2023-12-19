@@ -44,13 +44,17 @@ async function handler (req, res) {
     } catch (error) {
       res.status(500).json({ message: 'inserting to db faild 💀💀💀🚬' })
     }
-
   }
-  // GET ALL COMMENTS
+
   if (req.method === 'GET') {
     let documents
     try {
-      documents = await getAllDocuments(client, 'comments', { _id: -1 }, {showId: showId})
+      documents = await getAllDocuments(
+        client,
+        'comments',
+        { _id: -1 },
+        { showId: showId }
+      )
       res.status(200).json({ comments: documents })
     } catch (error) {
       res.status(500).json({ message: 'Error fetching documentsdocuments🚬🚬' })
@@ -60,4 +64,3 @@ async function handler (req, res) {
 }
 
 export default handler
-

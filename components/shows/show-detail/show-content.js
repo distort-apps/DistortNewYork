@@ -1,11 +1,9 @@
-import { useRouter } from 'next/router'
 import ShowBody from './show-body'
 import ShowHeader from './show-header'
 import ShowFooter from './show-footer'
 import classes from './show-content.module.css'
 
 function ShowContent ({ show }) {
-  const router = useRouter()
 
   return (
       <article className={classes.content}>
@@ -15,6 +13,7 @@ function ShowContent ({ show }) {
           image={show.image}
           date={show.date}
           location={show.location}
+          time={show.time}
           price={show.price}
           genre={show.genre}
         />

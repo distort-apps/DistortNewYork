@@ -9,12 +9,9 @@ function ShowItem ({ show }) {
     _id,
     title,
     date,
-    genre,
     location,
-    price,
-    isFeatured,
+    genre,
     image,
-    excerpt
   } = show
 
   const readableDate = new Date(date).toLocaleDateString('en-Us', {
@@ -33,8 +30,8 @@ function ShowItem ({ show }) {
           <Image
             src={image}
             alt={title}
-            width={750}
-            height={650}
+            width={656}
+            height={656}
             responsive={+true}
           />
         </div>
@@ -47,6 +44,9 @@ function ShowItem ({ show }) {
           <div className={classes.address}>
             <AddressIcon />
             <address>{formattedAddress}</address>
+          </div>
+          <div>
+            <p>{genre}</p>
           </div>
         </div>
       </Link>

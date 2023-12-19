@@ -7,7 +7,7 @@ import Button from '@/components/ui/button'
 import Head from 'next/head'
 import ShowGrid from '@/components/shows/show-grid'
 
-function DateFilterPage (props) {
+function DateFilterPage () {
   const [loadedShows, setLoadedShows] = useState([])
   const router = useRouter()
 
