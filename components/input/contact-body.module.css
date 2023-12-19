@@ -5,3 +5,14 @@
     text-align: center;
   }
   
+  .contact a {
+    color: var(--color-grey-100);
+    font-size: var(--size-4);
+  }
+  
+  .contact a:hover,
+  .contact a:active,
+  .contact a.active {
+    color: var(--color-grey-200);
+  }
+  
