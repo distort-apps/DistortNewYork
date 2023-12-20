@@ -17,9 +17,8 @@ async function handler (req, res) {
       !price ||
       price.length === 0 ||
       !url ||
-      url.length === 0 ||
-      !excerpt ||
-      excerpt.length === 0
+      url.length === 0 
+
     ) {
       res.status(422).json({ message: 'Invalid email address' })
       return
