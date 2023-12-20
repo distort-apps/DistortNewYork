@@ -2,6 +2,11 @@ import Image from 'next/image'
 import classes from './show-body.module.css'
 
 function ShowBody ({ title, image, excerpt, date, price, location, time }) {
+  const readableDate = new Date(date).toLocaleDateString('en-Us', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric'
+  })
   return (
     <div className={classes.body}>
       <div>
@@ -10,7 +15,7 @@ function ShowBody ({ title, image, excerpt, date, price, location, time }) {
       <div className='center'>
         <p>{location}</p>
         <p>{time}</p>
-        <time>{date}</time>
+        <time>{readableDate}</time>
         <p>${price}</p>
         <p>{excerpt}</p>
       </div>
