@@ -1,16 +1,16 @@
 import { useRef, useState } from 'react';
 import classes from './new-comment.module.css';
+import { useRouter } from 'next/router';
 
 function NewComment(props) {
   const [isInvalid, setIsInvalid] = useState(false);
-
+  const router = useRouter()
   const emailInputRef = useRef();
   const nameInputRef = useRef();
   const commentInputRef = useRef();
 
   function sendCommentHandler(event) {
     event.preventDefault();
-
     const enteredEmail = emailInputRef.current.value;
     const enteredName = nameInputRef.current.value;
     const enteredComment = commentInputRef.current.value;
@@ -34,7 +34,7 @@ function NewComment(props) {
       text: enteredComment,
     });
 
-    
+    router.reload()
   }
 
   return (
