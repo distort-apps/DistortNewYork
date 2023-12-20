@@ -42,3 +42,4 @@ node_modules/
 .swc/
 .*.env
 next.config.js
+certificates

@@ -3,17 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --experimental-https",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "mongodb": "^6.3.0",
-    "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18",
     "sharp": "^0.33.0",
     "swr": "^2.2.4"
+  },
+  "devDependencies": {
+    "next": "^14.0.4"
   }
 }

@@ -6,6 +6,7 @@ import ErrorAlert from '@/components/ui/error-alert'
 import Button from '@/components/ui/button'
 import Head from 'next/head'
 import ShowGrid from '@/components/shows/show-grid'
+const SHOP = process.env.SHOP
 
 function DateFilterPage () {
   const [loadedShows, setLoadedShows] = useState([])
@@ -14,7 +15,7 @@ function DateFilterPage () {
   const filterData = router.query.slug
 
   const { data, error } = useSWR(
-    'http://localhost:3000/api/shows',
+    '/api/shows',
     url => fetch(url).then(res => res.json())
   )
 
