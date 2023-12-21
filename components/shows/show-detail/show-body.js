@@ -5,8 +5,9 @@ function ShowBody ({ title, image, excerpt, date, price, location, time }) {
     day: 'numeric',
     month: 'long',
     year: 'numeric',
-    timeZone: 'UTC' // Set time zone to UTC
-  }).format(new Date(date));
+    timeZone: 'UTC'
+  }).format(new Date(date))
+
   return (
     <div className={classes.body}>
       <div>

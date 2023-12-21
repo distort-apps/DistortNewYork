@@ -10,8 +10,8 @@ function ShowItem ({ show }) {
     day: 'numeric',
     month: 'long',
     year: 'numeric',
-    timeZone: 'UTC' // Set time zone to UTC
-  }).format(new Date(date));
+    timeZone: 'UTC'
+  }).format(new Date(date))
 
   const formattedAddress = location.replace(',', '\n')
   const exploreLink = `/shows/${_id}`
