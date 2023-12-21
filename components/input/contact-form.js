@@ -76,11 +76,11 @@ function ContactForm () {
             <textarea id='time' rows='1' ref={enteredTimeRef}></textarea>
           </div>
           <div className={classes.control}>
-            <label htmlFor='price'>Event Price</label>
+            <label htmlFor='price'>Event price</label>
             <textarea id='price' rows='1' ref={enteredPriceRef}></textarea>
           </div>
           <div className={classes.control}>
-            <label htmlFor='url'>Event image url</label>
+            <label htmlFor='url'>Event flyer url</label>
             <textarea id='url' rows='1' ref={enteredUrlRef}></textarea>
           </div>
           <div className={classes.control}>
