@@ -10,7 +10,7 @@ export async function getFeaturedShows () {
     const shows = await db
       .collection('shows')
       .find({ isFeatured: true })
-      .sort({ _id: -1 })
+      .sort({ rating: 1 })
       .limit(50)
       .toArray()
 

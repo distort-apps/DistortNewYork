@@ -14,7 +14,7 @@ async function handler (req, res) {
   }
 
   if (req.method === 'POST') {
-    const { title, date, genre, location, time, price, isFeatured, image, excerpt } =
+    const { title, date, genre, location, time, price, isFeatured, image, excerpt, rating} =
       req.body
 
     if (
@@ -47,7 +47,8 @@ async function handler (req, res) {
       price,
       isFeatured,
       image,
-      excerpt
+      excerpt,
+      rating
     }
 
     try {

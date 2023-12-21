@@ -18,7 +18,7 @@ async function handler (req, res) {
       documents = await getAllDocuments(
         client,
         'shows',
-        { date: 1 },
+        { rating: 1 },
         { isFeatured: true }
       )
       res.status(200).json({ shows: documents })
