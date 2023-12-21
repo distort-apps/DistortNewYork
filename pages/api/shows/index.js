@@ -61,7 +61,7 @@ async function handler (req, res) {
   if (req.method === 'GET') {
     let documents
     try {
-      documents = await getAllDocuments(client, 'shows', { _id: -1 })
+      documents = await getAllDocuments(client, 'shows', { date: 1 })
       res.status(200).json({ shows: documents })
     } catch (error) {
       res.status(500).json({ message: 'Error fetching documentsdocuments🚬🚬' })

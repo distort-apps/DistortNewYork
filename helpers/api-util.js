@@ -34,7 +34,7 @@ export async function getAllShows () {
     const shows = await db
       .collection('shows')
       .find({})
-      .sort({ _id: -1 })
+      .sort({ date: 1 })
       .limit(500)
       .toArray()
 
