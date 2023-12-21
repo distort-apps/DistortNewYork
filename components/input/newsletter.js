@@ -26,7 +26,7 @@ function Newsletter () {
 
   return (
     <section className={classes.newsletter}>
-      <h2>register and we might send you our weekly top shows.</h2>
+      <h2>register and we might send you our weekly top shows</h2>
       <form onSubmit={registrationHandler}>
         <div className={classes.control}>
           <input

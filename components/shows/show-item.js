@@ -1,18 +1,10 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import DateIcon from '../icons/date-icon'
 import AddressIcon from '../icons/address-icon'
 import classes from './show-item.module.css'
 
 function ShowItem ({ show }) {
-  const {
-    _id,
-    title,
-    date,
-    location,
-    genre,
-    image,
-  } = show
+  const { _id, title, date, location, genre, image } = show
 
   const readableDate = new Date(date).toLocaleDateString('en-Us', {
     day: 'numeric',
@@ -27,10 +19,7 @@ function ShowItem ({ show }) {
     <li className={classes.post}>
       <Link href={exploreLink} className={classes.link}>
         <div className={classes.image}>
-          <img
-            src={image}
-            alt={title}
-          />
+          <img src={image} alt={title} />
         </div>
         <div className={classes.content}>
           <h3>{title}</h3>
@@ -52,4 +41,3 @@ function ShowItem ({ show }) {
 }
 
 export default ShowItem
-
