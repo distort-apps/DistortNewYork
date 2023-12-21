@@ -6,11 +6,12 @@ import classes from './show-item.module.css'
 function ShowItem ({ show }) {
   const { _id, title, date, location, genre, image } = show
 
-  const readableDate = new Date(date).toLocaleDateString('en-Us', {
+  const readableDate = new Intl.DateTimeFormat('en-US', {
     day: 'numeric',
     month: 'long',
-    year: 'numeric'
-  })
+    year: 'numeric',
+    timeZone: 'UTC'
+  }).format(new Date(date))
 
   const formattedAddress = location.replace(',', '\n')
   const exploreLink = `/shows/${_id}`
