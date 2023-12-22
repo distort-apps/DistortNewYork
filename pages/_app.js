@@ -10,9 +10,9 @@ export default function App ({ Component, pageProps }) {
         <title>DistortNewYork</title>
         <meta name='description' content='Shows in NYC and all boroughs' />
         <meta name='viewport' content='initial-scale=1.0, width=device-width' />
-        <Analytics />
       </Head>
       <Component {...pageProps} />
+      <Analytics />
     </Layout>
   )
 }
