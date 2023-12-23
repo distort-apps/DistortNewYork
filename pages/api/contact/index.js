@@ -1,56 +1,100 @@
-import { connectDatabase, insertDocument } from '../../../helpers/db-util'
-async function handler (req, res) {
-  if (req.method === 'POST') {
-    const { email, title, date, genre, time, price, url, excerpt } = req.body
+import { connectDatabase, insertDocument } from '@/helpers/db-util';
+import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3'
+import multer from 'multer';
 
-    if (
-      !email ||
-      !email.includes('@') ||
-      !title ||
-      title.length === 0 ||
-      !date ||
-      date.length === 0 ||
-      !genre ||
-      genre.length === 0 ||
-      !time ||
-      time.length === 0 ||
-      !price ||
-      price.length === 0 ||
-      !url ||
-      url.length === 0 
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
 
-    ) {
-      res.status(422).json({ message: 'Invalid email address' })
-      return
-    }
+const s3Client = new S3Client({
+  region: process.env.NEXT_AWS_S3_REGION,
+  credentials: {
+    accessKeyId: process.env.NEXT_AWS_S3_ACCESS_KEY_ID,
+    secretAccessKey: process.env.NEXT_AWS_S3_SECRET_ACCESS_KEY,
+  },
+});
 
-    let client
-    try {
-      client = await connectDatabase()
-    } catch (error) {
-      res.status(500).json({ message: 'Connecting to db failed🚬💀💀💀' })
-      return
-    }
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage }).single('image');
 
-    const newPost = {
-      email,
-      title,
-      date,
-      genre,
-      time,
-      price,
-      url,
-      excerpt
-    }
+async function uploadToS3(file, filename) {
+  const s3Path = `shows/${filename}`;
+  try {
+    const params = {
+      Bucket: process.env.NEXT_AWS_S3_BUCKET_NAME,
+      Key: s3Path,
+      Body: file,
+      ContentType: "image/jpg, image/png, image/jpeg"
+    };
 
-    let result
-    try {
-      result = await insertDocument(client, 'contact', newPost)
-      res.status(201).json({ message: 'success', contact: newPost })
-      client.close()
-    } catch (error) {
-      res.status(500).json({ message: 'inserting to db faild 💀💀💀🚬' })
-    }
+    await s3Client.send(new PutObjectCommand(params));
+    return `https://${process.env.NEXT_AWS_S3_BUCKET_NAME}.s3.amazonaws.com/${s3Path}`;
+  } catch (error) {
+    console.error('Error uploading to S3:', error);
+    throw error;
   }
 }
-export default handler
+
+export default async function handler(req, res) {
+  let client;
+
+  try {
+    client = await connectDatabase();
+  } catch (error) {
+    console.error('Error connecting to MongoDB:', error);
+    return res.status(500).json({ message: 'Connecting to the database failed' });
+  }
+
+  if (req.method === 'POST') {
+    upload(req, res, async (err) => {
+      if (err instanceof multer.MulterError) {
+        console.error('Multer error:', err);
+        return res.status(500).json({ error: 'File upload error' });
+      } else if (err) {
+        console.error('Unknown error:', err);
+        return res.status(500).json({ error: 'Unknown error occurred' });
+      }
+
+      const file = req.file;
+      let imageUrl = null;
+
+      if (file) {
+        try {
+          imageUrl = await uploadToS3(file.buffer, file.originalname);
+        } catch (error) {
+          console.error('Failed to upload image to S3:', error);
+          return res.status(500).json({ error: 'Failed to upload image' });
+        }
+      }
+
+      const formData = {
+        email: req.body.email,
+        title: req.body.title,
+        date: req.body.date,
+        genre: req.body.genre,
+        time: req.body.time,
+        price: req.body.price,
+        excerpt: req.body.excerpt,
+        imageUrl: imageUrl
+      };
+
+      try {
+        await insertDocument(client, 'contact', formData);
+        client.close();
+        return res.status(201).json({ message: 'Data inserted successfully!' });
+      } catch (error) {
+        console.error('Error inserting data into MongoDB:', error);
+        client.close();
+        return res.status(500).json({ error: 'Failed to insert data' });
+      }
+    });
+  } else {
+    res.setHeader('Allow', ['POST']);
+    res.status(405).end(`Method ${req.method} Not Allowed`);
+  }
+}
+
+
+
