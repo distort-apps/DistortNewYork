@@ -49,21 +49,21 @@ export async function getAllShows () {
   }
 }
 
-export async function getShowById(id) {
-  let client;
+export async function getShowById (id) {
+  let client
 
   try {
-    client = await connectDatabase();
-    const db = client.db('gagz');
-    const show = await db.collection('shows').findOne({ _id: new ObjectId(id) });
+    client = await connectDatabase()
+    const db = client.db('gagz')
+    const show = await db.collection('shows').findOne({ _id: new ObjectId(id) })
 
-    return show;
+    return show
   } catch (error) {
-    console.error('Error in getShowById:', error);
-    throw new Error('Internal Server Error');
+    console.error('Error in getShowById:', error)
+    throw new Error('Internal Server Error')
   } finally {
     if (client) {
-      client.close();
+      client.close()
     }
   }
 }
