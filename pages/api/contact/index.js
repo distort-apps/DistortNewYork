@@ -48,6 +48,7 @@ export default async function handler(req, res) {
   }
 
   if (req.method === 'POST') {
+    
     upload(req, res, async (err) => {
       if (err instanceof multer.MulterError) {
         console.error('Multer error:', err);
@@ -57,6 +58,11 @@ export default async function handler(req, res) {
         return res.status(500).json({ error: 'Unknown error occurred' });
       }
 
+      if (!req.body.email || !req.body.email.includes('@')) {
+        res.status(422).json({ message: 'invalid email address.' })
+        return
+      }
+      
       const file = req.file;
       let imageUrl = null;
 
