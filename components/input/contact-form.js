@@ -1,6 +1,5 @@
 import { useRef } from 'react'
 import classes from './contact-form.module.css'
-import { useRouter } from 'next/router'
 
 function ContactForm () {
   const emailInputRef = useRef()
@@ -11,8 +10,6 @@ function ContactForm () {
   const enteredPriceRef = useRef()
   const fileInputRef = useRef()
   const enteredExcerptRef = useRef()
-
-  const router = useRouter()
 
   async function submitFormHandler (e) {
     e.preventDefault()
@@ -39,11 +36,10 @@ function ContactForm () {
       const response = await fetch(`/api/contact`, {
         method: 'POST',
         body: formData,
-        mode: 'no-cors' // Add this line
+        mode: 'no-cors'
       })
 
       if (response.ok) {
-
         emailInputRef.current.value = ''
         enteredTitleRef.current.value = ''
         enteredDateRef.current.value = ''
@@ -52,7 +48,6 @@ function ContactForm () {
         enteredPriceRef.current.value = ''
         fileInputRef.current.value = null
         enteredExcerptRef.current.value = ''
-        
       } else {
         console.error('Failed to submit the form.')
       }
@@ -65,6 +60,7 @@ function ContactForm () {
     <>
       <section className={classes.contact}>
         <h2>Submit event info</h2>
+        <p>No fields are required. Anything you submit will be posted</p>
         <form onSubmit={submitFormHandler} className={classes.form}>
           <div className={classes.control}>
             <label htmlFor='email'>Your Email Address</label>
