@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import classes from './contact-form.module.css'
+import Button from '../ui/button'
 
 function ContactForm () {
   const emailInputRef = useRef()
@@ -60,7 +61,7 @@ function ContactForm () {
     <>
       <section className={classes.contact}>
         <h2>Submit event info</h2>
-        <p>No fields are required. Anything you submit will be posted</p>
+        <p>Only email is required.</p> <p>Anything you submit could get posted.</p>
         <form onSubmit={submitFormHandler} className={classes.form}>
           <div className={classes.control}>
             <label htmlFor='email'>Your Email Address</label>
@@ -88,13 +89,13 @@ function ContactForm () {
           </div>
           <div className={classes.control}>
             <label htmlFor='excerpt'>Tell us about the Event</label>
-            <textarea id='excerpt' rows='5' ref={enteredExcerptRef}></textarea>
+            <textarea id='excerpt' rows='3' ref={enteredExcerptRef}></textarea>
           </div>
           <div className={classes.control}>
-            <label htmlFor='image'>Event flyer</label>
-            <input type='file' id='image' ref={fileInputRef} accept='image/*' />
+            <label className={classes.fileInputLabel} htmlFor='image'>Upload Flyer</label>
+            <input className={classes.fileInput} type='file' id='image' ref={fileInputRef} accept='image/*' />
           </div>
-          <button>Submit</button>
+          <Button>Submit</Button>
         </form>
       </section>
     </>
