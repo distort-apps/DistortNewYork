@@ -1,64 +1,71 @@
-import { useRef } from 'react';
-import classes from './contact-form.module.css';
-import { useRouter } from 'next/router';
+import { useRef } from 'react'
+import classes from './contact-form.module.css'
+import { useRouter } from 'next/router'
 
-function ContactForm() {
-  const emailInputRef = useRef();
-  const enteredTitleRef = useRef();
-  const enteredDateRef = useRef();
-  const enteredGenreRef = useRef();
-  const enteredTimeRef = useRef();
-  const enteredPriceRef = useRef();
-  const fileInputRef = useRef(); // Added file input ref
-  const enteredExcerptRef = useRef();
+function ContactForm () {
+  const emailInputRef = useRef()
+  const enteredTitleRef = useRef()
+  const enteredDateRef = useRef()
+  const enteredGenreRef = useRef()
+  const enteredTimeRef = useRef()
+  const enteredPriceRef = useRef()
+  const fileInputRef = useRef()
+  const enteredExcerptRef = useRef()
 
-  const router = useRouter();
+  const router = useRouter()
 
-  async function submitFormHandler(e) {
-    e.preventDefault();
-  
-    const enteredEmail = emailInputRef.current.value;
-    const enteredTitle = enteredTitleRef.current.value;
-    const enteredDate = enteredDateRef.current.value;
-    const enteredGenre = enteredGenreRef.current.value;
-    const enteredTime = enteredTimeRef.current.value;
-    const enteredPrice = enteredPriceRef.current.value;
-    const enteredExcerpt = enteredExcerptRef.current.value;
+  async function submitFormHandler (e) {
+    e.preventDefault()
 
-  
-    const formData = new FormData();
-    formData.append('email', enteredEmail);
-    formData.append('title', enteredTitle);
-    formData.append('date', enteredDate);
-    formData.append('genre', enteredGenre);
-    formData.append('time', enteredTime);
-    formData.append('price', enteredPrice);
-    formData.append('excerpt', enteredExcerpt);
-    formData.append('image', fileInputRef.current.files[0]);
-  
+    const enteredEmail = emailInputRef.current.value
+    const enteredTitle = enteredTitleRef.current.value
+    const enteredDate = enteredDateRef.current.value
+    const enteredGenre = enteredGenreRef.current.value
+    const enteredTime = enteredTimeRef.current.value
+    const enteredPrice = enteredPriceRef.current.value
+    const enteredExcerpt = enteredExcerptRef.current.value
+
+    const formData = new FormData()
+    formData.append('email', enteredEmail)
+    formData.append('title', enteredTitle)
+    formData.append('date', enteredDate)
+    formData.append('genre', enteredGenre)
+    formData.append('time', enteredTime)
+    formData.append('price', enteredPrice)
+    formData.append('excerpt', enteredExcerpt)
+    formData.append('image', fileInputRef.current.files[0])
+
     try {
       const response = await fetch(`/api/contact`, {
         method: 'POST',
         body: formData,
-        mode: 'no-cors', // Add this line
-      });
-  
+        mode: 'no-cors' // Add this line
+      })
+
       if (response.ok) {
-        console.log("success");
+
+        emailInputRef.current.value = ''
+        enteredTitleRef.current.value = ''
+        enteredDateRef.current.value = ''
+        enteredGenreRef.current.value = ''
+        enteredTimeRef.current.value = ''
+        enteredPriceRef.current.value = ''
+        fileInputRef.current.value = null
+        enteredExcerptRef.current.value = ''
+        
       } else {
-        console.error('Failed to submit the form.');
+        console.error('Failed to submit the form.')
       }
     } catch (error) {
-      console.error('Error submitting the form:', error);
+      console.error('Error submitting the form:', error)
     }
   }
-
 
   return (
     <>
       <section className={classes.contact}>
         <h2>Submit event info</h2>
-        <form onSubmit={submitFormHandler} className={classes.form} >
+        <form onSubmit={submitFormHandler} className={classes.form}>
           <div className={classes.control}>
             <label htmlFor='email'>Your Email Address</label>
             <input type='email' id='email' ref={emailInputRef} />
@@ -88,8 +95,8 @@ function ContactForm() {
             <textarea id='excerpt' rows='5' ref={enteredExcerptRef}></textarea>
           </div>
           <div className={classes.control}>
-            <label htmlFor="image">Event flyer</label>
-            <input type="file" id="image" ref={fileInputRef} accept="image/*" />
+            <label htmlFor='image'>Event flyer</label>
+            <input type='file' id='image' ref={fileInputRef} accept='image/*' />
           </div>
           <button>Submit</button>
         </form>
@@ -98,5 +105,3 @@ function ContactForm() {
   )
 }
 export default ContactForm
-
-
