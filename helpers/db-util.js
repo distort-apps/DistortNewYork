@@ -8,14 +8,14 @@ export async function connectDatabase () {
 }
 
 export async function insertDocument (client, collection, document) {
-  const db = client.db('gagz')
+  const db = client.db(process.env.mongodb_clustername)
 
   const result = await db.collection(collection).insertOne(document)
   return result
 }
 
 export async function getAllDocuments (client, collection, sort, filter = {}) {
-  const db = client.db('gagz')
+  const db = client.db(process.env.mongodb_clustername)
 
   const documents = await db
     .collection(collection)

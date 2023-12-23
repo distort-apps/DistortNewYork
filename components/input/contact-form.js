@@ -8,10 +8,10 @@ function ContactForm () {
   const enteredGenreRef = useRef()
   const enteredTimeRef = useRef()
   const enteredPriceRef = useRef()
-  const enteredUrlRef = useRef()
+  const fileInputRef = useRef()
   const enteredExcerptRef = useRef()
 
-  function submitFormHandler (e) {
+  async function submitFormHandler (e) {
     e.preventDefault()
 
     const enteredEmail = emailInputRef.current.value
@@ -20,40 +20,47 @@ function ContactForm () {
     const enteredGenre = enteredGenreRef.current.value
     const enteredTime = enteredTimeRef.current.value
     const enteredPrice = enteredPriceRef.current.value
-    const enteredUrl = enteredUrlRef.current.value
     const enteredExcerpt = enteredExcerptRef.current.value
 
-    fetch(`/api/contact`, {
-      method: 'POST',
-      body: JSON.stringify({
-        email: enteredEmail,
-        title: enteredTitle,
-        date: enteredDate,
-        genre: enteredGenre,
-        time: enteredTime,
-        price: enteredPrice,
-        url: enteredUrl,
-        excerpt: enteredExcerpt
-      }),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    }).then(res => res.json())
+    const formData = new FormData()
+    formData.append('email', enteredEmail)
+    formData.append('title', enteredTitle)
+    formData.append('date', enteredDate)
+    formData.append('genre', enteredGenre)
+    formData.append('time', enteredTime)
+    formData.append('price', enteredPrice)
+    formData.append('excerpt', enteredExcerpt)
+    formData.append('image', fileInputRef.current.files[0])
 
-    emailInputRef.current.value = ''
-    enteredTitleRef.current.value = ''
-    enteredDateRef.current.value = ''
-    enteredGenreRef.current.value = ''
-    enteredTimeRef.current.value = ''
-    enteredPriceRef.current.value = ''
-    enteredUrlRef.current.value = ''
-    enteredExcerptRef.current.value = ''
+    try {
+      const response = await fetch(`/api/contact`, {
+        method: 'POST',
+        body: formData,
+        mode: 'no-cors'
+      })
+
+      if (response.ok) {
+        emailInputRef.current.value = ''
+        enteredTitleRef.current.value = ''
+        enteredDateRef.current.value = ''
+        enteredGenreRef.current.value = ''
+        enteredTimeRef.current.value = ''
+        enteredPriceRef.current.value = ''
+        fileInputRef.current.value = null
+        enteredExcerptRef.current.value = ''
+      } else {
+        console.error('Failed to submit the form.')
+      }
+    } catch (error) {
+      console.error('Error submitting the form:', error)
+    }
   }
 
   return (
     <>
       <section className={classes.contact}>
         <h2>Submit event info</h2>
+        <p>No fields are required. Anything you submit will be posted</p>
         <form onSubmit={submitFormHandler} className={classes.form}>
           <div className={classes.control}>
             <label htmlFor='email'>Your Email Address</label>
@@ -69,7 +76,7 @@ function ContactForm () {
           </div>
           <div className={classes.control}>
             <label htmlFor='genre'>Event genre</label>
-            <textarea id='gnre' rows='1' ref={enteredGenreRef}></textarea>
+            <textarea id='genre' rows='1' ref={enteredGenreRef}></textarea>
           </div>
           <div className={classes.control}>
             <label htmlFor='time'>Event time</label>
@@ -80,12 +87,12 @@ function ContactForm () {
             <textarea id='price' rows='1' ref={enteredPriceRef}></textarea>
           </div>
           <div className={classes.control}>
-            <label htmlFor='url'>Event flyer url</label>
-            <textarea id='url' rows='1' ref={enteredUrlRef}></textarea>
-          </div>
-          <div className={classes.control}>
             <label htmlFor='excerpt'>Tell us about the Event</label>
             <textarea id='excerpt' rows='5' ref={enteredExcerptRef}></textarea>
+          </div>
+          <div className={classes.control}>
+            <label htmlFor='image'>Event flyer</label>
+            <input type='file' id='image' ref={fileInputRef} accept='image/*' />
           </div>
           <button>Submit</button>
         </form>
