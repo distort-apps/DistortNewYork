@@ -81,28 +81,32 @@ function ContactForm () {
       <form onSubmit={submitFormHandler} className={classes.form}>
         <div className={classes.controls}>
           <div className={classes.control}>
-            <label htmlFor='email'>Your Email Address</label>
+            <label htmlFor='email'>Email</label>
             <input type='email' id='email' ref={emailInputRef} />
           </div>
           <div className={classes.control}>
-            <label htmlFor='title'>Event title</label>
+            <label htmlFor='title'>Title</label>
             <textarea id='title' rows='1' ref={enteredTitleRef}></textarea>
           </div>
           <div className={classes.control}>
-            <label htmlFor='date'>Event date</label>
+            <label htmlFor='date'>Date</label>
             <textarea id='date' rows='1' ref={enteredDateRef}></textarea>
           </div>
           <div className={classes.control}>
-            <label htmlFor='genre'>Event genre</label>
+            <label htmlFor='genre'>Genre</label>
             <textarea id='genre' rows='1' ref={enteredGenreRef}></textarea>
           </div>
           <div className={classes.control}>
-            <label htmlFor='time'>Event time</label>
+            <label htmlFor='time'>Time</label>
             <textarea id='time' rows='1' ref={enteredTimeRef}></textarea>
           </div>
           <div className={classes.control}>
-            <label htmlFor='price'>Event price</label>
+            <label htmlFor='price'>Price</label>
             <textarea id='price' rows='1' ref={enteredPriceRef}></textarea>
+          </div>
+          <div className={classes.control}>
+            <label htmlFor='excerpt'>Details</label>
+            <textarea id='excerpt' rows='3' ref={enteredExcerptRef}></textarea>
           </div>
           <div className={classes.control}>
             <label className={classes.fileInputLabel} htmlFor='image'>
@@ -116,10 +120,6 @@ function ContactForm () {
               onChange={handleFileChange}
               accept='image/*'
             />
-          </div>
-          <div className={classes.control}>
-            <label htmlFor='excerpt'>Tell us about the Event</label>
-            <textarea id='excerpt' rows='3' ref={enteredExcerptRef}></textarea>
           </div>
         </div>
         <Button>Submit</Button>
