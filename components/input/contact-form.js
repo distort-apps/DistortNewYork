@@ -13,7 +13,7 @@ function ContactForm () {
   const enteredExcerptRef = useRef()
   const [fileName, setFileName] = useState('Upload FLyer');
 
-  function truncateFileName(name, maxLength = 25){
+  function truncateFileName(name, maxLength = 20){
     if (name.length > maxLength) {
       return `${name.substring(0, maxLength - 3)}...`;
     }
