@@ -1,8 +1,8 @@
 .contact {
-    margin: 3rem auto;
-    width: 90%;
-    max-width: 40rem;
-    text-align: center;
+  margin: 3rem auto;
+  width: 90%;
+  max-width: 40rem;
+  text-align: center;
 }
 
 .form {
@@ -48,10 +48,7 @@
 .form button {
   background-color: white;
   color: black;
-  
 }
-
-
 
 .fileInput {
   width: 0.1px;
@@ -60,28 +57,30 @@
   overflow: hidden;
   position: absolute;
   z-index: -1;
-  
 }
 
 .fileInputLabel {
-  display: block; 
+  display: block;
   cursor: pointer;
   background-color: white;
   border: 1px solid #000000;
   border-radius: 6px;
-  color: black; 
+  color: black;
   padding: 0.5rem 1.5rem;
-  text-align: center; 
+  text-align: center;
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
-  margin: 0 auto; 
-  width: 100%; 
-  line-height: normal; 
+  margin: 0 auto;
+  width: 100%;
+  line-height: normal;
 }
-
 
 .fileInputLabel:hover,
 .fileInputLabel:active {
-  background-color: #343333;
-  border-color: #343333;
+  background-color: #a9a6a6;
+  border-color: #a9a6a6;
 }
-
+.form button:hover,
+.form button:active {
+  background-color: #a9a6a6;
+  border-color: #a9a6a6;
+}

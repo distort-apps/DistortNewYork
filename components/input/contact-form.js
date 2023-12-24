@@ -13,13 +13,20 @@ function ContactForm () {
   const enteredExcerptRef = useRef()
   const [fileName, setFileName] = useState('Upload FLyer');
 
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setFileName(file.name);
-    } 
+  function truncateFileName(name, maxLength = 25){
+    if (name.length > maxLength) {
+      return `${name.substring(0, maxLength - 3)}...`;
+    }
+    return name;
   };
 
+  function handleFileChange(event){
+    const file = event.target.files[0];
+    if (file) {
+      const truncatedName = truncateFileName(file.name);
+      setFileName(truncatedName);
+    } 
+  };
   async function submitFormHandler (e) {
     e.preventDefault()
 
@@ -57,7 +64,7 @@ function ContactForm () {
         enteredPriceRef.current.value = ''
         fileInputRef.current.value = null
         enteredExcerptRef.current.value = ''
-        setFileName('Upload FLyer')
+        setFileName('Upload Flyer')
       } else {
         console.error('Failed to submit the form.')
       }
