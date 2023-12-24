@@ -12,7 +12,7 @@ function ContactPage () {
           content='Share your thoughts, or promote a show / event'
         />
       </Head>
-      <Donate />
+      <Donate/>
       <ContactBodyPage />
       <ContactForm />
     </div>

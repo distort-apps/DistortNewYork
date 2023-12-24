@@ -11,7 +11,7 @@ function ContactForm () {
   const enteredPriceRef = useRef()
   const fileInputRef = useRef()
   const enteredExcerptRef = useRef()
-  const [fileName, setFileName] = useState('Upload FLyer')
+  const [fileName, setFileName] = useState('Upload Flyer')
 
   function truncateFileName (name, maxLength = 20) {
     if (name.length > maxLength) {
@@ -74,12 +74,12 @@ function ContactForm () {
   }
 
   return (
-    <>
-      <section className={classes.contact}>
-        <h2>Submit event info</h2>
-        <p>Only email is required</p>
-        <p>Anything you submit could get posted</p>
-        <form onSubmit={submitFormHandler} className={classes.form}>
+    <section className={classes.contact}>
+      <h2>Submit event info</h2>
+      <p>Only email is required</p>
+      <p>Anything you submit could get posted</p>
+      <form onSubmit={submitFormHandler} className={classes.form}>
+        <div className={classes.controls}>
           <div className={classes.control}>
             <label htmlFor='email'>Your Email Address</label>
             <input type='email' id='email' ref={emailInputRef} />
@@ -121,10 +121,10 @@ function ContactForm () {
             <label htmlFor='excerpt'>Tell us about the Event</label>
             <textarea id='excerpt' rows='3' ref={enteredExcerptRef}></textarea>
           </div>
-          <Button>Submit</Button>
-        </form>
-      </section>
-    </>
+        </div>
+        <Button>Submit</Button>
+      </form>
+    </section>
   )
 }
 export default ContactForm
