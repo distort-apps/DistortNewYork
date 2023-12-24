@@ -9,7 +9,7 @@ function HomePage (props) {
         <title>Featured Shows in NY</title>
         <meta
           name='description'
-          content='Our top picks for shows to see this week in NY'
+          content='Our top picks for shows to see in NY'
         />
       </Head>
       <Newsletter />
