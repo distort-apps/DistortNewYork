@@ -11,22 +11,22 @@ function ContactForm () {
   const enteredPriceRef = useRef()
   const fileInputRef = useRef()
   const enteredExcerptRef = useRef()
-  const [fileName, setFileName] = useState('Upload FLyer');
+  const [fileName, setFileName] = useState('Upload FLyer')
 
-  function truncateFileName(name, maxLength = 20){
+  function truncateFileName (name, maxLength = 20) {
     if (name.length > maxLength) {
-      return `${name.substring(0, maxLength - 3)}...`;
+      return `${name.substring(0, maxLength - 3)}...`
     }
-    return name;
-  };
+    return name
+  }
 
-  function handleFileChange(event){
-    const file = event.target.files[0];
+  function handleFileChange (event) {
+    const file = event.target.files[0]
     if (file) {
-      const truncatedName = truncateFileName(file.name);
-      setFileName(truncatedName);
-    } 
-  };
+      const truncatedName = truncateFileName(file.name)
+      setFileName(truncatedName)
+    }
+  }
   async function submitFormHandler (e) {
     e.preventDefault()
 
@@ -77,7 +77,8 @@ function ContactForm () {
     <>
       <section className={classes.contact}>
         <h2>Submit event info</h2>
-        <p>Only email is required.</p> <p>Anything you submit could get posted.</p>
+        <p>Only email is required</p>
+        <p>Anything you submit could get posted</p>
         <form onSubmit={submitFormHandler} className={classes.form}>
           <div className={classes.control}>
             <label htmlFor='email'>Your Email Address</label>
@@ -104,8 +105,17 @@ function ContactForm () {
             <textarea id='price' rows='1' ref={enteredPriceRef}></textarea>
           </div>
           <div className={classes.control}>
-            <label className={classes.fileInputLabel} htmlFor='image'>{fileName}</label>
-            <input className={classes.fileInput} type='file' id='image' ref={fileInputRef} onChange={handleFileChange}  accept='image/*' />
+            <label className={classes.fileInputLabel} htmlFor='image'>
+              {fileName}
+            </label>
+            <input
+              className={classes.fileInput}
+              type='file'
+              id='image'
+              ref={fileInputRef}
+              onChange={handleFileChange}
+              accept='image/*'
+            />
           </div>
           <div className={classes.control}>
             <label htmlFor='excerpt'>Tell us about the Event</label>

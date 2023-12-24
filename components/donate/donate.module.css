@@ -1,0 +1,65 @@
+.donate {
+  margin: 2rem auto;
+  width: 90%;
+  border-radius: 6px;
+  background-color: var(--color-grey-100);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  text-align: center;
+}
+
+.control label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: black;
+  text-align: left;
+}
+
+.control input,
+.control textarea {
+  font: inherit;
+  padding: 0.25rem;
+  border-radius: 4px;
+  border: 1px solid white;
+  width: 100%;
+  background-color: white;
+}
+
+.donate button,
+.donate button:visited { 
+    width: 100%;
+    font: inherit;
+    padding: 0.25rem 0.5rem;
+    background-color: #000000;
+    border: 1px solid #000000;
+    color: ivory; 
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.donate a,
+.donate a:visited { 
+    width: 100%;
+    font: inherit;
+    padding: 0.25rem 0.5rem;
+    background-color: #000000;
+    border: 1px solid #000000;
+    color: ivory; 
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.donate a:hover,
+.donate a:active {
+  background-color: #1d1c1c;
+  border-color: #1d1c1c;
+  text-decoration: none;
+}
+
+@media (min-width: 768px) {
+
+    .donate button {
+      width: 20%;
+    }
+  }

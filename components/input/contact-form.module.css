@@ -45,11 +45,6 @@
   background-color: white;
 }
 
-.form button {
-  background-color: white;
-  color: black;
-}
-
 .fileInput {
   width: 0.1px;
   height: 0.1px;
@@ -76,11 +71,12 @@
 
 .fileInputLabel:hover,
 .fileInputLabel:active {
-  background-color: #a9a6a6;
-  border-color: #a9a6a6;
+  background-color: #000000;
+  border-color: #000000;
+  color: ivory;
 }
 .form button:hover,
 .form button:active {
-  background-color: #a9a6a6;
-  border-color: #a9a6a6;
+  background-color: #1d1c1c;
+  border-color: #1d1c1c;
 }

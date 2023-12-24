@@ -1,18 +1,17 @@
 .btn {
-  text-decoration: none;
-  cursor: pointer;
+  width: 100%;
   font: inherit;
+  padding: 0.25rem 0.5rem;
   background-color: #000000;
   border: 1px solid #000000;
-  border-radius: 6px;
-  color: white;
-  padding: 0.5rem 1.5rem;
-  text-align: center;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
+  color: ivory; 
+  border-radius: 4px;
+  text-decoration: none;
 }
 
 .btn:hover,
 .btn:active {
-  background-color: #343333;
-  border-color: #343333;
+  background-color: #1d1c1c;
+  border-color: #1d1c1c;
+  text-decoration: none;
 }
