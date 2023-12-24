@@ -81,20 +81,12 @@ function ContactForm () {
       <form onSubmit={submitFormHandler} className={classes.form}>
         <div className={classes.controls}>
           <div className={classes.control}>
-            <label htmlFor='email'>Email</label>
-            <input type='email' id='email' ref={emailInputRef} />
-          </div>
-          <div className={classes.control}>
-            <label htmlFor='title'>Title</label>
+            <label htmlFor='title'>title</label>
             <textarea id='title' rows='1' ref={enteredTitleRef}></textarea>
           </div>
           <div className={classes.control}>
             <label htmlFor='date'>Date</label>
             <textarea id='date' rows='1' ref={enteredDateRef}></textarea>
-          </div>
-          <div className={classes.control}>
-            <label htmlFor='genre'>Genre</label>
-            <textarea id='genre' rows='1' ref={enteredGenreRef}></textarea>
           </div>
           <div className={classes.control}>
             <label htmlFor='time'>Time</label>
@@ -105,8 +97,16 @@ function ContactForm () {
             <textarea id='price' rows='1' ref={enteredPriceRef}></textarea>
           </div>
           <div className={classes.control}>
+            <label htmlFor='genre'>Genre</label>
+            <textarea id='genre' rows='1' ref={enteredGenreRef}></textarea>
+          </div>
+          <div className={classes.control}>
             <label htmlFor='excerpt'>Details</label>
             <textarea id='excerpt' rows='3' ref={enteredExcerptRef}></textarea>
+          </div>
+          <div className={classes.control}>
+            <label htmlFor='email'>Email</label>
+            <input type='email' id='email' ref={emailInputRef} />
           </div>
           <div className={classes.control}>
             <label className={classes.fileInputLabel} htmlFor='image'>
