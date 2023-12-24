@@ -81,7 +81,7 @@ function ContactForm () {
       <form onSubmit={submitFormHandler} className={classes.form}>
         <div className={classes.controls}>
           <div className={classes.control}>
-            <label htmlFor='title'>title</label>
+            <label htmlFor='title'>Title</label>
             <textarea id='title' rows='1' ref={enteredTitleRef}></textarea>
           </div>
           <div className={classes.control}>
