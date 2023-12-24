@@ -16,6 +16,7 @@ function Donate () {
       >
         https://www.map.org.uk/donate/donate
       </Link>
+      <hr />
     </section>
   )
 }
