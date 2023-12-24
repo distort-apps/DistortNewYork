@@ -2,6 +2,7 @@ import FeaturedShows from '@/components/home-page/featured-shows'
 import Newsletter from '@/components/input/newsletter'
 import Head from 'next/head'
 import { getFeaturedShows } from '@/helpers/api-util'
+
 function HomePage (props) {
   return (
     <>
