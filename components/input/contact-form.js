@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import classes from './contact-form.module.css'
 import Button from '../ui/button'
 
@@ -11,6 +11,14 @@ function ContactForm () {
   const enteredPriceRef = useRef()
   const fileInputRef = useRef()
   const enteredExcerptRef = useRef()
+  const [fileName, setFileName] = useState('Upload FLyer');
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setFileName(file.name);
+    } 
+  };
 
   async function submitFormHandler (e) {
     e.preventDefault()
@@ -49,6 +57,7 @@ function ContactForm () {
         enteredPriceRef.current.value = ''
         fileInputRef.current.value = null
         enteredExcerptRef.current.value = ''
+        setFileName('Upload FLyer')
       } else {
         console.error('Failed to submit the form.')
       }
@@ -88,12 +97,12 @@ function ContactForm () {
             <textarea id='price' rows='1' ref={enteredPriceRef}></textarea>
           </div>
           <div className={classes.control}>
-            <label htmlFor='excerpt'>Tell us about the Event</label>
-            <textarea id='excerpt' rows='3' ref={enteredExcerptRef}></textarea>
+            <label className={classes.fileInputLabel} htmlFor='image'>{fileName}</label>
+            <input className={classes.fileInput} type='file' id='image' ref={fileInputRef} onChange={handleFileChange}  accept='image/*' />
           </div>
           <div className={classes.control}>
-            <label className={classes.fileInputLabel} htmlFor='image'>Upload Flyer</label>
-            <input className={classes.fileInput} type='file' id='image' ref={fileInputRef} accept='image/*' />
+            <label htmlFor='excerpt'>Tell us about the Event</label>
+            <textarea id='excerpt' rows='3' ref={enteredExcerptRef}></textarea>
           </div>
           <Button>Submit</Button>
         </form>
