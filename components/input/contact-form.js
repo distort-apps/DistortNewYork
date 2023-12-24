@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import classes from './contact-form.module.css'
 import Button from '../ui/button'
+import ErrorAlert from '../ui/error-alert'
 
 function ContactForm () {
   const emailInputRef = useRef()
@@ -12,6 +13,19 @@ function ContactForm () {
   const fileInputRef = useRef()
   const enteredExcerptRef = useRef()
   const [fileName, setFileName] = useState('Upload Flyer')
+  const [formError, setFormError] = useState(false);
+
+  function handleInputChange(){
+    if (formError) {
+      setFormError(false);
+    }
+  };
+
+  function isFormEmpty(){
+    const refs = [emailInputRef, enteredTitleRef, enteredDateRef, enteredGenreRef, enteredTimeRef, enteredPriceRef, enteredExcerptRef];
+
+    return refs.some(ref => !ref.current.value.trim());
+  };
 
   function truncateFileName (name, maxLength = 20) {
     if (name.length > maxLength) {
@@ -29,6 +43,12 @@ function ContactForm () {
   }
   async function submitFormHandler (e) {
     e.preventDefault()
+
+    if (isFormEmpty()) {
+      setFormError(true); 
+      return; 
+    }
+    setFormError(false);
 
     const enteredEmail = emailInputRef.current.value
     const enteredTitle = enteredTitleRef.current.value
@@ -75,38 +95,39 @@ function ContactForm () {
 
   return (
     <section className={classes.contact}>
+      {formError && <ErrorAlert>Please fill in at least one field before submitting.</ErrorAlert>}
       <h2>Submit event info</h2>
-      <p>Only email is required</p>
+      <p>No single field is required</p>
       <p>Anything you submit could get posted</p>
       <form onSubmit={submitFormHandler} className={classes.form}>
         <div className={classes.controls}>
           <div className={classes.control}>
             <label htmlFor='title'>Title</label>
-            <textarea id='title' rows='1' ref={enteredTitleRef}></textarea>
+            <textarea id='title' rows='1' ref={enteredTitleRef} onChange={handleInputChange}></textarea>
           </div>
           <div className={classes.control}>
             <label htmlFor='date'>Date</label>
-            <textarea id='date' rows='1' ref={enteredDateRef}></textarea>
+            <textarea id='date' rows='1' ref={enteredDateRef} onChange={handleInputChange}></textarea>
           </div>
           <div className={classes.control}>
             <label htmlFor='time'>Time</label>
-            <textarea id='time' rows='1' ref={enteredTimeRef}></textarea>
+            <textarea id='time' rows='1' ref={enteredTimeRef} onChange={handleInputChange}></textarea>
           </div>
           <div className={classes.control}>
             <label htmlFor='price'>Price</label>
-            <textarea id='price' rows='1' ref={enteredPriceRef}></textarea>
+            <textarea id='price' rows='1' ref={enteredPriceRef} onChange={handleInputChange}></textarea>
           </div>
           <div className={classes.control}>
             <label htmlFor='genre'>Genre</label>
-            <textarea id='genre' rows='1' ref={enteredGenreRef}></textarea>
+            <textarea id='genre' rows='1' ref={enteredGenreRef} onChange={handleInputChange}></textarea>
           </div>
           <div className={classes.control}>
             <label htmlFor='excerpt'>Details</label>
-            <textarea id='excerpt' rows='3' ref={enteredExcerptRef}></textarea>
+            <textarea id='excerpt' rows='3' ref={enteredExcerptRef} onChange={handleInputChange}></textarea>
           </div>
           <div className={classes.control}>
             <label htmlFor='email'>Email</label>
-            <input type='email' id='email' ref={emailInputRef} />
+            <input type='email' id='email' ref={emailInputRef} onChange={handleInputChange}/>
           </div>
           <div className={classes.control}>
             <label className={classes.fileInputLabel} htmlFor='image'>
