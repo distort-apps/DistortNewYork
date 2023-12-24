@@ -8,6 +8,13 @@ export const config = {
   },
 };
 
+const areAllFieldsEmpty = req => {
+  const formData = req.body;
+  return !formData.email && !formData.title && !formData.date && 
+         !formData.genre && !formData.time && !formData.price && 
+         !formData.excerpt && !req.file;
+};
+
 const s3Client = new S3Client({
   region: process.env.NEXT_AWS_S3_REGION,
   credentials: {
@@ -58,9 +65,8 @@ export default async function handler(req, res) {
         return res.status(500).json({ error: 'Unknown error occurred' });
       }
 
-      if (!req.body.email || !req.body.email.includes('@')) {
-        res.status(422).json({ message: 'invalid email address.' })
-        return
+      if (areAllFieldsEmpty(req)) {
+        return res.status(400).json({ error: 'Please fill in at least one field.' });
       }
       
       const file = req.file;
