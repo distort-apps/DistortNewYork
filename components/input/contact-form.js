@@ -15,7 +15,7 @@ function ContactForm () {
 
   function truncateFileName(name, maxLength = 25){
     if (name.length > maxLength) {
-      return `${name.substring(0, maxLength - 3)}...`; // Truncate and add ellipsis
+      return `${name.substring(0, maxLength - 3)}...`;
     }
     return name;
   };
