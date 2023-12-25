@@ -62,6 +62,7 @@ function ContactForm () {
       return
     }
     setFormError(false)
+    setIsSending(true)
 
     const enteredEmail = emailInputRef.current.value
     const enteredTitle = enteredTitleRef.current.value
@@ -88,7 +89,6 @@ function ContactForm () {
         mode: 'no-cors'
       })
 
-      setIsSending(true)
 
       if (response.ok) {
         emailInputRef.current.value = ''
@@ -108,10 +108,12 @@ function ContactForm () {
         }, 5000)
       } else {
         console.error('Failed to submit the form.')
+        setIsSending(false);
       }
     } catch (error) {
       console.error('Error submitting the form:', error)
-    }
+      setIsSending(false)
+    } 
   }
 
   function toggleValidationInstructions () {
