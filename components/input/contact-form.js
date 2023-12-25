@@ -31,11 +31,13 @@ function ContactForm () {
       enteredTimeRef,
       enteredPriceRef,
       enteredExcerptRef
-    ];
-  
-    return refs.every(ref => !ref.current.value.trim()) && !fileInputRef.current.files[0];
+    ]
+
+    return (
+      refs.every(ref => !ref.current.value.trim()) &&
+      !fileInputRef.current.files[0]
+    )
   }
-  
 
   function truncateFileName (name, maxLength = 20) {
     if (name.length > maxLength) {
@@ -108,16 +110,27 @@ function ContactForm () {
     }
   }
 
-  return (
-    <section className={classes.contact}>
-      {formError && (
+  function toggleValidationInstructions () {
+    if (formError) {
+      return (
         <ErrorAlert>
           Please fill in at least one field before submitting.
         </ErrorAlert>
-      )}
-      <h2>Submit event info</h2>
-      <p>No single field is required</p>
-      <p>Anything you submit could get posted</p>
+      )
+    } else {
+      return (
+        <>
+          <h2>Submit event info</h2>
+          <p>No single field is required</p>
+          <p>Anything you submit could get posted</p>
+        </>
+      )
+    }
+  }
+
+  return (
+    <section className={classes.contact}>
+      {toggleValidationInstructions()}
       <form onSubmit={submitFormHandler} className={classes.form}>
         <div className={classes.controls}>
           <div className={classes.control}>
@@ -183,6 +196,7 @@ function ContactForm () {
               onChange={handleInputChange}
             />
           </div>
+          {submissionSuccess && <p>thanks 💀</p>}
           <div className={classes.control}>
             <label className={classes.fileInputLabel} htmlFor='image'>
               {fileName}
@@ -197,7 +211,6 @@ function ContactForm () {
             />
           </div>
         </div>
-        {submissionSuccess && <p>thanks 💀</p>}
         <Button>Submit</Button>
       </form>
     </section>
