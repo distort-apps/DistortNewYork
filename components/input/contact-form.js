@@ -132,7 +132,7 @@ function ContactForm () {
     if (formError) {
       return (
         <ErrorAlert>
-          Please fill in at least one field before submitting.
+          we need at least some details
         </ErrorAlert>
       )
     } else {

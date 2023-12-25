@@ -30,15 +30,6 @@
   flex-direction: column;
 }
 
-.control input {
-  font: inherit;
-  padding: 0.25rem;
-  border-radius: 4px;
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  border: 1px solid #ccc;
-}
-
 .contact button {
   background-color: #000000;
   border: 1px solid #000000;
@@ -92,3 +83,6 @@
   line-height: normal; /* Adjust line height for vertical centering */
 }
 
+.form Button {
+  padding: 0.5rem 1.5cqh;
+}
