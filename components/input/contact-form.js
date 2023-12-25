@@ -16,6 +16,7 @@ function ContactForm () {
   const [formError, setFormError] = useState(false)
   const [submissionSuccess, setSubmissionSuccess] = useState(false)
   const [isSending, setIsSending] = useState(false)
+  const [submissionUnsuccessful, setSubmissionUnsuccessful] = useState(false)
 
   function handleInputChange () {
     if (formError) {
@@ -101,19 +102,30 @@ function ContactForm () {
         enteredExcerptRef.current.value = ''
         setFileName('Upload Flyer')
         setIsSending(false)
+        setSubmissionUnsuccessful(false)
         setSubmissionSuccess(true)
 
         setTimeout(() => {
-          setSubmissionSuccess(false)
-        }, 3000)
+          setSubmissionSuccess(false);
+        }, 3000);
       } else {
-        console.error('Failed to submit the form.')
-        setIsSending(false);
+        console.error('Failed to submit the form.');
+        setSubmissionUnsuccessful(true);
+  
+        setTimeout(() => {
+          setSubmissionUnsuccessful(false);
+        }, 3000);
       }
     } catch (error) {
-      console.error('Error submitting the form:', error)
-      setIsSending(false)
-    } 
+      console.error('Error submitting the form:', error);
+      setSubmissionUnsuccessful(true);
+  
+      setTimeout(() => {
+          setSubmissionUnsuccessful(false);
+      }, 3000);
+    } finally {
+      setIsSending(false);
+    }
   }
 
   function toggleValidationInstructions () {
@@ -203,6 +215,7 @@ function ContactForm () {
             />
           </div>
           {isSending && <p>Submitting details...</p>}
+          {submissionUnsuccessful && <p>Error submitting. Try agian...</p>}
           {submissionSuccess && <p>thanks 💀</p>}
           <div className={classes.control}>
             <label className={classes.fileInputLabel} htmlFor='image'>
