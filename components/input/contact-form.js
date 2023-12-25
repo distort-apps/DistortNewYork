@@ -13,19 +13,29 @@ function ContactForm () {
   const fileInputRef = useRef()
   const enteredExcerptRef = useRef()
   const [fileName, setFileName] = useState('Upload Flyer')
-  const [formError, setFormError] = useState(false);
+  const [formError, setFormError] = useState(false)
+  const [submissionSuccess, setSubmissionSuccess] = useState(false)
 
-  function handleInputChange(){
+  function handleInputChange () {
     if (formError) {
-      setFormError(false);
+      setFormError(false)
     }
-  };
+  }
 
-  function isFormEmpty(){
-    const refs = [emailInputRef, enteredTitleRef, enteredDateRef, enteredGenreRef, enteredTimeRef, enteredPriceRef, enteredExcerptRef];
-
-    return refs.some(ref => !ref.current.value.trim());
-  };
+  function isFormEmpty () {
+    const refs = [
+      emailInputRef,
+      enteredTitleRef,
+      enteredDateRef,
+      enteredGenreRef,
+      enteredTimeRef,
+      enteredPriceRef,
+      enteredExcerptRef
+    ];
+  
+    return refs.every(ref => !ref.current.value.trim()) && !fileInputRef.current.files[0];
+  }
+  
 
   function truncateFileName (name, maxLength = 20) {
     if (name.length > maxLength) {
@@ -45,10 +55,10 @@ function ContactForm () {
     e.preventDefault()
 
     if (isFormEmpty()) {
-      setFormError(true); 
-      return; 
+      setFormError(true)
+      return
     }
-    setFormError(false);
+    setFormError(false)
 
     const enteredEmail = emailInputRef.current.value
     const enteredTitle = enteredTitleRef.current.value
@@ -85,6 +95,11 @@ function ContactForm () {
         fileInputRef.current.value = null
         enteredExcerptRef.current.value = ''
         setFileName('Upload Flyer')
+        setSubmissionSuccess(true)
+
+        setTimeout(() => {
+          setSubmissionSuccess(false)
+        }, 5000)
       } else {
         console.error('Failed to submit the form.')
       }
@@ -95,7 +110,11 @@ function ContactForm () {
 
   return (
     <section className={classes.contact}>
-      {formError && <ErrorAlert>Please fill in at least one field before submitting.</ErrorAlert>}
+      {formError && (
+        <ErrorAlert>
+          Please fill in at least one field before submitting.
+        </ErrorAlert>
+      )}
       <h2>Submit event info</h2>
       <p>No single field is required</p>
       <p>Anything you submit could get posted</p>
@@ -103,31 +122,66 @@ function ContactForm () {
         <div className={classes.controls}>
           <div className={classes.control}>
             <label htmlFor='title'>Title</label>
-            <textarea id='title' rows='1' ref={enteredTitleRef} onChange={handleInputChange}></textarea>
+            <textarea
+              id='title'
+              rows='1'
+              ref={enteredTitleRef}
+              onChange={handleInputChange}
+            ></textarea>
           </div>
           <div className={classes.control}>
             <label htmlFor='date'>Date</label>
-            <textarea id='date' rows='1' ref={enteredDateRef} onChange={handleInputChange}></textarea>
+            <textarea
+              id='date'
+              rows='1'
+              ref={enteredDateRef}
+              onChange={handleInputChange}
+            ></textarea>
           </div>
           <div className={classes.control}>
             <label htmlFor='time'>Time</label>
-            <textarea id='time' rows='1' ref={enteredTimeRef} onChange={handleInputChange}></textarea>
+            <textarea
+              id='time'
+              rows='1'
+              ref={enteredTimeRef}
+              onChange={handleInputChange}
+            ></textarea>
           </div>
           <div className={classes.control}>
             <label htmlFor='price'>Price</label>
-            <textarea id='price' rows='1' ref={enteredPriceRef} onChange={handleInputChange}></textarea>
+            <textarea
+              id='price'
+              rows='1'
+              ref={enteredPriceRef}
+              onChange={handleInputChange}
+            ></textarea>
           </div>
           <div className={classes.control}>
             <label htmlFor='genre'>Genre</label>
-            <textarea id='genre' rows='1' ref={enteredGenreRef} onChange={handleInputChange}></textarea>
+            <textarea
+              id='genre'
+              rows='1'
+              ref={enteredGenreRef}
+              onChange={handleInputChange}
+            ></textarea>
           </div>
           <div className={classes.control}>
             <label htmlFor='excerpt'>Details</label>
-            <textarea id='excerpt' rows='3' ref={enteredExcerptRef} onChange={handleInputChange}></textarea>
+            <textarea
+              id='excerpt'
+              rows='3'
+              ref={enteredExcerptRef}
+              onChange={handleInputChange}
+            ></textarea>
           </div>
           <div className={classes.control}>
             <label htmlFor='email'>Email</label>
-            <input type='email' id='email' ref={emailInputRef} onChange={handleInputChange}/>
+            <input
+              type='email'
+              id='email'
+              ref={emailInputRef}
+              onChange={handleInputChange}
+            />
           </div>
           <div className={classes.control}>
             <label className={classes.fileInputLabel} htmlFor='image'>
@@ -143,6 +197,7 @@ function ContactForm () {
             />
           </div>
         </div>
+        {submissionSuccess && <p>thanks 💀</p>}
         <Button>Submit</Button>
       </form>
     </section>
