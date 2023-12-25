@@ -15,6 +15,7 @@ function ContactForm () {
   const [fileName, setFileName] = useState('Upload Flyer')
   const [formError, setFormError] = useState(false)
   const [submissionSuccess, setSubmissionSuccess] = useState(false)
+  const [isSending, setIsSending] = useState(false)
 
   function handleInputChange () {
     if (formError) {
@@ -87,6 +88,8 @@ function ContactForm () {
         mode: 'no-cors'
       })
 
+      setIsSending(true)
+
       if (response.ok) {
         emailInputRef.current.value = ''
         enteredTitleRef.current.value = ''
@@ -97,6 +100,7 @@ function ContactForm () {
         fileInputRef.current.value = null
         enteredExcerptRef.current.value = ''
         setFileName('Upload Flyer')
+        setIsSending(false)
         setSubmissionSuccess(true)
 
         setTimeout(() => {
@@ -196,6 +200,7 @@ function ContactForm () {
               onChange={handleInputChange}
             />
           </div>
+          {isSending && <p>Submitting details...</p>}
           {submissionSuccess && <p>thanks 💀</p>}
           <div className={classes.control}>
             <label className={classes.fileInputLabel} htmlFor='image'>
