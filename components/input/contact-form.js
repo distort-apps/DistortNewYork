@@ -146,6 +146,10 @@ function ContactForm () {
     }
   }
 
+  const handleFocus = (event) => {
+    event.preventDefault();
+  };
+
   return (
     <section className={classes.contact}>
       {toggleValidationInstructions()}
@@ -158,6 +162,7 @@ function ContactForm () {
               rows='1'
               ref={enteredTitleRef}
               onChange={handleInputChange}
+              onFocus={handleFocus}
             ></input>
           </div>
           <div className={classes.control}>
@@ -167,6 +172,7 @@ function ContactForm () {
               rows='1'
               ref={enteredDateRef}
               onChange={handleInputChange}
+              onFocus={handleFocus}
             ></input>
           </div>
           <div className={classes.control}>
@@ -176,6 +182,7 @@ function ContactForm () {
               rows='1'
               ref={enteredTimeRef}
               onChange={handleInputChange}
+              onFocus={handleFocus}            
             ></input>
           </div>
           <div className={classes.control}>
@@ -185,6 +192,7 @@ function ContactForm () {
               rows='1'
               ref={enteredPriceRef}
               onChange={handleInputChange}
+              onFocus={handleFocus}
             ></input>
           </div>
           <div className={classes.control}>
@@ -194,6 +202,7 @@ function ContactForm () {
               rows='1'
               ref={enteredGenreRef}
               onChange={handleInputChange}
+              onFocus={handleFocus}
             ></input>
           </div>
           <div className={classes.control}>
@@ -203,6 +212,7 @@ function ContactForm () {
               rows='3'
               ref={enteredExcerptRef}
               onChange={handleInputChange}
+              onFocus={handleFocus}
             ></textarea>
           </div>
           <div className={classes.control}>
@@ -212,6 +222,7 @@ function ContactForm () {
               id='email'
               ref={emailInputRef}
               onChange={handleInputChange}
+              onFocus={handleFocus}
             />
           </div>
           {isSending && <p>Submitting details...</p>}
@@ -228,6 +239,7 @@ function ContactForm () {
               ref={fileInputRef}
               onChange={handleFileChange}
               accept='image/*'
+              onFocus={handleFocus}
             />
           </div>
         </div>
