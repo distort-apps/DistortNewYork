@@ -90,7 +90,6 @@ function ContactForm () {
         mode: 'no-cors'
       })
 
-
       if (response.ok) {
         emailInputRef.current.value = ''
         enteredTitleRef.current.value = ''
@@ -106,35 +105,31 @@ function ContactForm () {
         setSubmissionSuccess(true)
 
         setTimeout(() => {
-          setSubmissionSuccess(false);
-        }, 3000);
+          setSubmissionSuccess(false)
+        }, 3000)
       } else {
-        console.error('Failed to submit the form.');
-        setSubmissionUnsuccessful(true);
-  
+        console.error('Failed to submit the form.')
+        setSubmissionUnsuccessful(true)
+
         setTimeout(() => {
-          setSubmissionUnsuccessful(false);
-        }, 3000);
+          setSubmissionUnsuccessful(false)
+        }, 3000)
       }
     } catch (error) {
-      console.error('Error submitting the form:', error);
-      setSubmissionUnsuccessful(true);
-  
+      console.error('Error submitting the form:', error)
+      setSubmissionUnsuccessful(true)
+
       setTimeout(() => {
-          setSubmissionUnsuccessful(false);
-      }, 3000);
+        setSubmissionUnsuccessful(false)
+      }, 3000)
     } finally {
-      setIsSending(false);
+      setIsSending(false)
     }
   }
 
   function toggleValidationInstructions () {
     if (formError) {
-      return (
-        <ErrorAlert>
-          you cannot submit an empty form
-        </ErrorAlert>
-      )
+      return <ErrorAlert>you cannot submit an empty form</ErrorAlert>
     } else {
       return (
         <>
@@ -146,7 +141,6 @@ function ContactForm () {
     }
   }
 
-  
   return (
     <section className={classes.contact}>
       {toggleValidationInstructions()}
