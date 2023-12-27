@@ -58,7 +58,7 @@
 .contact input,
 .contact textarea {
   flex: 1;
-  font-size: 16px; /* Prevent zoom on mobile devices */
+  font-size: 16px;
 }
 
 .fileInput {
@@ -71,18 +71,18 @@
 }
 
 .fileInputLabel {
-  display: block; /* Keeps the label as a block element */
+  display: block; 
   cursor: pointer;
   background-color: white;
   border: 1px solid #000000;
   border-radius: 6px;
-  color: black; /* Adjusted for better visibility */
+  color: black; 
   padding: 0.5rem 1.5rem;
-  text-align: center; /* Center the text horizontally */
+  text-align: center; 
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
-  margin: 0 auto; /* Center the label horizontally */
-  width: 75%; /* Width of the label */
-  line-height: normal; /* Adjust line height for vertical centering */
+  margin: 0 auto; 
+  width: 75%; 
+  line-height: normal; 
 }
 
 .form Button {
