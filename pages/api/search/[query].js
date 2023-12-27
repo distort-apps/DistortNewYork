@@ -19,7 +19,7 @@ async function handler (req, res) {
       documents = await getAllDocuments(
         client,
         'shows',
-        { _id: -1 },
+        { date: 1 },
         {
           $or: [
             { title: { $regex: new RegExp(query, 'i') } },
