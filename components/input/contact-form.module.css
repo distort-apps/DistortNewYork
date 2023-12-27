@@ -7,7 +7,7 @@
 
 .form {
   margin: 2rem auto;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   padding: 1rem;
   background-color: white;
   border-radius: 6px;
@@ -71,18 +71,18 @@
 }
 
 .fileInputLabel {
-  display: block; 
+  display: block;
   cursor: pointer;
   background-color: white;
   border: 1px solid #000000;
   border-radius: 6px;
-  color: black; 
+  color: black;
   padding: 0.5rem 1.5rem;
-  text-align: center; 
+  text-align: center;
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
-  margin: 0 auto; 
-  width: 100%; 
-  line-height: normal; 
+  margin: 0 auto;
+  width: 100%;
+  line-height: normal;
 }
 
 .form Button {
