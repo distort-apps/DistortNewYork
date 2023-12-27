@@ -153,48 +153,48 @@ function ContactForm () {
         <div className={classes.controls}>
           <div className={classes.control}>
             <label htmlFor='title'>Title</label>
-            <textarea
+            <input
               id='title'
               rows='1'
               ref={enteredTitleRef}
               onChange={handleInputChange}
-            ></textarea>
+            ></input>
           </div>
           <div className={classes.control}>
             <label htmlFor='date'>Date</label>
-            <textarea
+            <input
               id='date'
               rows='1'
               ref={enteredDateRef}
               onChange={handleInputChange}
-            ></textarea>
+            ></input>
           </div>
           <div className={classes.control}>
             <label htmlFor='time'>Time</label>
-            <textarea
+            <input
               id='time'
               rows='1'
               ref={enteredTimeRef}
               onChange={handleInputChange}
-            ></textarea>
+            ></input>
           </div>
           <div className={classes.control}>
             <label htmlFor='price'>Price</label>
-            <textarea
+            <input
               id='price'
               rows='1'
               ref={enteredPriceRef}
               onChange={handleInputChange}
-            ></textarea>
+            ></input>
           </div>
           <div className={classes.control}>
             <label htmlFor='genre'>Genre</label>
-            <textarea
+            <input
               id='genre'
               rows='1'
               ref={enteredGenreRef}
               onChange={handleInputChange}
-            ></textarea>
+            ></input>
           </div>
           <div className={classes.control}>
             <label htmlFor='excerpt'>Details</label>
