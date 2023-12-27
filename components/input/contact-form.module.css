@@ -58,6 +58,9 @@
 .control input {
   flex: 1;
 }
+.control textarea {
+  flex: 1;
+}
 
 .fileInput {
   width: 0.1px;
