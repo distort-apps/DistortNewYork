@@ -2,6 +2,9 @@ import { useRef } from 'react'
 import classes from './show-date-filter.module.css'
 
 function ShowDateFilter (props) {
+  const date = new Date()
+  const month = date.getMonth() + 1
+  const year = date.getFullYear()
   const yearInputRef = useRef()
   const monthInputRef = useRef()
 
@@ -14,19 +17,20 @@ function ShowDateFilter (props) {
     props.onSearch(selectedYear, selectedMonth)
   }
 
+  console.log("month", month)
   return (
       <form className={classes.form} onSubmit={submitHandler}>
         <div className={classes.controls}>
           <div className={classes.control}>
             <label htmlFor='year'>Year</label>
-            <select id='year' ref={yearInputRef}>
+            <select id='year' ref={yearInputRef} defaultValue={year}>
               <option value='2023'>2023</option>
               <option value='2024'>2024</option>
             </select>
           </div>
           <div className={classes.control}>
             <label htmlFor='month'>Month</label>
-            <select id='month' ref={monthInputRef}>
+            <select id='month' ref={monthInputRef} defaultValue={month}>
               <option value='1'>January</option>
               <option value='2'>February</option>
               <option value='3'>March</option>
