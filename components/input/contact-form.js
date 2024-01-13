@@ -106,6 +106,7 @@ function ContactForm () {
 
         setTimeout(() => {
           setSubmissionSuccess(false)
+          window.scrollTo(0, 0);
         }, 3000)
       } else {
         console.error('Failed to submit the form.')
