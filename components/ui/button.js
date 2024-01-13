@@ -12,7 +12,7 @@ function Button(props) {
   }
 
   return (
-    <button className={classes.btn} onClick={props.onClick}>
+    <button className={classes.btn} onClick={props.onClick} disabled={props.disabled}>
       {props.children}
     </button>
   );

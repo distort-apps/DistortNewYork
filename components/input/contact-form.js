@@ -104,9 +104,11 @@ function ContactForm () {
         setSubmissionUnsuccessful(false)
         setSubmissionSuccess(true)
 
+        setSubmissionSuccess(true);
         setTimeout(() => {
           setSubmissionSuccess(false)
           window.scrollTo(0, 0);
+          setIsSending(false)
         }, 3000)
       } else {
         console.error('Failed to submit the form.')
@@ -114,6 +116,7 @@ function ContactForm () {
 
         setTimeout(() => {
           setSubmissionUnsuccessful(false)
+          setIsSending(false)
         }, 3000)
       }
     } catch (error) {
@@ -122,6 +125,7 @@ function ContactForm () {
 
       setTimeout(() => {
         setSubmissionUnsuccessful(false)
+        setIsSending(false)
       }, 3000)
     } finally {
       setIsSending(false)
@@ -227,7 +231,7 @@ function ContactForm () {
             />
           </div>
         </div>
-        <Button>Submit</Button>
+        <Button disabled={isSending}>Submit</Button>
       </form>
     </section>
   )
