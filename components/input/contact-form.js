@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import classes from './contact-form.module.css'
 import Button from '../ui/button'
 import ErrorAlert from '../ui/error-alert'
@@ -163,10 +163,11 @@ function ContactForm () {
           <div className={classes.control}>
             <label htmlFor='date'>Date</label>
             <input
-              type='date' 
+              type='date'
               id='date'
               ref={enteredDateRef}
               onChange={handleInputChange}
+              className={classes.dateInput} 
             />
           </div>
           <div className={classes.control}>

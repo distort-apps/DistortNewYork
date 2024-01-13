@@ -93,3 +93,10 @@
 .form Button {
   padding: 0.5rem 1.5cqh;
 }
+
+.dateInput {
+  width: 100%;
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 4px;
+}
