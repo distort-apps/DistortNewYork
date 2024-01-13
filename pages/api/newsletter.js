@@ -12,8 +12,8 @@ async function sendConfirmationEmail(userEmail) {
   const mailOptions = {
     from: 'contact@distort-new-york.com', 
     to: userEmail,
-    subject: ' Ⓐ DSNY Newsletter Subscription Confirmation Ⓐ',
-    text: 'Thank you for subscribing to the DistortNewYork newsletter Ⓐ.'
+    subject: 'DistorNewYork Newsletter Subscription Confirmation',
+    text: 'Thank you for subscribing to the DistortNewYork newsletter. \n Ⓐ ☮︎ Ⓔ'
   };
 
   await transporter.sendMail(mailOptions);

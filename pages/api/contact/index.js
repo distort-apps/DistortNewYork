@@ -57,8 +57,8 @@ async function sendConfirmationEmail(userEmail) {
   const mailOptions = {
     from: 'contact@distort-new-york.com', 
     to: userEmail,
-    subject: 'Ⓐ DSNY Event Submission Confirmation Ⓐ',
-    text: 'Thank you for submitting your event. We will contact you as soon as it is posted.'
+    subject: 'DistorNewYork Event Submission Confirmation',
+    text: 'Thank you for submitting your event. We will contact you as soon as it is posted.  \n Ⓐ ☮︎ Ⓔ'
   };
 
   await transporter.sendMail(mailOptions);
