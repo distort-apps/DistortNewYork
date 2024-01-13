@@ -1,6 +1,7 @@
 import { connectDatabase, insertDocument } from '@/helpers/db-util';
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3'
 import multer from 'multer';
+import nodemailer from 'nodemailer';
 
 export const config = {
   api: {
@@ -42,6 +43,25 @@ async function uploadToS3(file, filename) {
     console.error('Error uploading to S3:', error);
     throw error;
   }
+}
+
+async function sendConfirmationEmail(userEmail) {
+  const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: process.env.GMAIL_USERNAME,
+      pass: process.env.GMAIL_PASSWORD,
+    }
+  });
+
+  const mailOptions = {
+    from: 'contact@distort-new-york.com', 
+    to: userEmail,
+    subject: 'Ⓐ DSNY Event Submission Confirmation Ⓐ',
+    text: 'Thank you for submitting your event. We will contact you as soon as it is posted.'
+  };
+
+  await transporter.sendMail(mailOptions);
 }
 
 export default async function handler(req, res) {
@@ -94,12 +114,25 @@ export default async function handler(req, res) {
 
       try {
         await insertDocument(client, 'contact', formData);
-        client.close();
-        return res.status(201).json({ message: 'Data inserted successfully!' });
+        
+        if (req.body.email) {
+          try {
+            await sendConfirmationEmail(req.body.email);
+            res.status(201).json({ message: 'Event submitted and email sent successfully!' });
+          } catch (emailError) {
+            console.error('Error sending email:', emailError);
+            res.status(500).json({ message: 'Event submitted but email sending failed' });
+            return;
+          }
+        } else {
+          res.status(201).json({ message: 'Event submitted successfully!' });
+        }
+
       } catch (error) {
         console.error('Error inserting data into MongoDB:', error);
+        res.status(500).json({ error: 'Failed to insert data' });
+      } finally {
         client.close();
-        return res.status(500).json({ error: 'Failed to insert data' });
       }
     });
   } else {
