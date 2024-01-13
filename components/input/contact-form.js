@@ -163,11 +163,11 @@ function ContactForm () {
           <div className={classes.control}>
             <label htmlFor='date'>Date</label>
             <input
+              type='date' 
               id='date'
-              rows='1'
               ref={enteredDateRef}
               onChange={handleInputChange}
-            ></input>
+            />
           </div>
           <div className={classes.control}>
             <label htmlFor='time'>Time</label>
