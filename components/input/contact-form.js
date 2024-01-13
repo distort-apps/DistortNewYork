@@ -17,6 +17,13 @@ function ContactForm () {
   const [submissionSuccess, setSubmissionSuccess] = useState(false)
   const [isSending, setIsSending] = useState(false)
   const [submissionUnsuccessful, setSubmissionUnsuccessful] = useState(false)
+  const [today, setToday] = useState('')
+
+  useEffect(() => {
+    const currentDate = new Date();
+    const formattedDate = currentDate.toISOString().substring(0, 10); // YYYY-MM-DD format
+    setToday(formattedDate);
+  }, []);
 
   function handleInputChange () {
     if (formError) {
@@ -168,6 +175,7 @@ function ContactForm () {
               ref={enteredDateRef}
               onChange={handleInputChange}
               className={classes.dateInput} 
+              placeholder={today}
             />
           </div>
           <div className={classes.control}>
