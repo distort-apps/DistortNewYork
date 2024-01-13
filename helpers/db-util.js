@@ -14,6 +14,12 @@ export async function insertDocument (client, collection, document) {
   return result
 }
 
+export async function insertDocuments(client, collection, documents) {
+  const db = client.db(process.env.mongodb_clustername);
+  const result = await db.collection(collection).insertMany(documents);
+  return result;
+}
+
 export async function getAllDocuments (client, collection, sort, filter = {}) {
   const db = client.db(process.env.mongodb_clustername)
 
