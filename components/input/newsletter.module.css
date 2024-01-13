@@ -34,6 +34,12 @@
     border-color: #343333;
   }
   
+  .newsletter button:disabled {
+    background-color: #343333;
+    border-color: #343333;
+    cursor: not-allowed;
+  }
+
   .control {
     display: flex;
   }

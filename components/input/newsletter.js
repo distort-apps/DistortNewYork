@@ -4,11 +4,13 @@ import Button from '../ui/button'
 
 function Newsletter () {
   const [placeholder , setPlaceholder] = useState('Your Email')
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const emailInputRef = useRef()
 
   function registrationHandler(e) {
     e.preventDefault()
 
+    setIsSubmitting(true)
     const enteredEmail = emailInputRef.current.value
 
     fetch('/api/newsletter', {
@@ -35,8 +37,9 @@ function Newsletter () {
             placeholder={placeholder}
             aria-label='Your email'
             ref={emailInputRef}
+            disabled={isSubmitting}
           />
-          <Button>Register</Button>
+          <Button disabled={isSubmitting} style={{opacity: isSubmitting ? 0.5 : 1 }}>Register</Button>
         </div>
       </form>
     </section>
