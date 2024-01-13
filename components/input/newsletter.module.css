@@ -35,9 +35,10 @@
   }
   
   .newsletter button:disabled {
-    background-color: #343333;
-    border-color: #343333;
+    background-color: #757575; 
+    border-color: #757575;
     cursor: not-allowed;
+    color: #d0d0d0; 
   }
 
   .control {
