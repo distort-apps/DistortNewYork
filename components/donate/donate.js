@@ -8,7 +8,6 @@ function Donate () {
       <h2>
         Donate today - help us provide urgent supplies to Palestinians in need
       </h2>
-      {/* Using Button component with an <a> tag for external link */}
       <Link
         href='https://linktr.ee/MedicalAidforPalestinians'
         target='_blank'

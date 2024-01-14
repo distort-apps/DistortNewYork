@@ -30,11 +30,9 @@ async function handler(req, res) {
     }
 
     try {
-      // Create a new document in the Newsletter collection
       const newSubscriber = new Newsletter({ email: userEmail });
       await newSubscriber.save();
 
-      // Send confirmation email
       try {
         await sendConfirmationEmail(userEmail);
         res.status(201).json({ message: 'Signed up successfully! Confirmation email sent.' });

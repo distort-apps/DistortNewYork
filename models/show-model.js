@@ -11,11 +11,11 @@ const showSchema = new mongoose.Schema({
     },
     genre: {
         type: String,
-        required: false // Set to false if the field is not mandatory
+        required: false 
     },
     location: {
         type: String,
-        required: false // Set to false if the field is not mandatory
+        required: false 
     },
     time: {
         type: String,
@@ -23,7 +23,7 @@ const showSchema = new mongoose.Schema({
     },
     price: {
         type: Number,
-        required: false // Set to false if the field is not mandatory
+        required: false 
     },
     isFeatured: {
         type: Boolean,
@@ -31,11 +31,11 @@ const showSchema = new mongoose.Schema({
     },
     image: {
         type: String,
-        required: false // Set to false if the field is not mandatory
+        required: false
     },
     excerpt: {
         type: String,
-        required: false // Set to false if the field is not mandatory
+        required: false
     },
     rating: {
         type: Number,
