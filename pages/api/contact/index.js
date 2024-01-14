@@ -1,7 +1,7 @@
-import { connectDatabase, insertDocument } from '@/helpers/db-util';
-import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3'
 import multer from 'multer';
 import nodemailer from 'nodemailer';
+import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
+import Contact from '../../../models/contact-model'
 
 export const config = {
   api: {
@@ -65,15 +65,6 @@ async function sendConfirmationEmail(userEmail) {
 }
 
 export default async function handler(req, res) {
-  let client;
-
-  try {
-    client = await connectDatabase();
-  } catch (error) {
-    console.error('Error connecting to MongoDB:', error);
-    return res.status(500).json({ message: 'Connecting to the database failed' });
-  }
-
   if (req.method === 'POST') {
     
     upload(req, res, async (err) => {
@@ -113,26 +104,18 @@ export default async function handler(req, res) {
       };
 
       try {
-        await insertDocument(client, 'contact', formData);
+        const newContact = new Contact(formData);
+        await newContact.save();
         
         if (req.body.email) {
-          try {
-            await sendConfirmationEmail(req.body.email);
-            res.status(201).json({ message: 'Event submitted and email sent successfully!' });
-          } catch (emailError) {
-            console.error('Error sending email:', emailError);
-            res.status(500).json({ message: 'Event submitted but email sending failed' });
-            return;
-          }
+          await sendConfirmationEmail(req.body.email);
+          res.status(201).json({ message: 'Event submitted and email sent successfully!' });
         } else {
           res.status(201).json({ message: 'Event submitted successfully!' });
         }
-
       } catch (error) {
-        console.error('Error inserting data into MongoDB:', error);
-        res.status(500).json({ error: 'Failed to insert data' });
-      } finally {
-        client.close();
+        console.error('Error saving data with Mongoose:', error);
+        res.status(500).json({ error: 'Failed to save data' });
       }
     });
   } else {
@@ -140,6 +123,3 @@ export default async function handler(req, res) {
     res.status(405).end(`Method ${req.method} Not Allowed`);
   }
 }
-
-
-

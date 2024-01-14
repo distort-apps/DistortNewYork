@@ -1,7 +1,7 @@
 import ShowContent from '@/components/shows/show-detail/show-content'
 import Comments from '@/components/input/comments'
 import Head from 'next/head'
-import { getShowById, getFeaturedShows } from '@/helpers/api-util'
+import { getShowById, fetchFeaturedShows } from '@/helpers/api-util'
 
 function ShowDetailPage (props) {
   const show = props.show
@@ -53,7 +53,7 @@ export async function getStaticProps (context) {
 
 export async function getStaticPaths () {
   try {
-    const shows = await getFeaturedShows()
+    const shows = await fetchFeaturedShows()
 
     const paths = shows.map(show => ({
       params: { showId: show._id.toString() }

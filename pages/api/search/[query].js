@@ -1,40 +1,27 @@
-import {
-  connectDatabase,
-  getAllDocuments,
-} from '../../../helpers/db-util'
+import Show from '../../../models/show-model'
 
-async function handler (req, res) {
-  const query = req.query.query
-  let client
-  try {
-    client = await connectDatabase()
-  } catch (error) {
-    res.status(500).json({ message: 'Connecting to db failed🚬💀💀💀' })
-    return
-  }
+async function handler(req, res) {
+  const query = req.query.query;
 
   if (req.method === 'GET') {
-    let documents
     try {
-      documents = await getAllDocuments(
-        client,
-        'shows',
-        { date: 1 },
-        {
-          $or: [
-            { title: { $regex: new RegExp(query, 'i') } },
-            { genre: { $regex: new RegExp(query, 'i') } },
-            { location: { $regex: new RegExp(query, 'i') } },
-            { excerpt: { $regex: new RegExp(query, 'i') } }
-          ]
-        }
-      )
-      res.status(200).json({ shows: documents })
+      const regexQuery = new RegExp(query, 'i');
+      const documents = await Show.find({
+        $or: [
+          { title: { $regex: regexQuery } },
+          { genre: { $regex: regexQuery } },
+          { location: { $regex: regexQuery } },
+          { excerpt: { $regex: regexQuery } }
+        ]
+      }).sort({ date: 1 });
+
+      res.status(200).json({ shows: documents });
     } catch (error) {
-      res.status(500).json({ message: 'Error fetching documentsdocuments🚬🚬' })
+      res.status(500).json({ message: 'Error fetching documents🚬🚬' });
     }
+  } else {
+    res.status(405).end(); // Method Not Allowed
   }
-  client.close()
 }
 
-export default handler
+export default handler;

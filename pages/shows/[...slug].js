@@ -20,6 +20,7 @@ function DateFilterPage () {
   )
 
   useEffect(() => {
+    console.log("hello from ..slug", data)
     if (data) {
       const showsArr = []
 

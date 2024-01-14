@@ -1,69 +1,41 @@
-import { connectDatabase } from './db-util'
-import { ObjectId } from 'mongodb'
-
-export async function getFeaturedShows () {
-  let client
-
+import { connectDb } from './db-util'
+import Show from '@/models/show-model'
+export async function fetchFeaturedShows () {
   try {
-    client = await connectDatabase()
-    const db = client.db('gagz')
-    const shows = await db
-      .collection('shows')
-      .find({ isFeatured: true })
-      .sort({ rating: 1 })
-      .limit(50)
-      .toArray()
+    const connection = await connectDb()
 
-    return shows
+    const featuredShows = await Show.find({ isFeatured: true })
+      .sort({ rating: 1 })
+      .exec()
+
+    return featuredShows
   } catch (error) {
-    console.error('Error in getFeaturedShows:', error)
-    throw new Error('Internal Server Error')
-  } finally {
-    if (client) {
-      client.close()
-    }
+    console.error('Error fetching featured shows:', error)
+    throw new Error('Failed to fetch featured shows')
   }
 }
 
-export async function getAllShows () {
-  let client
-
+export async function fetchAllShows () {
   try {
-    client = await connectDatabase()
-    const db = client.db('gagz')
-    const shows = await db
-      .collection('shows')
-      .find({})
-      .sort({ date: 1 })
-      .limit(500)
-      .toArray()
-
+    const connection = await connectDb()
+    const shows = await Show.find({}).sort({ date: 1 }).limit(500)
     return shows
   } catch (error) {
     console.error('Error in getAllShows:', error)
     throw new Error('Internal Server Error')
-  } finally {
-    if (client) {
-      client.close()
-    }
   }
 }
 
-export async function getShowById (id) {
-  let client
-
+export async function getShowById(id) {
   try {
-    client = await connectDatabase()
-    const db = client.db('gagz')
-    const show = await db.collection('shows').findOne({ _id: new ObjectId(id) })
-
-    return show
+    const show = await Show.findById(id);
+    return show;
   } catch (error) {
-    console.error('Error in getShowById:', error)
-    throw new Error('Internal Server Error')
-  } finally {
-    if (client) {
-      client.close()
-    }
+    console.error('Error in getShowById:', error);
+    throw new Error('Internal Server Error');
   }
 }
+
+
+
+

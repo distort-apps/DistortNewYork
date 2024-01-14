@@ -17,7 +17,6 @@ function ShowDateFilter (props) {
     props.onSearch(selectedYear, selectedMonth)
   }
 
-  console.log("month", month)
   return (
       <form className={classes.form} onSubmit={submitHandler}>
         <div className={classes.controls}>
