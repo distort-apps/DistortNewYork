@@ -17,7 +17,6 @@ function ShowBody ({ title, image, excerpt, date, price, location, time }) {
     formattedPrice = price
   }
 
-  console.log("price: ", price)
   return (
     <div className={classes.body}>
       <div>
