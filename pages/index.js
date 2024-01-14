@@ -1,7 +1,7 @@
 import FeaturedShows from '@/components/home-page/featured-shows'
 import Newsletter from '@/components/input/newsletter'
 import Head from 'next/head'
-import { getFeaturedShows } from '@/helpers/api-util'
+import { fetchFeaturedShows } from '@/helpers/api-util'
 
 function HomePage (props) {
   return (
@@ -21,7 +21,7 @@ function HomePage (props) {
 
 export async function getStaticProps () {
   try {
-    const shows = await getFeaturedShows()
+    const shows = await fetchFeaturedShows()
 
     return {
       props: {

@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer';
-import { connectDatabase, insertDocument } from '../../helpers/db-util'
+import Newsletter from '@/models/newsletter-model';
+
 async function sendConfirmationEmail(userEmail) {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
@@ -28,21 +29,14 @@ async function handler(req, res) {
       return;
     }
 
-    let client;
-
     try {
-      client = await connectDatabase();
-    } catch (error) {
-      res.status(500).json({ message: 'Connecting to the database failed.' });
-      return;
-    }
+      // Create a new document in the Newsletter collection
+      const newSubscriber = new Newsletter({ email: userEmail });
+      await newSubscriber.save();
 
-    try {
-      await insertDocument(client, 'newsletter', { email: userEmail });
-
+      // Send confirmation email
       try {
         await sendConfirmationEmail(userEmail);
-        console.log('Sending confirmation email');
         res.status(201).json({ message: 'Signed up successfully! Confirmation email sent.' });
       } catch (emailError) {
         console.error('Error sending email:', emailError);
@@ -51,8 +45,6 @@ async function handler(req, res) {
       }
     } catch (error) {
       res.status(500).json({ message: 'Inserting data failed.' });
-    } finally {
-      client.close();
     }
   }
 }

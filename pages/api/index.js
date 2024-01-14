@@ -1,32 +1,15 @@
-import {
-  connectDatabase,
-  getAllDocuments,
-} from '../../helpers/db-util'
+import { fetchFeaturedShows } from "@/helpers/api-util";
 
-async function handler (req, res) {
-  let client
-  try {
-    client = await connectDatabase()
-  } catch (error) {
-    res.status(500).json({ message: 'Connecting to db failed🚬💀💀💀' })
-    return
-  }
+async function handler(req, res) {
 
   if (req.method === 'GET') {
-    let documents
     try {
-      documents = await getAllDocuments(
-        client,
-        'shows',
-        { rating: 1 },
-        { isFeatured: true }
-      )
-      res.status(200).json({ shows: documents })
+      const featuredShows = await fetchFeaturedShows();
+      res.status(200).json({ shows: featuredShows });
     } catch (error) {
-      res.status(500).json({ message: 'Error fetching documentsdocuments🚬🚬' })
+      res.status(500).json({ message: 'Error fetching featured shows' });
     }
   }
-  client.close()
 }
 
-export default handler
+export default handler;
