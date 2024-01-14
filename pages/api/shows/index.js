@@ -1,4 +1,5 @@
 import Show from '../../../models/show-model'
+import { connectDb } from '@/helpers/db-util';
 function isValidShow(show) {
   const { title, date, genre, location, time, price, image } = show;
   return title && date && genre && location && price && image && time;
@@ -38,6 +39,7 @@ export async function handlePostRequest(req, res) {
 
 export async function handleGetRequest(req, res) {
   try {
+    await connectDb();
     const documents = await Show.find().sort({ date: 1 });
     res.status(200).json({ shows: documents });
   } catch (error) {
@@ -46,6 +48,11 @@ export async function handleGetRequest(req, res) {
 }
 
 async function handler(req, res) {
+  try {
+    await connectDb()
+  } catch (error) {
+  console.error('Error connecting to database:', error)
+  }
   if (req.method === 'POST') {
     await handlePostRequest(req, res);
   } else if (req.method === 'GET') {

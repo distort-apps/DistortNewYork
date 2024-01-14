@@ -2,6 +2,7 @@ import multer from 'multer';
 import nodemailer from 'nodemailer';
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 import Contact from '../../../models/contact-model'
+import { connectDb } from '@/helpers/db-util';
 
 export const config = {
   api: {
@@ -66,6 +67,11 @@ async function sendConfirmationEmail(userEmail) {
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
+    try {
+      await connectDb();
+    } catch (error) {
+      console.error('Error connecting to database:', error);
+    }
     
     upload(req, res, async (err) => {
       if (err instanceof multer.MulterError) {

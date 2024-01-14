@@ -1,5 +1,6 @@
 import nodemailer from 'nodemailer';
 import Newsletter from '@/models/newsletter-model';
+import { connectDb } from '@/helpers/db-util';
 
 async function sendConfirmationEmail(userEmail) {
   const transporter = nodemailer.createTransport({
@@ -21,6 +22,11 @@ async function sendConfirmationEmail(userEmail) {
 }
 
 async function handler(req, res) {
+  try {
+    await connectDb()
+  } catch (error) {
+  console.error('Error connecting to database:', error)
+  }
   if (req.method === 'POST') {
     const userEmail = req.body.email;
 
