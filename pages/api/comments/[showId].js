@@ -11,7 +11,7 @@ async function handler(req, res) {
   if (req.method === 'POST') {
     const { email, name, text } = req.body;
 
-    if (!email.includes('@') || !name || name.trim() === '' || !text || text.trim() === '') {
+    if (!name || name.trim() === '' || !text || text.trim() === '') {
       return res.status(422).json({ message: 'Invalid input.' });
     }
 
