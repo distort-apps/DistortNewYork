@@ -3,7 +3,7 @@ import ShowDateFilter from '@/components/shows/show-date-filter'
 import GenSearch from '@/components/shows/gen-search'
 import router from 'next/router'
 import Head from 'next/head'
-import { fetchFeaturedShows } from '@/helpers/api-util'
+import { fetchAllShows } from '@/helpers/api-util'
 
 function AllShowsPage ({ shows }) {
   function findShowsByDateHandler (year, month) {
@@ -36,7 +36,7 @@ function AllShowsPage ({ shows }) {
 
 export async function getStaticProps () {
   try {
-    const shows = await fetchFeaturedShows()
+    const shows = await fetchAllShows()
 
     return {
       props: {

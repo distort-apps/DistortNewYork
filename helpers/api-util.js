@@ -18,7 +18,7 @@ export async function fetchFeaturedShows () {
 export async function fetchAllShows () {
   try {
     const connection = await connectDb()
-    const shows = await Show.find({}).sort({ date: 1 }).limit(500)
+    const shows = await Show.find({}).sort({ date: 1 }).limit(500).exec()
     return shows
   } catch (error) {
     console.error('Error in getAllShows:', error)
