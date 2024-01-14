@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const cantactSchema = new mongoose.Schema({
     email: {
         type: String,
-        required: true
+        required: false
     },
     title: {
         type: String,
