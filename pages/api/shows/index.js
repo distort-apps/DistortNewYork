@@ -45,13 +45,10 @@ export async function handleGetRequest(req, res) {
   }
 }
 
-// Main handler function
 async function handler(req, res) {
   if (req.method === 'POST') {
-    console.log("hey psot");
     await handlePostRequest(req, res);
   } else if (req.method === 'GET') {
-    console.log("hey get");
 
     await handleGetRequest(req, res);
   }

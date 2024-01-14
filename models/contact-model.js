@@ -15,7 +15,7 @@ const cantactSchema = new mongoose.Schema({
     },
     genre: {
         type: String,
-        required: false // Set to false if the field is not mandatory
+        required: false
     },
     time: {
         type: String,
@@ -23,15 +23,15 @@ const cantactSchema = new mongoose.Schema({
     },
     price: {
         type: Number,
-        required: false // Set to false if the field is not mandatory
+        required: false 
     },
     excerpt: {
         type: String,
-        required: false // Set to false if the field is not mandatory
+        required: false 
     },
     imageUrl: {
         type: String,
-        required: false // Set to false if the field is not mandatory
+        required: false 
     }
 }, { timestamps: true });
 

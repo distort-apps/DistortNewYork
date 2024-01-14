@@ -5,7 +5,6 @@ async function handler(req, res) {
 
   if (req.method === 'GET') {
     try {
-      console.log("hello show id")
       const document = await Show.findById(showId);
 
       if (document) {
