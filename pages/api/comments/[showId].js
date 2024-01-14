@@ -1,5 +1,11 @@
 import Comment from '../../../models/comment-model';
+import { connectDb } from '@/helpers/db-util';
 async function handler(req, res) {
+  try {
+    await connectDb()
+  } catch (error) {
+  console.error('Error connecting to database:', error)
+  }
   const showId = req.query.showId;
 
   if (req.method === 'POST') {

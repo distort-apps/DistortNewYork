@@ -1,10 +1,11 @@
 import Show from '../../../models/show-model'
-
+import { connectDb } from '@/helpers/db-util';
 async function handler(req, res) {
   const showId = req.query.showId;
 
   if (req.method === 'GET') {
     try {
+      await connectDb();
       const document = await Show.findById(showId);
 
       if (document) {
