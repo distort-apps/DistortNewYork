@@ -8,6 +8,16 @@ function ShowBody ({ title, image, excerpt, date, price, location, time }) {
     timeZone: 'UTC'
   }).format(new Date(date))
 
+  const char0 = price.charAt(0);
+  let formattedPrice = ""
+
+  if (char0 === '$') {
+    formattedPrice = price.slice(1)
+  } else {
+    formattedPrice = price
+  }
+
+  console.log("price: ", price)
   return (
     <div className={classes.body}>
       <div>
@@ -17,7 +27,7 @@ function ShowBody ({ title, image, excerpt, date, price, location, time }) {
         <p>{location}</p>
         <p>{time}</p>
         <time>{readableDate}</time>
-        <p>${price}</p>
+        <p>${formattedPrice}</p>
         <p>{excerpt}</p>
       </div>
     </div>
