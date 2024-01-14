@@ -16,9 +16,6 @@ function NewComment(props) {
     const enteredComment = commentInputRef.current.value;
 
     if (
-      !enteredEmail ||
-      enteredEmail.trim() === '' ||
-      !enteredEmail.includes('@') ||
       !enteredName ||
       enteredName.trim() === '' ||
       !enteredComment ||
@@ -53,7 +50,7 @@ function NewComment(props) {
         <label htmlFor='comment'>Your comment</label>
         <textarea id='comment' rows='5' ref={commentInputRef}></textarea>
       </div>
-      {isInvalid && <p>Please enter a valid email address and comment!</p>}
+      {isInvalid && <p>Please enter a name and valid comment!</p>}
       <button>Submit</button>
     </form>
   );
