@@ -1,4 +1,13 @@
 
+.headerWrapper hr {
+
+  color: white;
+  box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #ff6ec7,
+    0 0 0.8rem #ff6ec7, 0 0 2.8rem #ff6ec7, inset 0 0 1.3rem #ff6ec7;
+  height: .02rem;
+  animation: pulsate 1.5s infinite alternate, flicker 1.5s infinite alternate
+}
+
 .header {
     padding-bottom: var(--size-8);
     margin: var(--size-4) 0;
@@ -8,6 +17,7 @@
     align-items: center;
     gap: 1rem;
   }
+
   
   .header h1 {
     font-size: var(--size-8);
@@ -30,3 +40,36 @@
     }
   }
   
+
+  @keyframes pulsate {
+    
+    100% {
+    
+        text-shadow:
+        0 0 4px #fff,
+        0 0 11px #fff,
+        0 0 19px #fff,
+        0 0 40px #ff6ec7, 
+        0 0 80px #ff6ec7, 
+        0 0 90px #ff6ec7, 
+        0 0 100px #ff6ec7, 
+        0 0 150px #ff6ec7; 
+    
+    }
+    
+    0% {
+    
+      text-shadow:
+      0 0 2px #fff,
+      0 0 4px #fff,
+      0 0 6px #fff,
+      0 0 10px #ff6ec7,
+      0 0 45px #ff6ec7,
+      0 0 55px #ff6ec7,
+      0 0 70px #ff6ec7,
+      0 0 80px #ff6ec7;
+    
+    }
+    
+    
+    }
