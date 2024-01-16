@@ -3,6 +3,8 @@
   width: 90%;
   max-width: 40rem;
   text-align: center;
+  color: var(--color-grey-50);
+
 }
 
 .comments button {

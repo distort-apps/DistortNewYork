@@ -4,6 +4,11 @@
   height: auto;
 }
 
+.body p, .body time {
+  color: var(--color-grey-50);
+}
+
+
 @media (min-width: 768px) {
   .body {
     margin: var(--size-8) 0;

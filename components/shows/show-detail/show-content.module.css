@@ -1,16 +1,25 @@
+
 .content {
     width: 95%;
     max-width: 60rem;
     margin: var(--size-8) auto;
     font-size: var(--size-5);
     line-height: var(--size-8);
-    background-color: var(--color-grey-100);
-    border-radius: 6px;
+    background-color: var(--color-grey-900); 
+    border-radius: 6px; border: 0.2rem solid #fff;
+    padding: 0.4em;
+    box-shadow: 0 0 .2rem #fff,
+                0 0 .2rem #fff,
+                0 0 2rem #ff6ec7,
+                0 0 0.8rem #ff6ec7,
+                0 0 2.8rem #ff6ec7,
+                inset 0 0 1.3rem #ff6ec7;
     padding: var(--size-4);
+    animation: pulsate 1.5s infinite alternate;
   }
   
-  .content p {
-    color: var(--color-grey-800);
+  .content p, .content time {
+    color: var(--color-grey-50);
   }
   
   .content .image {
@@ -23,4 +32,53 @@
     .content {
       padding: var(--size-8);
     }
+  }
+
+  @keyframes flicker {
+    0%, 18%, 22%, 25%, 53%, 57%, 100% {
+      text-shadow:
+        0 0 4px #fff,
+        0 0 11px #fff,
+        0 0 19px #fff,
+        0 0 40px #ff6ec7,
+        0 0 80px #ff6ec7,
+        0 0 90px #ff6ec7,
+        0 0 100px #ff6ec7,
+        0 0 150px #ff6ec7;
+    }
+    20%, 24%, 55% {
+      text-shadow: none;
+    }
+  }
+  @keyframes pulsate {
+    
+  100% {
+  
+      text-shadow:
+      0 0 4px #fff,
+      0 0 11px #fff,
+      0 0 19px #fff,
+      0 0 40px #ff6ec7, 
+      0 0 80px #ff6ec7, 
+      0 0 90px #ff6ec7, 
+      0 0 100px #ff6ec7, 
+      0 0 150px #ff6ec7; 
+  
+  }
+  
+  0% {
+  
+    text-shadow:
+    0 0 2px #fff,
+    0 0 4px #fff,
+    0 0 6px #fff,
+    0 0 10px #ff6ec7,
+    0 0 45px #ff6ec7,
+    0 0 55px #ff6ec7,
+    0 0 70px #ff6ec7,
+    0 0 80px #ff6ec7;
+  
+  }
+  
+  
   }
