@@ -35,6 +35,14 @@
   font-size: var(--size-3); 
 }
 
+@media (max-width: 767px) {
+  .logo {
+    font-size: var(--size-6); 
+    padding: 0.2em; 
+    align-self: flex-start; 
+  }
+}
+
 @media (min-width: 768px) {
   .logo {
     font-size: var(--size-8);
