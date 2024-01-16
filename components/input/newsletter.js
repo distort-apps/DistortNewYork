@@ -3,11 +3,11 @@ import classes from './newsletter.module.css'
 import Button from '../ui/button'
 
 function Newsletter () {
-  const [placeholder , setPlaceholder] = useState('Your Email')
+  const [placeholder, setPlaceholder] = useState('Your Email')
   const [isSubmitting, setIsSubmitting] = useState(false)
   const emailInputRef = useRef()
 
-  function registrationHandler(e) {
+  function registrationHandler (e) {
     e.preventDefault()
 
     setIsSubmitting(true)
@@ -15,15 +15,14 @@ function Newsletter () {
 
     fetch('/api/newsletter', {
       method: 'POST',
-      body: JSON.stringify({email: enteredEmail}),
+      body: JSON.stringify({ email: enteredEmail }),
       headers: {
         'Content-Type': 'application/json'
       }
-    })
-    .then(res => res.json())
+    }).then(res => res.json())
 
     emailInputRef.current.value = ''
-    setPlaceholder("nom nom nom")
+    setPlaceholder('nom nom nom')
   }
 
   return (
@@ -39,7 +38,12 @@ function Newsletter () {
             ref={emailInputRef}
             disabled={isSubmitting}
           />
-          <Button disabled={isSubmitting} style={{opacity: isSubmitting ? 0.5 : 1 }}>Register</Button>
+          <Button
+            disabled={isSubmitting}
+            style={{ opacity: isSubmitting ? 0.5 : 1 }}
+          >
+            Register
+          </Button>
         </div>
       </form>
     </section>
