@@ -50,11 +50,3 @@
   height: 1.25rem;
   color: var(--color-grey-50);
 }
-
-@media (min-width: 768px) {
-  .body {
-    margin: var(--size-8) 0;
-    flex-direction: row;
-    align-items: flex-end;
-  }
-}
