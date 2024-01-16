@@ -40,30 +40,42 @@
 }
 
 @keyframes flicker {
-  0%,
-  18%,
-  22%,
-  25%,
-  53%,
-  57%,
-  100% {
-    text-shadow: 0 0 4px #fff, 0 0 11px #fff, 0 0 19px #fff, 0 0 40px #ff6ec7,
-      0 0 80px #ff6ec7, 0 0 90px #ff6ec7, 0 0 100px #ff6ec7, 0 0 150px #ff6ec7;
-  }
-  20%,
-  24%,
-  55% {
-    text-shadow: none;
-  }
+  0%, 18%, 22%, 60%, 100% {
+    text-shadow: 
+      0 0 4px #fff, 
+      0 0 11px #fff, 
+      0 0 19px #fff, 
+      0 0 40px #ff6ec7, 
+      0 0 80px #ff6ec7,
+0 0 90px #ff6ec7,
+0 0 100px #ff6ec7,
+0 0 150px #ff6ec7;
+}
+20%, 24%, 57%, 63% {
+text-shadow: none;
+}
 }
 @keyframes pulsate {
-  100% {
-    text-shadow: 0 0 4px #fff, 0 0 11px #fff, 0 0 19px #fff, 0 0 40px #ff6ec7,
-      0 0 80px #ff6ec7, 0 0 90px #ff6ec7, 0 0 100px #ff6ec7, 0 0 150px #ff6ec7;
-  }
-
   0% {
-    text-shadow: 0 0 2px #fff, 0 0 4px #fff, 0 0 6px #fff, 0 0 10px #ff6ec7,
-      0 0 45px #ff6ec7, 0 0 55px #ff6ec7, 0 0 70px #ff6ec7, 0 0 80px #ff6ec7;
+    text-shadow: 
+      0 0 2px #fff,
+      0 0 3px #fff,
+      0 0 4px #fff,
+      0 0 5px #ff6ec7,
+      0 0 10px #ff6ec7,
+      0 0 15px #ff6ec7,
+      0 0 20px #ff6ec7,
+      0 0 25px #ff6ec7;
+  }
+  100% {
+    text-shadow: 
+      0 0 2.5px #fff,
+      0 0 4px #fff,
+      0 0 5.5px #fff,
+      0 0 7px #ff6ec7,
+      0 0 14px #ff6ec7,
+      0 0 17px #ff6ec7,
+      0 0 19px #ff6ec7,
+      0 0 22px #ff6ec7;
   }
 }
