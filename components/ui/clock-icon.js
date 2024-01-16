@@ -1,19 +1,19 @@
-function AddressIcon() {
+function ClockIcon () {
   return (
     <svg
       xmlns='http://www.w3.org/2000/svg'
       fill='none'
       viewBox='0 0 24 24'
+      strokeWidth={1.5}
       stroke='currentColor'
+      className='w-6 h-6'
     >
       <path
         strokeLinecap='round'
         strokeLinejoin='round'
-        strokeWidth={2}
-        d='M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z'
+        d='M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z'
       />
     </svg>
-  );
+  )
 }
-
-export default AddressIcon;
+export default ClockIcon
