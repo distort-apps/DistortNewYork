@@ -12,15 +12,7 @@
     0 0 92px #ff6ec7,
     0 0 102px #ff6ec7,
     0 0 151px #ff6ec7;
-  border: 0.2rem solid #fff;
-  border-radius: 2rem;
-  padding: 0.4em;
-  box-shadow: 0 0 .2rem #fff,
-              0 0 .2rem #fff,
-              0 0 2rem #ff6ec7,
-              0 0 0.8rem #ff6ec7,
-              0 0 2.8rem #ff6ec7,
-              inset 0 0 1.3rem #ff6ec7;
+  
   box-sizing: border-box;
   display: flex;
   flex-direction: column;

@@ -15,7 +15,7 @@ body {
   --color-grey-600: hsl(265, 4%, 42%);
   --color-grey-700: hsl(265, 4%, 31%);
   --color-grey-800: hsl(276, 5%, 20%);
-  --color-grey-900: hsl(280, 5%, 13%);
+  --color-grey-900: hsl(280, 5%, 13%); 
 
   --color-primary-50: #c8b3ce;
   --color-primary-100: #a07aaa;
@@ -68,3 +68,8 @@ button {
   margin: auto;
   text-align: center;
 }
+
+.show-detail-background {
+  background-color: black; /* Sets the body background to black */
+}
+
