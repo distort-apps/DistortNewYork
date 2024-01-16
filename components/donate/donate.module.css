@@ -25,14 +25,14 @@
 }
 
 .donate a {
-  color: var(--color-grey-100);
+  color: var(--color-grey-500);
   font-size: var(--size-4);
 }
 
 .donate a:hover,
 .donate a:active,
 .donate a.active {
-  color: var(--color-grey-200);
+  color: #252525;
 }
 
 @media (min-width: 768px) {

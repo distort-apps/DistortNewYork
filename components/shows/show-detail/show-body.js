@@ -31,14 +31,6 @@ function ShowBody ({
     formattedPrice = price
   }
 
-  useEffect(() => {
-    document.body.classList.add('show-detail-background')
-
-    return () => {
-      document.body.classList.remove('show-detail-background')
-    }
-  }, [])
-
   return (
     <div className={classes.body}>
       <div>

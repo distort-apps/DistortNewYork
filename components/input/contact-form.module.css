@@ -94,6 +94,10 @@
   padding: 0.5rem 1.5cqh;
 }
 
+.form label {
+  color: black;
+}
+
 .dateInput {
   width: 100%;
   border: 1px solid #ccc;
