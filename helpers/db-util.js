@@ -22,7 +22,6 @@ export async function connectDb() {
     });
   }
 
-  // Wait for the connection promise to resolve
   cached.conn = await cached.promise;
   return cached.conn;
 }
