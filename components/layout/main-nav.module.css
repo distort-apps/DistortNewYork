@@ -1,12 +1,12 @@
 .header {
-    width: 100%;
-    height: 7rem;
-    background-color: var(--color-grey-900);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 10%;
-  }
+  width: 100%;
+  height: 7rem;
+  background-color: var(--color-grey-900);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1rem; /* Changed to a fixed padding */
+}
   
   .header ul {
     list-style: none;
@@ -32,9 +32,10 @@
   }
   
   @media (min-width: 768px) {
-    .header ul {
-      gap: 0.5rem;
+    .header {
+      padding: 0 10%; /* Larger padding for larger screens */
     }
+  
   
     .header a {
       font-size: var(--size-5);

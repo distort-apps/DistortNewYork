@@ -35,15 +35,17 @@
   font-size: var(--size-3); 
 }
 
-@media (max-width: 767px) {
+@media (max-width: 500px) {
   .logo {
-    font-size: var(--size-6); 
-    padding: 0.2em; 
-    align-self: flex-start; 
+    font-size: var(--size-6);
+    padding: 0.2em;
+    align-self: flex-start;
+    margin-left: -10px; 
   }
 }
 
-@media (min-width: 768px) {
+
+@media (min-width: 500px) {
   .logo {
     font-size: var(--size-8);
   }
