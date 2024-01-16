@@ -36,7 +36,7 @@
 
   @keyframes flicker {
     0%, 18%, 22%, 25%, 53%, 57%, 100% {
-      text-shadow:
+      box-shadow:
         0 0 4px #fff,
         0 0 11px #fff,
         0 0 19px #fff,
@@ -54,7 +54,7 @@
     
   100% {
   
-      text-shadow:
+      box-shadow:
       0 0 4px #fff,
       0 0 11px #fff,
       0 0 19px #fff,
@@ -68,7 +68,7 @@
   
   0% {
   
-    text-shadow:
+    box-shadow:
     0 0 2px #fff,
     0 0 4px #fff,
     0 0 6px #fff,
