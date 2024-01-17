@@ -19,12 +19,16 @@
   animation: pulsate 1.5s infinite alternate, flicker 1.5s infinite alternate;
 }
 
+.logo div {
+  margin:.5rem .5rem 0 .5rem; 
+}
+
 .staticText {
   color: #fff;
   font-size: var(--size-3);
 }
 
-@media (max-width: 500px) {
+@media (max-width: 700px) {
   .logo {
     font-size: var(--size-6);
     padding: 0.2em;
@@ -33,7 +37,7 @@
   }
 }
 
-@media (min-width: 500px) {
+@media (min-width: 700px) {
   .logo {
     font-size: var(--size-8);
   }
