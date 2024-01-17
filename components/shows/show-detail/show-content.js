@@ -5,7 +5,9 @@ import classes from './show-content.module.css'
 
 function ShowContent ({ show }) {
   return (
-    <article className={classes.content}>
+    <div className={classes.wrapper}>
+
+      <article className={classes.content}>
       <ShowHeader title={show.title} />
       <ShowBody
         title={show.title}
@@ -18,6 +20,7 @@ function ShowContent ({ show }) {
       />
       <ShowFooter excerpt={show.excerpt} />
     </article>
+    </div>
   )
 }
 export default ShowContent
