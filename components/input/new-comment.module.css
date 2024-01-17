@@ -5,10 +5,7 @@
   background-color: black;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   padding: 1rem;
-
 }
-
-
 
 .row {
   display: flex;
@@ -28,7 +25,6 @@
   margin-bottom: 0.5rem;
   color: var(--color-grey-50);
   text-align: left;
-
 }
 
 .control input,
