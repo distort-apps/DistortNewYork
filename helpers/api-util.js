@@ -30,7 +30,6 @@ export async function getShowById(id) {
   try {
     const connection = await connectDb()
     const show = await Show.findById(id);
-    console.log("SHOW: ", show)
     return show;
   } catch (error) {
     console.error('Error in getShowById:', error);

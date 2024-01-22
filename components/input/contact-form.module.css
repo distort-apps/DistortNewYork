@@ -1,8 +1,13 @@
+
 .contact {
   margin: 1rem auto;
   width: 90%;
   max-width: 20rem;
   text-align: center;
+}
+
+.controls p {
+  color: black;
 }
 
 .form {
