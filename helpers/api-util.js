@@ -28,6 +28,7 @@ export async function fetchAllShows () {
 
 export async function getShowById(id) {
   try {
+    const connection = await connectDb()
     const show = await Show.findById(id);
     console.log("SHOW: ", show)
     return show;
