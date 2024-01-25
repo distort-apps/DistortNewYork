@@ -5,7 +5,7 @@ export async function fetchFeaturedShows () {
     const connection = await connectDb()
 
     const featuredShows = await Show.find({ isFeatured: true })
-      .sort({ rating: 1 })
+      .sort({ date: 1 })
       .exec()
 
     return featuredShows
