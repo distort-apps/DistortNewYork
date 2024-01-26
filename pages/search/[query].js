@@ -67,7 +67,7 @@ function GenSearchPage () {
     )
   }
 
-  if (!loadedShows || loadedShows.length === 0) {
+  if (!data && !loadedShows || loadedShows.length === 0) {
     return (
       <>
         {pageHeadData}
