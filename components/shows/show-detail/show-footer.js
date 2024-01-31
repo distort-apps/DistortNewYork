@@ -1,4 +1,7 @@
 function ShowFooter ({ excerpt }) {
-  return <p className='center'>{excerpt}</p>
+  const refactoredExcert = excerpt.replace(/\n/g,'<br />')
+  return <p className='center' dangerouslySetInnerHTML={{
+    __html: refactoredExcert
+}}></p>
 }
 export default ShowFooter
