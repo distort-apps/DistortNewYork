@@ -1,26 +1,24 @@
 .logo {
-  font-family: "Sacramento", sans-serif;
   font-size: var(--size-6);
   font-weight: bold;
   color: #fff;
-  text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #ff6ec7,
-    0 0 82px #ff6ec7, 0 0 92px #ff6ec7, 0 0 102px #ff6ec7, 0 0 151px #ff6ec7;
-  border: 0.2rem solid #fff;
-  border-radius: 2rem;
-  padding: 0.4em;
-  box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #ff6ec7,
-    0 0 0.8rem #ff6ec7, 0 0 2.8rem #ff6ec7, inset 0 0 1.3rem #ff6ec7;
+  /* text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #ff6ec7,
+    0 0 82px #ff6ec7, 0 0 92px #ff6ec7, 0 0 102px #ff6ec7, 0 0 151px #ff6ec7; */
+  /* border: 0.2rem solid #fff; */
+  /* border-radius: 2rem; */
+  /* box-shadow: 0 0 0.2rem #fff, 0 0 0.2rem #fff, 0 0 2rem #ff6ec7,
+    0 0 0.8rem #ff6ec7, 0 0 2.8rem #ff6ec7, inset 0 0 1.3rem #ff6ec7; */
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  animation: pulsate 1.5s infinite alternate, flicker 1.5s infinite alternate;
+  /* animation: pulsate 1.5s infinite alternate, flicker 1.5s infinite alternate; */
 }
 
 .logo div {
-  margin:.5rem .5rem 0 .5rem; 
+  margin:1rem; 
 }
 
 .staticText {
