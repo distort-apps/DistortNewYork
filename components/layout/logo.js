@@ -3,7 +3,9 @@ import classes from './logo.module.css';
 function Logo() {
   return (
     <section className={classes.logo}>
-      <div>DistortNewYork</div>
+      <div>Distort
+        NewYorkgit 
+      </div>
     </section>
   );
 }
