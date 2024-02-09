@@ -4,7 +4,7 @@ function Logo() {
   return (
     <section className={classes.logo}>
       <div>Distort
-        NewYorkgit 
+        NewYork
       </div>
     </section>
   );
