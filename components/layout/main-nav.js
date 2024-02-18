@@ -12,10 +12,10 @@ function MainNav () {
       <nav>
         <ul>
           <li>
-            <Link href='/shows' className={pathname.startsWith('/shows') ? classes.active : undefined}>Shows</Link>
+            <Link href='/shows' className={pathname === '/shows' ? classes.active : undefined}>Shows</Link>
           </li>
           <li>
-            <Link href='/contact' className={pathname.startsWith('/contact') ? classes.active : undefined}>Contact</Link>
+            <Link href='/contact' className={pathname === '/contact' ? classes.active : undefined}>Contact</Link>
           </li>
         </ul>
       </nav>
