@@ -6,7 +6,7 @@ function MainNav () {
   const pathname = usePathname()
   return (
           <header className={classes.header}>
-      <Link href='/' >
+      <Link href='/' className={pathname === '/' ? classes.active : undefined}>
         <Logo />
       </Link>
       <nav>
