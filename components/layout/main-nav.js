@@ -1,7 +1,9 @@
 import Link from 'next/link'
 import Logo from './logo'
 import classes from './main-nav.module.css'
+import { usePathname } from 'next/navigation'
 function MainNav () {
+  const pathname = usePathname()
   return (
           <header className={classes.header}>
       <Link href='/' >
@@ -10,10 +12,10 @@ function MainNav () {
       <nav>
         <ul>
           <li>
-            <Link href='/shows'>Shows</Link>
+            <Link href='/shows' className={pathname === '/shows' ? classes.active : undefined}>Shows</Link>
           </li>
           <li>
-            <Link href='/contact'>Contact</Link>
+            <Link href='/contact' className={pathname === '/contact' ? classes.active : undefined}>Contact</Link>
           </li>
         </ul>
       </nav>
