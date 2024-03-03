@@ -4,19 +4,15 @@ export async function fetchFeaturedShows () {
   try {
     await connectDb()
 
-    let now = new Date();
-    let estOffset = 5 * 60 * 60000; 
-    let estNow = new Date(now - estOffset);
-    estNow.setHours(0, 0, 0, 0);
-
-    let queryDate = new Date(estNow.getTime() + estOffset);
+    const today = new Date()
+    today.setUTCHours(0, 0, 0, 0)
 
     const featuredShows = await Show.find({
       isFeatured: true,
-      date: { $gte: queryDate } 
+      date: { $gte: today }
     })
       .sort({ date: 1 })
-      .exec();
+      .exec()
 
     return featuredShows
   } catch (error) {
@@ -29,19 +25,15 @@ export async function fetchAllShows() {
   try {
     await connectDb();
 
-    let now = new Date();
-    let estOffset = 5 * 60 * 60000; 
-    let estNow = new Date(now - estOffset);
-    estNow.setHours(0, 0, 0, 0);
-
-    let queryDate = new Date(estNow.getTime() + estOffset);
+    const today = new Date()
+    today.setUTCHours(0, 0, 0, 0)
 
     const shows = await Show.find({
-      date: { $gte: queryDate }
+      date: { $gte: today }
     })
       .sort({ date: 1 })
       .limit(500)
-      .exec();
+      .exec()
 
     return shows;
   } catch (error) {
