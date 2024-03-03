@@ -7,6 +7,8 @@ export async function fetchFeaturedShows () {
     let todayUTC = new Date(Date.UTC(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()));
     let yesterdayUTC = new Date(todayUTC);
     yesterdayUTC.setDate(yesterdayUTC.getDate() - 1);
+
+    console.log("yesterday utc",yesterdayUTC)
     
 
     const featuredShows = await Show.find({
@@ -32,6 +34,8 @@ export async function fetchAllShows () {
 
     let yesterday = new Date(today)
     yesterday.setDate(yesterday.getDate() - 1)
+    
+    console.log("yesterday ", yesterday)
 
     const shows = await Show.find({
       date: { $gte: yesterday }
