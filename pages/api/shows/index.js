@@ -1,5 +1,6 @@
 import Show from '../../../models/show-model'
 import { connectDb } from '@/helpers/db-util';
+import xss from 'xss'
 function isValidShow(show) {
   const { title, date, genre, location, time, price, image } = show;
   return title && date && genre && location && price && image && time;
@@ -16,6 +17,10 @@ export async function handlePostRequest(req, res) {
     } 
 
     try {
+      for(let show of data) {
+        show.excerpt = xss(show.excerpt)
+        console.log(show.excerpt)
+      }
       const newShows = await Show.insertMany(data);
       res.status(201).json({ message: 'New Shows Added', shows: newShows });
     } catch (error) {
@@ -28,6 +33,9 @@ export async function handlePostRequest(req, res) {
     }
 
     try {
+      data.excerpt = xss(data.excerpt)
+      console.log(data.excerpt)
+
       const newShow = new Show(data);
       await newShow.save();
       res.status(201).json({ message: 'New Show Added', show: newShow });

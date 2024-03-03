@@ -2,14 +2,17 @@ import { connectDb } from './db-util'
 import Show from '@/models/show-model'
 export async function fetchFeaturedShows () {
   try {
-    const connection = await connectDb()
+    await connectDb()
 
-    const today = new Date()
-    today.setUTCHours(0, 0, 0, 0)
+    let today = new Date()
+    today.setHours(0, 0, 0, 0)
+
+    let yesterday = new Date(today)
+    yesterday.setDate(yesterday.getDate() - 1)
 
     const featuredShows = await Show.find({
       isFeatured: true,
-      date: { $gte: today }
+      date: { $gt: yesterday }
     })
       .sort({ date: 1 })
       .exec()
@@ -23,13 +26,16 @@ export async function fetchFeaturedShows () {
 
 export async function fetchAllShows () {
   try {
-    const connection = await connectDb()
+    await connectDb()
 
-    const today = new Date()
-    today.setUTCHours(0, 0, 0, 0)
+    let today = new Date()
+    today.setHours(0, 0, 0, 0)
+
+    let yesterday = new Date(today)
+    yesterday.setDate(yesterday.getDate() - 1)
 
     const shows = await Show.find({
-      date: { $gte: today }
+      date: { $gte: yesterday }
     })
       .sort({ date: 1 })
       .limit(500)
