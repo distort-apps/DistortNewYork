@@ -21,7 +21,8 @@
     "react": "^18",
     "react-dom": "^18",
     "swr": "^2.2.4",
-    "vercel": "^33.2.0"
+    "vercel": "^33.2.0",
+    "xss": "^1.0.14"
   },
   "devDependencies": {
     "next": "^14.0.4"
