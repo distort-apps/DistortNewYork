@@ -4,15 +4,14 @@ export async function fetchFeaturedShows () {
   try {
     await connectDb()
 
-    let today = new Date()
-    today.setHours(0, 0, 0, 0)
-
-    let yesterday = new Date(today)
-    yesterday.setDate(yesterday.getDate() - 1)
+    let todayUTC = new Date(Date.UTC(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()));
+    let yesterdayUTC = new Date(todayUTC);
+    yesterdayUTC.setDate(yesterdayUTC.getDate() - 1);
+    
 
     const featuredShows = await Show.find({
       isFeatured: true,
-      date: { $gt: yesterday }
+      date: { $gt: yesterdayUTC }
     })
       .sort({ date: 1 })
       .exec()
