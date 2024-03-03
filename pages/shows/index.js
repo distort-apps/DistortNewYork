@@ -24,7 +24,7 @@ function AllShowsPage ({ shows }) {
         <title>All Shows</title>
         <meta
           name='description'
-          content='Find all shows in NYC and its boroughs'
+          content='Find all shows in NYC'
         />
       </Head>
       <ShowDateFilter onSearch={findShowsByDateHandler} />

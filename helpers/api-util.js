@@ -4,17 +4,19 @@ export async function fetchFeaturedShows () {
   try {
     await connectDb()
 
-    let todayUTC = new Date(Date.UTC(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()));
-    let yesterdayUTC = new Date(todayUTC);
-    yesterdayUTC.setDate(yesterdayUTC.getDate() - 1);
-    
+    let now = new Date();
+    let estOffset = 5 * 60 * 60000; 
+    let estNow = new Date(now - estOffset);
+    estNow.setHours(0, 0, 0, 0);
+
+    let queryDate = new Date(estNow.getTime() + estOffset);
 
     const featuredShows = await Show.find({
       isFeatured: true,
-      date: { $gt: yesterdayUTC }
+      date: { $gte: queryDate } 
     })
       .sort({ date: 1 })
-      .exec()
+      .exec();
 
     return featuredShows
   } catch (error) {
@@ -23,27 +25,28 @@ export async function fetchFeaturedShows () {
   }
 }
 
-export async function fetchAllShows () {
+export async function fetchAllShows() {
   try {
-    await connectDb()
+    await connectDb();
 
-    let today = new Date()
-    today.setHours(0, 0, 0, 0)
+    let now = new Date();
+    let estOffset = 5 * 60 * 60000; 
+    let estNow = new Date(now - estOffset);
+    estNow.setHours(0, 0, 0, 0);
 
-    let yesterday = new Date(today)
-    yesterday.setDate(yesterday.getDate() - 1)
+    let queryDate = new Date(estNow.getTime() + estOffset);
 
     const shows = await Show.find({
-      date: { $gte: yesterday }
+      date: { $gte: queryDate }
     })
       .sort({ date: 1 })
       .limit(500)
-      .exec()
+      .exec();
 
-    return shows
+    return shows;
   } catch (error) {
-    console.error('Error in getAllShows:', error)
-    throw new Error('Internal Server Error')
+    console.error('Error in fetchAllShows:', error);
+    throw new Error('Internal Server Error');
   }
 }
 
