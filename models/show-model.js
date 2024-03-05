@@ -40,9 +40,16 @@ const showSchema = new mongoose.Schema({
     rating: {
         type: Number,
         default: 0
+    },
+    expiresAt: {
+        type: Date,
+        required: true
     }
 }, { timestamps: true });
+
+showSchema.index({ expiresAt: 1 }, { expireAfterSeconds: 0 });
 
 const Show = mongoose.models.Show || mongoose.model('Show', showSchema);
 
 export default Show;
+
