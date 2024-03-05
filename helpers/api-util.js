@@ -4,12 +4,8 @@ export async function fetchFeaturedShows () {
   try {
     await connectDb()
 
-    const today = new Date()
-    today.setUTCHours(0, 0, 0, 0)
-
     const featuredShows = await Show.find({
-      isFeatured: true,
-      date: { $gte: today }
+      isFeatured: true
     })
       .sort({ date: 1 })
       .exec()
@@ -21,24 +17,16 @@ export async function fetchFeaturedShows () {
   }
 }
 
-export async function fetchAllShows() {
+export async function fetchAllShows () {
   try {
-    await connectDb();
+    await connectDb()
 
-    const today = new Date()
-    today.setUTCHours(0, 0, 0, 0)
+    const shows = await Show.find({}).sort({ date: 1 }).limit(500).exec()
 
-    const shows = await Show.find({
-      date: { $gte: today }
-    })
-      .sort({ date: 1 })
-      .limit(500)
-      .exec()
-
-    return shows;
+    return shows
   } catch (error) {
-    console.error('Error in fetchAllShows:', error);
-    throw new Error('Internal Server Error');
+    console.error('Error in fetchAllShows:', error)
+    throw new Error('Internal Server Error')
   }
 }
 
