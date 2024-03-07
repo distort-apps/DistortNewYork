@@ -1,5 +1,5 @@
 export async function getServerSideProps(context) {
-    const serverTime = new Date().toString(); /
+    const serverTime = new Date().toString(); 
   
     return {
       props: { serverTime }, 
