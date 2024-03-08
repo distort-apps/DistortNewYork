@@ -43,7 +43,6 @@ export async function handlePostRequest(req, res) {
       res.status(422).json({ message: 'Invalid show data' });
       return;
     }
-
     data.excerpt = xss(data.excerpt);
     const existingShow = await Show.findOne({ title: data.title, date: data.date });
     if (!existingShow) {

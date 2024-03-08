@@ -43,9 +43,32 @@ const showSchema = new mongoose.Schema({
     },
     expiresAt: {
         type: Date,
-        required: true
+        required: false
     }
 }, { timestamps: true });
+
+function isDST(date) {
+    const jan = new Date(date.getFullYear(), 0, 1).getTimezoneOffset();
+    const jul = new Date(date.getFullYear(), 6, 1).getTimezoneOffset();
+    return Math.min(jan, jul) != date.getTimezoneOffset();
+}
+
+showSchema.pre('save', function(next) {
+    const show = this;
+
+    if (show.date) {
+        const dateUTC = new Date(show.date);
+
+        dateUTC.setDate(dateUTC.getDate() + 1);
+
+        const offset = isDST(dateUTC) ? 7 : 8; 
+        dateUTC.setUTCHours(offset, 0, 0, 0); 
+
+        show.expiresAt = dateUTC;
+    }
+
+    next();
+});
 
 showSchema.index({ expiresAt: 1 }, { expireAfterSeconds: 0 });
 
