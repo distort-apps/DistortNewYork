@@ -7,6 +7,23 @@ function isValidShow(show) {
   return title && date && genre && location && price && image && time;
 }
 
+function isDST(date) {
+  const jan = new Date(date.getFullYear(), 0, 1).getTimezoneOffset();
+  const jul = new Date(date.getFullYear(), 6, 1).getTimezoneOffset();
+  return Math.min(jan, jul) != date.getTimezoneOffset();
+}
+
+function preSaveLogic(show) {
+  if (show.date) {
+    const dateUTC = new Date(show.date);
+    dateUTC.setDate(dateUTC.getDate() + 1);
+    const offset = isDST(dateUTC) ? 7 : 8;
+    dateUTC.setUTCHours(offset, 0, 0, 0);
+    show.expiresAt = dateUTC;
+  }
+  return show;
+}
+
 export async function handlePostRequest(req, res) {
   const data = req.body;
 
@@ -22,6 +39,7 @@ export async function handlePostRequest(req, res) {
       show.excerpt = xss(show.excerpt);
       const existingShow = await Show.findOne({ title: show.title, date: show.date });
       if (!existingShow) {
+        preSaveLogic(show)
         insertableShows.push(show);
       } else {
         console.log(`Skipping duplicate show: ${show.title} on ${show.date}`);
