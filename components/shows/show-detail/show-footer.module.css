@@ -1,0 +1,47 @@
+.excerpt a {
+    color: var(--color-grey-500);
+    /* font-size: var(--size-4); */
+  }
+
+.excerpt h1 {
+    color: var(--color-grey-200);
+    font-size: var(--size-9);
+}
+
+.excerpt ul {
+    list-style: none;
+    align-items: baseline;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .excerpt li {
+    margin: 0 var(--size-4);
+  }
+
+.excerpt b,
+.excerpt br {
+  display: block;
+  margin: 3px 0;
+  line-height: 1.6;
+}
+
+.excerpt hr {
+    width: 75%;
+    border-top:dotted 9px;
+    border-bottom: 0;
+}
+
+.excerpt em,
+.excerpt i {
+    font-family: sacramento;
+    font-size: var(--size-7);
+}
+
+
+  
+  .excerpt a:hover,
+  .excerpt a:active,
+  .excerpt a.active {
+    color: #4a4a4a;
+  }

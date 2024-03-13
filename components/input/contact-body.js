@@ -5,8 +5,8 @@ function ContactBodyPage () {
     <div className={classes.contact}>
       <h2>Write DistortNewYork @:</h2>
       <MailToButton
-        label='contact@distort-new-york.com'
-        mailto='mailto:contact@distort-new-york.com'
+        label='contact@distortnewyork.com'
+        mailto='mailto:contact@distortnewyork.com'
       />
       <hr />
     </div>
