@@ -21,10 +21,10 @@ function AllShowsPage ({ shows }) {
   return (
     <>
       <Head>
-        <title>All Shows</title>
+        <title>All Events</title>
         <meta
           name='description'
-          content='Find all shows in NYC'
+          content='search events in NY'
         />
       </Head>
       <ShowDateFilter onSearch={findShowsByDateHandler} />
