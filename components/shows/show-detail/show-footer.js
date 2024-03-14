@@ -1,6 +1,8 @@
+import classes from './show-footer.module.css'
+
 function ShowFooter ({ excerpt }) {
   const refactoredExcert = excerpt.replace(/\n/g,'<br />')
-  return <div className='center' dangerouslySetInnerHTML={{
+  return <div className={classes.excerpt} dangerouslySetInnerHTML={{
     __html: refactoredExcert
 }}></div>
 }
