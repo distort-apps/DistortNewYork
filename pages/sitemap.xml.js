@@ -13,10 +13,11 @@ function generateSiteMap(posts) {
        <loc>https://distortnewyork.com/contact</loc>
      </url>
      ${posts
-       .map(({ id }) => {
+       .map(({ id, createdAt }) => {
          return `
        <url>
            <loc>${`${EXTERNAL_DATA_URL}/${id}`}</loc>
+           <lastmod>${createdAt}</lastmod>
        </url>
      `;
        })
