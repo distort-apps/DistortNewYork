@@ -4,3 +4,20 @@
   max-width: 40rem;
   text-align: center;
 }
+
+.title a {
+  background-color: #252525;
+  border: 1px solid #252525;
+  border-radius: 6px;
+  color: whitesmoke;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+.title a:hover,
+.title a:active {
+  background-color: #000000;
+  border-color: #000000;
+}

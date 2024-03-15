@@ -32,13 +32,14 @@
   .newsletter button:active {
     background-color: #000000;
     border-color: #000000;
+    color:grey;
   }
   
   .newsletter button:disabled {
     background-color: #000000; 
     border-color: #000000;
     cursor: not-allowed;
-    color: #d0d0d0; 
+    color: grey; 
   }
 
   .control {
