@@ -19,10 +19,12 @@ function generateSiteMap (posts) {
      </url>
      ${posts
        .map(({ id, createdAt }) => {
+        const date = new Date(createdAt);
+        const modDate = date.toISOString();
          return `
        <url>
            <loc>${`${EXTERNAL_DATA_URL}/${id}`}</loc>
-           <lastmod>${createdAt}</lastmod>
+           <lastmod>${modDate}</lastmod>
        </url>
      `
        })
