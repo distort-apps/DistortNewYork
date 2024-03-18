@@ -1,6 +1,6 @@
 import ShowBody from './show-body'
 import ShowHeader from './show-header'
-import ShowFooter from './show-footer'
+import ShowExcerpt from './show-excerpt'
 import classes from './show-content.module.css'
 
 function ShowContent ({ show }) {
@@ -18,7 +18,7 @@ function ShowContent ({ show }) {
         price={show.price}
         genre={show.genre}
       />
-      <ShowFooter excerpt={show.excerpt} />
+      <ShowExcerpt excerpt={show.excerpt} />
     </article>
     </div>
   )
