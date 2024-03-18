@@ -30,7 +30,7 @@
     color:  #fff;
     margin: 0 auto;
     line-height: initial;
-
+    text-align: center;
   }
   
   @media (min-width: 768px) {
