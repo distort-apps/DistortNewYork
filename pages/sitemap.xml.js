@@ -7,15 +7,15 @@ function generateSiteMap (posts) {
    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
      <!--We manually set the two URLs we know already-->
      <url>
-       <loc>https://distortnewyork.com/shows</loc>
+       <loc>https://www.distortnewyork.com/shows</loc>
        <changefreq>daily</changefreq>
      </url>
      <url>
-     <loc>https://distortnewyork.com/</loc>
+     <loc>https://www.distortnewyork.com/</loc>
      <changefreq>daily</changefreq>
      </url>
      <url>
-       <loc>https://distortnewyork.com/contact</loc>
+       <loc>https://www.distortnewyork.com/contact</loc>
      </url>
      ${posts
        .map(({ id, createdAt }) => {
