@@ -47,3 +47,10 @@
         font-weight: 300;
         font-style: normal;
 }
+
+.excerpt hr {
+    border: dotted var(--color-grey-500) .25rem;
+    border-bottom: none;
+    width: 75%;
+    margin: 1rem auto;
+}
