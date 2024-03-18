@@ -56,7 +56,6 @@ function ShowBody ({
         <AddressIcon />
         <p>{location}</p>
       </div>
-      <p>{excerpt}</p>
     </div>
   )
 }
