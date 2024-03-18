@@ -1,6 +1,6 @@
 import { fetchAllShows } from '@/helpers/api-util'
 
-const EXTERNAL_DATA_URL = 'https://distortnewyork.com/shows'
+const EXTERNAL_DATA_URL = 'https://www.distortnewyork.com/shows'
 
 function generateSiteMap (posts) {
   return `<?xml version="1.0" encoding="UTF-8"?>
