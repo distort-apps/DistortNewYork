@@ -1,37 +1,36 @@
 .excerpt {
-    margin: 2rem 0;
+  margin: 2rem 0;
 }
 
 .excerpt ul {
-    list-style: none;
+  list-style: none;
 
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .excerpt li {
-    text-transform: uppercase;
+  text-transform: uppercase;
 }
 
 .excerpt h2 {
-    margin-bottom: auto;
-    font-size: 1.5rem;
-    text-transform: uppercase;
-    margin: .5rem;
+  margin-bottom: auto;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  margin: 0.5rem;
 }
 
 .excerpt h3 {
-    margin: .5rem;
-    margin: .5rem;
-    font-size: 1.2rem;
-    text-transform: uppercase;
+  margin: 0.5rem;
+  margin: 0.5rem;
+  font-size: 1.2rem;
+  text-transform: uppercase;
 }
 
-
 .excerpt a {
-    color: var(--color-grey-500);
-    letter-spacing: 0.15rem;
-  }
+  color: var(--color-grey-500);
+  letter-spacing: 0.15rem;
+}
 
 .excerpt a:hover,
 .excerpt a:active,
@@ -40,21 +39,21 @@
 }
 
 .excerpt p {
-    margin: 0;
-    line-height: 1.3;
+  margin: 0;
+  line-height: 1.3;
 }
 
-.excerpt em, 
+.excerpt em,
 .excerpt i {
-        font-family: "Fira Code", monospace;
-        font-optical-sizing: auto;
-        font-weight: 300;
-        font-style: normal;
+  font-family: "Fira Code", monospace;
+  font-optical-sizing: auto;
+  font-weight: 300;
+  font-style: normal;
 }
 
 .excerpt hr {
-    border: dotted whitesmoke .25rem;
-    border-bottom: none;
-    width: 75%;
-    margin: 1rem auto;
+  border: dotted whitesmoke 0.25rem;
+  border-bottom: none;
+  width: 75%;
+  margin: 1rem auto;
 }
