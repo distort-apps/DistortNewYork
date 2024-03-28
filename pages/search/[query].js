@@ -48,7 +48,7 @@ function GenSearchPage () {
 
   pageHeadData = (
     <Head>
-      <title>Filtered Shows</title>
+      <title>Filtered Events</title>
       <meta name='description' content={`All shows for ${query}.`} />
     </Head>
   )

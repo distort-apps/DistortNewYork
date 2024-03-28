@@ -6,16 +6,16 @@
 }
 
 .title a {
-  background-color: #252525;
-  border: 1px solid #252525;
-  border-radius: 6px;
-  color: var(--color-grey-50);
+  background-color: transparent;
+  /* border: 1px solid #252525; */
+  /* border-radius: 6px; */
+  color: var(--color-grey-500);
   font: inherit;
   cursor: pointer;
 }
 
 .title a:hover,
 .title a:active {
-  background-color: #000000;
-  border-color: #000000;
+opacity: 60%;
 }
+

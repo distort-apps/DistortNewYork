@@ -19,18 +19,15 @@
 
 
 .link {
-  background-color: #252525;
-  border: 1px solid #252525;
-  padding: 0.25rem 0.5rem;
-  border-radius: 6px;
-  color: var(--color-grey-50);
+  background-color: transparent;
+  /* border: 1px solid #252525; */
+  /* border-radius: 6px; */
+  color: var(--color-grey-500);
   font: inherit;
   cursor: pointer;
 }
 
 .link:hover,
 .link:active {
-  background-color: #000000;
-  border-color: #000000;
-  color: grey;
+  opacity: 60%;
 }
