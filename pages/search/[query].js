@@ -61,7 +61,7 @@ function GenSearchPage () {
           <p>Invalid filter. Please adjust your values!</p>
         </ErrorAlert>
         <div className='center'>
-          <Button link='/shows'>Show All Shows</Button>
+          <Button link='/shows'>show all events</Button>
         </div>
       </>
     )
@@ -75,7 +75,7 @@ function GenSearchPage () {
           <p>No events found for the chosen filter!</p>
         </ErrorAlert>
         <div className='center'>
-          <Button link='/shows'>Show All Shows</Button>
+          <Button link='/shows'>show all events</Button>
         </div>
       </>
     )

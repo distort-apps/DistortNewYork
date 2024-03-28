@@ -6,10 +6,6 @@
   text-align: center;
 }
 
-.controls p {
-  color: black;
-}
-
 .form {
   margin: 2rem auto;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
@@ -36,10 +32,10 @@
 }
 
 .contact button {
-  background-color: #000000;
-  border: 1px solid #000000;
+  background-color: rgba(32, 33, 36, 1.00);;
+  border: 1px solid rgba(32, 33, 36, 1.00);;
   border-radius: 6px;
-  color: whitesmoke;
+  color: var(--color-grey-50);
   font: inherit;
   cursor: pointer;
 }
@@ -84,9 +80,9 @@
   display: block;
   cursor: pointer;
   background-color: white;
-  border: 1px solid #000000;
+  border: 1px solid rgba(32, 33, 36, 1.00);
   border-radius: 6px;
-  color: black;
+  color: rgba(32, 33, 36, 1.00);
   padding: 0.5rem 1.5rem;
   text-align: center;
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.2);
@@ -100,7 +96,7 @@
 }
 
 .form label {
-  color: black;
+  color: rgba(32, 33, 36, 1.00);
 }
 
 .dateInput {

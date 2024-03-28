@@ -5,11 +5,11 @@
     margin: var(--size-8) auto;
     font-size: var(--size-5);
     line-height: var(--size-8);
-    background-color: var(--color-grey-900); 
-    border-radius: 2rem; border: 0.2rem solid #fff;
+    background-color:  rgba(32, 33, 36, 1.00); 
+    border-radius: 2rem; border: 0.2rem solid var(--color-grey-50);
     padding: 0.4em;
-    box-shadow: 0 0 .2rem #fff,
-                0 0 .2rem #fff,
+    box-shadow: 0 0 .2rem var(--color-grey-50),
+                0 0 .2rem var(--color-grey-50),
                 0 0 2rem #ff6ec7,
                 0 0 0.8rem #ff6ec7,
                 0 0 2.8rem #ff6ec7,
@@ -42,9 +42,9 @@
     }
     20%, 22%, 24%, 48%, 50%, 52%, 54%, 76%, 78%, 80%, 96% {
       box-shadow:
-        0 0 4px #fff,
-        0 0 11px #fff,
-        0 0 19px #fff,
+        0 0 4px var(--color-grey-50),
+        0 0 11px var(--color-grey-50),
+        0 0 19px var(--color-grey-50),
         0 0 40px #ff6ec7,
         0 0 80px #ff6ec7,
         0 0 90px #ff6ec7,
@@ -56,9 +56,9 @@
   @keyframes pulsate {
     0%, 100% {
       box-shadow:
-        0 0 2px #fff,
-        0 0 4px #fff,
-        0 0 6px #fff,
+        0 0 2px var(--color-grey-50),
+        0 0 4px var(--color-grey-50),
+        0 0 6px var(--color-grey-50),
         0 0 8px #ff6ec7,
         0 0 16px #ff6ec7,
         0 0 24px #ff6ec7,
@@ -67,9 +67,9 @@
     }
     50% {
       box-shadow:
-        0 0 3px #fff,
-        0 0 6px #fff,
-        0 0 9px #fff,
+        0 0 3px var(--color-grey-50),
+        0 0 6px var(--color-grey-50),
+        0 0 9px var(--color-grey-50),
         0 0 12px #ff6ec7,
         0 0 24px #ff6ec7,
         0 0 36px #ff6ec7,

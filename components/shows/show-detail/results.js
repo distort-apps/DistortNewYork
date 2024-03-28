@@ -12,16 +12,16 @@ function Results (props) {
   if (query) {
     return (
       <section className={classes.title}>
-        <h1>{query} shows ...</h1>
-        <Button link='/shows'>Show All Shows</Button>
+        <h1>{query} events ...</h1>
+        <Button link='/shows'>show all events</Button>
       </section>
     )
   }
 
   return (
     <section className={classes.title}>
-      <h1>Shows in {humanReadableDate}</h1>
-      <Button link='/shows'>Show All Shows</Button>
+      <h1>events in {humanReadableDate}</h1>
+      <Button link='/shows'>show all events</Button>
     </section>
   )
 }

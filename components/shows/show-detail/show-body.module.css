@@ -62,7 +62,7 @@
   53%,
   57%,
   100% {
-    text-shadow: 0 0 4px #fff, 0 0 11px #fff, 0 0 19px #fff, 0 0 40px #ff6ec7,
+    text-shadow: 0 0 4px var(--color-grey-50), 0 0 11px var(--color-grey-50), 0 0 19px var(--color-grey-50), 0 0 40px #ff6ec7,
       0 0 80px #ff6ec7, 0 0 90px #ff6ec7, 0 0 100px #ff6ec7, 0 0 150px #ff6ec7;
   }
   20%,
@@ -73,12 +73,12 @@
 }
 @keyframes pulsate {
   100% {
-    text-shadow: 0 0 4px #fff, 0 0 11px #fff, 0 0 19px #fff, 0 0 40px #ff6ec7,
+    text-shadow: 0 0 4px var(--color-grey-50), 0 0 11px var(--color-grey-50), 0 0 19px var(--color-grey-50), 0 0 40px #ff6ec7,
       0 0 80px #ff6ec7, 0 0 90px #ff6ec7, 0 0 100px #ff6ec7, 0 0 150px #ff6ec7;
   }
 
   0% {
-    text-shadow: 0 0 2px #fff, 0 0 4px #fff, 0 0 6px #fff, 0 0 10px #ff6ec7,
+    text-shadow: 0 0 2px var(--color-grey-50), 0 0 4px var(--color-grey-50), 0 0 6px var(--color-grey-50), 0 0 10px #ff6ec7,
       0 0 45px #ff6ec7, 0 0 55px #ff6ec7, 0 0 70px #ff6ec7, 0 0 80px #ff6ec7;
   }
 }

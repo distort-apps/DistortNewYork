@@ -39,7 +39,7 @@ function Comments (props) {
   return (
     <section className={classes.comments}>
       <button onClick={toggleCommentsHandler}>
-        {showComments ? 'Hide' : 'Show'} Comments
+        {showComments ? 'hide' : 'show'} comments
       </button>
       {showComments && <NewComment onAddComment={addCommentHandler} />}
       {showComments && <CommentList items={comments}/>}

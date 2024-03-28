@@ -23,9 +23,7 @@
   border: 1px solid #252525;
   padding: 0.25rem 0.5rem;
   border-radius: 6px;
-  color: whitesmoke;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
+  color: var(--color-grey-50);
   font: inherit;
   cursor: pointer;
 }
