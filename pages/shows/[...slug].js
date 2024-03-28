@@ -79,7 +79,7 @@ function DateFilterPage () {
           <p>Invalid filter. Please adjust your values!</p>
         </ErrorAlert>
         <div className='center'>
-          <Button link='/shows'>Show All Shows</Button>
+          <Button link='/shows'>show All events</Button>
         </div>
       </>
     )
@@ -99,7 +99,7 @@ function DateFilterPage () {
           <p>No events found for the chosen filter!</p>
         </ErrorAlert>
         <div className='center'>
-          <Button link='/shows'>Show All Shows</Button>
+          <Button link='/shows'>show all events</Button>
         </div>
       </>
     )

@@ -42,7 +42,7 @@ function Newsletter () {
             disabled={isSubmitting}
             style={{ opacity: isSubmitting ? 0.5 : 1 }}
           >
-            Register
+            REGISTER
           </Button>
         </div>
       </form>

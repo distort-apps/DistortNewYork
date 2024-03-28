@@ -9,7 +9,7 @@ function ShowDetailPage (props) {
   if (!show) {
     return (
       <div className='center'>
-        <p>No show found!</p>
+        <p>No event found!</p>
       </div>
     )
   }

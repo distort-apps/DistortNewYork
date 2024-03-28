@@ -52,7 +52,7 @@
 }
 
 .excerpt hr {
-  border: dotted whitesmoke 0.25rem;
+  border: dotted var(--color-grey-50) 0.25rem;
   border-bottom: none;
   width: 75%;
   margin: 1rem auto;

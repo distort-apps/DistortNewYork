@@ -29,7 +29,7 @@
   
   .control label {
     font-weight: bold;
-    color: black;
+    color: rgba(32, 33, 36, 1.00);
   }
   
   .control select {
@@ -44,8 +44,8 @@
     width: 100%;
     font: inherit;
     padding: 0.25rem 0.5rem;
-    background-color: #000000;
-    border: 1px solid #000000;
+    background-color: rgba(32, 33, 36, 1.00);
+    border: 1px solid rgba(32, 33, 36, 1.00);
     color: ivory;
     border-radius: 4px;
   }

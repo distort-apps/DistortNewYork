@@ -18,7 +18,7 @@ body {
   --color-grey-800: hsl(276, 5%, 20%);
   --color-grey-900: hsl(280, 5%, 13%); 
 
-  --color-primary-50: #c8b3ce;
+  --color-primary-50: rgba(227, 227, 227, 1.00);
   --color-primary-100: #a07aaa;
   --color-primary-200: #884c97;
   --color-primary-300: #843897;
@@ -53,7 +53,7 @@ body {
 
   margin: 0;
   background-color: black;
-  color: var(--color-grey-50);
+  color: rgba(227, 227, 227, 1.00);
   font-family: 'Roboto', sans-serif;
 }
 

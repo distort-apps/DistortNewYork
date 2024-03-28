@@ -1,7 +1,7 @@
 .logo {
   font-size: var(--size-6);
   font-weight: bold;
-  color: #fff;
+  color: var(--color-grey-50);
   /* text-shadow: 0 0 7px #fff, 0 0 10px #fff, 0 0 21px #fff, 0 0 42px #ff6ec7,
   0 0 82px #ff6ec7, 0 0 92px #ff6ec7, 0 0 102px #ff6ec7, 0 0 151px #ff6ec7; */
   /* border: 0.2rem solid #fff; */
