@@ -5,6 +5,8 @@ import Donate from '../../components/donate/donate'
 function ContactPage () {
   return (
     <div>
+        <Donate/>
+        <ContactForm />
       <Head>
         <title>DistortNewYork Contact Page</title>
         <meta
@@ -12,9 +14,7 @@ function ContactPage () {
           content='Share your thoughts, or promote a show / event'
         />
       </Head>
-      <Donate/>
       <ContactBodyPage />
-      <ContactForm />
     </div>
   )
 }
