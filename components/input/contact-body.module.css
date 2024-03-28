@@ -13,6 +13,6 @@
   .contact a:hover,
   .contact a:active,
   .contact a.active {
-    color: #252525;;
+    opacity: 60%;
   }
   
