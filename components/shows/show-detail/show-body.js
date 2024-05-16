@@ -22,6 +22,11 @@ function ShowBody ({
     timeZone: 'UTC'
   }).format(new Date(date))
 
+  const dayOfWeek = new Intl.DateTimeFormat('en-US', {
+    weekday: 'long',
+    timeZone: 'UTC'
+  }).format(new Date(date));
+
   const char0 = price.charAt(0)
   let formattedPrice = ''
 
@@ -38,7 +43,7 @@ function ShowBody ({
       </div>
       <div className={classes.date}>
         <DateIcon />
-        <p>{readableDate}</p>
+        <p>{dayOfWeek} {readableDate}</p>
       </div>
       <div className={classes.time}>
         <ClockIcon />

@@ -13,6 +13,13 @@ function ShowItem({ show }) {
     timeZone: 'UTC'
   }).format(new Date(date));
 
+
+  const dayOfWeek = new Intl.DateTimeFormat('en-US', {
+    weekday: 'long',
+    timeZone: 'UTC'
+  }).format(new Date(date));
+
+
   const formattedAddress = location.replace(',', '\n');
   const exploreLink = `/shows/${_id}`;
 
@@ -26,7 +33,7 @@ function ShowItem({ show }) {
             <h3>{title}</h3>
             <div className={classes.date}>
               <DateIcon />
-              <time>{readableDate}</time>
+              <time>{dayOfWeek} {readableDate}</time>
             </div>
             <div className={classes.address}>
               <AddressIcon />
