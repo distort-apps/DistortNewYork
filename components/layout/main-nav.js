@@ -15,7 +15,7 @@ function MainNav () {
             <Link href='/shows' className={pathname === '/shows' ? classes.active : undefined}>events</Link>
           </li>
           <li>
-            <Link href='/contact' className={pathname === '/contact' ? classes.active : undefined}>submit</Link>
+            <Link href='/contact' className={pathname === '/contact' ? classes.active : undefined}>info/submit</Link>
           </li>
         </ul>
       </nav>
