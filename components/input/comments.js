@@ -22,7 +22,7 @@ function Comments (props) {
 
   useEffect(() => {
     if (showComments && cSelectionRef.current) {
-      cSelectionRef.current.scrollIntoView({ behavior: 'smooth' });
+      cSelectionRef.current.scrollIntoView({ behavior: 'instant' });
     }
   }, [comments]);
 
