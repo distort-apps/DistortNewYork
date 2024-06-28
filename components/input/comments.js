@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
 import CommentList from './comment-list'
 import NewComment from './new-comment'
@@ -9,6 +9,7 @@ function Comments (props) {
 
   const [showComments, setShowComments] = useState(false)
   const [comments, setComments] = useState([])
+  const cSelectionRef = useRef(null)
 
   useEffect(() => {
     if(showComments) {
@@ -18,6 +19,12 @@ function Comments (props) {
       })
     }
   }, [showComments])
+
+  useEffect(() => {
+    if (showComments && cSelectionRef.current) {
+      cSelectionRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [comments]);
 
   function toggleCommentsHandler () {
     setShowComments(prevStatus => !prevStatus)
@@ -37,7 +44,7 @@ function Comments (props) {
 
 
   return (
-    <section className={classes.comments}>
+    <section className={classes.comments} ref={cSelectionRef}>
       <button onClick={toggleCommentsHandler}>
         {showComments ? 'hide' : 'show'} comments
       </button>
