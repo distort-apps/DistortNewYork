@@ -9,7 +9,7 @@ function Comments (props) {
 
   const [showComments, setShowComments] = useState(false)
   const [comments, setComments] = useState([])
-  const commentSectionRef = useRef(null)
+  const cSelectionRef = useRef(null)
 
   useEffect(() => {
     if(showComments) {
@@ -21,8 +21,8 @@ function Comments (props) {
   }, [showComments])
 
   useEffect(() => {
-    if (showComments && commentSectionRef.current) {
-      commentSectionRef.current.scrollIntoView({ behavior: 'smooth' });
+    if (showComments && cSelectionRef.current) {
+      cSelectionRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   }, [comments]);
 
@@ -44,7 +44,7 @@ function Comments (props) {
 
 
   return (
-    <section className={classes.comments} ref={commentSectionRef}>
+    <section className={classes.comments} ref={cSelectionRef}>
       <button onClick={toggleCommentsHandler}>
         {showComments ? 'hide' : 'show'} comments
       </button>
