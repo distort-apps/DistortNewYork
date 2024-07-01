@@ -9,7 +9,7 @@ function MainNav () {
       <Link href='/' className={pathname === '/' ? classes.active : undefined}>
         <Logo />
       </Link>
-      <nav>
+      <nav className={classes.nav}>
         <ul>
           <li>
             <Link href='/shows' className={pathname === '/shows' ? classes.active : undefined}>events</Link>
