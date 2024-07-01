@@ -84,7 +84,7 @@ function GenSearchPage () {
   return (
     <>
       {pageHeadData}
-      <Results query={query} />
+      <Results query={query} items={loadedShows} />
       <ShowGrid items={loadedShows} />
     </>
   )
