@@ -58,7 +58,7 @@ function ContactBodyPage () {
           target='_blank'
           rel='noopener noreferrer'
         >
-          https://actionnetwork.org/fundraising/contribute-to-the-atlanta-solidarity-fund'
+          contribute to the atlanta solidarity fund
         </Link>
         <hr />
       </div>

@@ -57,6 +57,7 @@ body {
   background-color: black;
   color: rgba(227, 227, 227, 1.00);
   font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
 }
 
 h1,

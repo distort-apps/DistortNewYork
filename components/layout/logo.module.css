@@ -14,6 +14,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
+  text-transform: none;
   /* animation: pulsate 1.5s infinite alternate, flicker 1.5s infinite alternate; */
 }
 

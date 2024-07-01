@@ -1,5 +1,8 @@
+
+
 .excerpt {
   margin: 2rem 0;
+  text-transform: none;
 }
 
 .excerpt ul {
