@@ -4,7 +4,7 @@ import ShowGrid from '../shows/show-grid'
 function FeaturedShows ({ shows }) {
   return (
     <section className={classes.latest}>
-      <h3 className='center'>events that we would probably go to ...</h3>
+      <h3 className='center'>recommended events...</h3>
       <ShowGrid items={shows} />
     </section>
   )
