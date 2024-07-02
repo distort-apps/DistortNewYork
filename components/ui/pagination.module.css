@@ -1,25 +1,28 @@
 .pagination {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px; 
-  }
-  
-  .button {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-    display: flex;
-    align-items: center;
-  }
-  
-  .button svg {
-    width: 24px;
-    height: 24px;
-    fill: black; 
-  }
-  
-  .button:hover svg {
-    fill: #555; 
-  }
-  
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  bottom: 26px; /* Adjust this value as needed */
+  width: 100%;
+  padding: 10px 0;
+  z-index: 1000; /* Make sure it's above other content */
+}
+
+.button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.button svg {
+  width: 26px;
+  height: 26px;
+  fill: black;
+}
+
+.button:hover svg {
+  fill: #555;
+}

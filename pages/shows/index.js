@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import ShowGrid from '@/components/shows/show-grid'
 import ShowDateFilter from '@/components/shows/show-date-filter'
 import GenSearch from '@/components/shows/gen-search'
@@ -8,7 +8,8 @@ import { fetchAllShows } from '@/helpers/api-util'
 import Pagination from '@/components/ui/pagination'
 
 function AllShowsPage ({ shows, totalShows, initialPage }) {
-  const [currentPage, setCurrentPage] = useState(initialPage);
+  const [currentPage, setCurrentPage] = useState(initialPage)
+  const [isBottom, setIsBottom] = useState(false)
 
   function findShowsByDateHandler (year, month) {
     const fullPath = `/shows/${year}/${month}`
@@ -22,59 +23,72 @@ function AllShowsPage ({ shows, totalShows, initialPage }) {
     router.push(fullPath)
   }
 
-  function handlePageChange(newPage) {
-    setCurrentPage(newPage);
-    router.push(`/shows?page=${newPage}`);
+  function handlePageChange (newPage) {
+    setCurrentPage(newPage)
+    router.push(`/shows?page=${newPage}`)
   }
 
-  const totalPages = Math.ceil(totalShows / 10);
+  const totalPages = Math.ceil(totalShows / 10)
+
+  useEffect(() => {
+    function handleScroll () {
+      const bottom =
+        Math.ceil(window.innerHeight + window.scrollY) >=
+        document.documentElement.scrollHeight
+      setIsBottom(bottom)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  useEffect(() => {}, [isBottom])
 
   return (
     <>
       <Head>
         <title>All Events</title>
-        <meta
-          name='description'
-          content='search events in NY'
-        />
+        <meta name='description' content='search events in NY' />
       </Head>
       <ShowDateFilter onSearch={findShowsByDateHandler} />
       <GenSearch onSearch={genSearchHandler} />
       <ShowGrid items={shows} />
-      <Pagination
-        currentPage={currentPage}
-        totalPages={totalPages}
-        onPageChange={handlePageChange}
-      />
+      {isBottom && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
+      )}
     </>
   )
 }
 
-export async function getServerSideProps(context) {
-  const page = context.query.page ? parseInt(context.query.page, 10) : 1;
+export async function getServerSideProps (context) {
+  const page = context.query.page ? parseInt(context.query.page, 10) : 1
 
   try {
-    const { shows, totalShows } = await fetchAllShows(page);
+    const { shows, totalShows } = await fetchAllShows(page)
 
     return {
       props: {
         shows: JSON.parse(JSON.stringify(shows)),
         totalShows,
-        initialPage: page,
-      },
-    };
+        initialPage: page
+      }
+    }
   } catch (error) {
-    console.error('Error in getStaticProps:', error);
+    console.error('Error in getStaticProps:', error)
 
     return {
       props: {
         shows: [],
         totalShows: 0,
         initialPage: 1,
-        error: 'Error in getAllShows',
-      },
-    };
+        error: 'Error in getAllShows'
+      }
+    }
   }
 }
 
-export default AllShowsPage;
+export default AllShowsPage

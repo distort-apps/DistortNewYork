@@ -1,9 +1,35 @@
+import { useState, useEffect } from 'react'
 import FeaturedShows from '@/components/home-page/featured-shows'
 import Newsletter from '@/components/input/newsletter'
 import Head from 'next/head'
 import { fetchFeaturedShows } from '@/helpers/api-util'
+import Pagination from '@/components/ui/pagination'
+import router from 'next/router'
 
 function HomePage (props) {
+  const [currentPage, setCurrentPage] = useState(props.initialPage)
+  const [isBottom, setIsBottom] = useState(false);
+
+  function handlePageChange (newPage) {
+    setCurrentPage(newPage)
+    router.push(`/?page=${newPage}`)
+  }
+  
+  const totalPages = Math.ceil(props.totalShows / 10)
+
+  useEffect(() => {
+    function handleScroll() {
+      const bottom = Math.ceil(window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight;
+      setIsBottom(bottom);
+    }
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+  }, [isBottom]);
+
   return (
     <>
       <Head>
@@ -15,33 +41,42 @@ function HomePage (props) {
       </Head>
       <Newsletter />
       <FeaturedShows shows={props.shows} />
+      {isBottom && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
+      )}
     </>
   )
 }
 
-export async function getStaticProps () {
+export async function getServerSideProps(context) {
+  const page = context.query.page ? parseInt(context.query.page, 10) : 1;
+
   try {
-    const shows = await fetchFeaturedShows()
+    const { shows, totalShows } = await fetchFeaturedShows(page);
 
     return {
       props: {
-        shows: JSON.parse(JSON.stringify(shows))
-      },
-      revalidate: 60
-    }
+        shows: JSON.parse(JSON.stringify(shows)),
+        totalShows,
+        initialPage: page
+      }
+    };
   } catch (error) {
-    console.error('Error in getStaticProps:', error)
+    console.error('Error in getServerSideProps:', error);
 
     return {
       props: {
         shows: [],
+        totalShows: 0,
+        initialPage: 1,
         error: 'Error in getFeaturedShows'
-      },
-      revalidate: 60
-    }
+      }
+    };
   }
 }
-
-
 
 export default HomePage
