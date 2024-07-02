@@ -66,6 +66,10 @@ h3 {
   font-family: 'Oswald', 'Roboto', sans-serif;
 }
 
+label {
+  text-transform: lowercase;
+}
+
 a {
   text-decoration: none;
 }
