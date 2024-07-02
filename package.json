@@ -8,7 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "delete-event-by-location": "node scripts/deleteEventByLocation.js"
+    "delete-event-by-location": "node scripts/deleteEventByLocation.js",
+    "test": "SUPPRESS_JEST_WARNINGS=1 jest"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.478.0",
@@ -25,10 +26,23 @@
     "react": "^18",
     "react-dom": "^18",
     "swr": "^2.2.4",
+    "util": "^0.12.5",
     "vercel": "^33.2.0",
     "xss": "^1.0.14"
   },
   "devDependencies": {
-    "next": "^14.0.4"
+    "@babel/core": "^7.24.7",
+    "@babel/preset-env": "^7.24.7",
+    "@babel/preset-react": "^7.24.7",
+    "@jridgewell/gen-mapping": "^0.3.5",
+    "@testing-library/jest-dom": "^6.4.6",
+    "@testing-library/react": "^16.0.0",
+    "babel-jest": "^29.7.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "jsdom": "^24.1.0",
+    "next": "^14.0.4",
+    "next-router-mock": "^0.9.13"
   }
 }

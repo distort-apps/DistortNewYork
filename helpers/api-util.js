@@ -9,7 +9,6 @@ export async function fetchFeaturedShows () {
     })
       .sort({ date: 1 })
       .exec()
-
     return featuredShows
   } catch (error) {
     console.error('Error fetching featured shows:', error)

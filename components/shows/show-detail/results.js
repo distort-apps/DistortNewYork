@@ -10,7 +10,6 @@ function Results (props) {
   })
 
   if (query) {
-    console.log('query', query)
     return (
       <section className={classes.title}>
         <h1>THER ARE {items.length} {query} EVENTS ...</h1>
