@@ -1,11 +1,15 @@
+import { useState } from 'react'
 import ShowGrid from '@/components/shows/show-grid'
 import ShowDateFilter from '@/components/shows/show-date-filter'
 import GenSearch from '@/components/shows/gen-search'
 import router from 'next/router'
 import Head from 'next/head'
 import { fetchAllShows } from '@/helpers/api-util'
+import Pagination from '@/components/ui/pagination'
 
-function AllShowsPage ({ shows }) {
+function AllShowsPage ({ shows, totalShows, initialPage }) {
+  const [currentPage, setCurrentPage] = useState(initialPage);
+
   function findShowsByDateHandler (year, month) {
     const fullPath = `/shows/${year}/${month}`
 
@@ -17,6 +21,13 @@ function AllShowsPage ({ shows }) {
 
     router.push(fullPath)
   }
+
+  function handlePageChange(newPage) {
+    setCurrentPage(newPage);
+    router.push(`/shows?page=${newPage}`);
+  }
+
+  const totalPages = Math.ceil(totalShows / 10);
 
   return (
     <>
@@ -30,30 +41,40 @@ function AllShowsPage ({ shows }) {
       <ShowDateFilter onSearch={findShowsByDateHandler} />
       <GenSearch onSearch={genSearchHandler} />
       <ShowGrid items={shows} />
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageChange={handlePageChange}
+      />
     </>
   )
 }
 
-export async function getStaticProps () {
+export async function getServerSideProps(context) {
+  const page = context.query.page ? parseInt(context.query.page, 10) : 1;
+
   try {
-    const shows = await fetchAllShows()
+    const { shows, totalShows } = await fetchAllShows(page);
 
     return {
       props: {
-        shows: JSON.parse(JSON.stringify(shows))
+        shows: JSON.parse(JSON.stringify(shows)),
+        totalShows,
+        initialPage: page,
       },
-      revalidate: 60
-    }
+    };
   } catch (error) {
-    console.error('Error in getStaticProps:', error)
+    console.error('Error in getStaticProps:', error);
 
     return {
       props: {
         shows: [],
-        error: 'Error in getAllShows'
+        totalShows: 0,
+        initialPage: 1,
+        error: 'Error in getAllShows',
       },
-      revalidate: 60
-    }
+    };
   }
 }
-export default AllShowsPage
+
+export default AllShowsPage;
