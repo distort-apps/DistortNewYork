@@ -9,6 +9,7 @@ export async function fetchFeaturedShows () {
     })
       .sort({ date: 1 })
       .exec()
+
     return featuredShows
   } catch (error) {
     console.error('Error fetching featured shows:', error)
@@ -16,16 +17,23 @@ export async function fetchFeaturedShows () {
   }
 }
 
-export async function fetchAllShows () {
+export async function fetchAllShows(page = 1, limit = 10) {
   try {
-    await connectDb()
+    await connectDb();
 
-    const shows = await Show.find({}).sort({ date: 1 }).limit(500).exec()
+    const skip = (page - 1) * limit;
+    const shows = await Show.find({})
+      .sort({ date: 1 })
+      .skip(skip)
+      .limit(limit)
+      .exec();
 
-    return shows
+    const totalShows = await Show.countDocuments({});
+
+    return { shows, totalShows };
   } catch (error) {
-    console.error('Error in fetchAllShows:', error)
-    throw new Error('Internal Server Error')
+    console.error('Error in fetchAllShows:', error);
+    throw new Error('Internal Server Error');
   }
 }
 

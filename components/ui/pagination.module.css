@@ -1,0 +1,25 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; 
+  }
+  
+  .button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .button svg {
+    width: 24px;
+    height: 24px;
+    fill: black; 
+  }
+  
+  .button:hover svg {
+    fill: #555; 
+  }
+  
