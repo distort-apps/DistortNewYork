@@ -1,39 +1,45 @@
 import { connectDb } from './db-util'
 import Show from '@/models/show-model'
-export async function fetchFeaturedShows () {
+
+export async function fetchFeaturedShows (page = 1, limit = 10) {
   try {
     await connectDb()
 
-    const featuredShows = await Show.find({
+    const skip = (page - 1) * limit
+    const shows = await Show.find({
       isFeatured: true
     })
       .sort({ date: 1 })
+      .skip(skip)
+      .limit(limit)
       .exec()
 
-    return featuredShows
+    const totalShows = await Show.countDocuments({ isFeatured: true })
+
+    return { shows, totalShows }
   } catch (error) {
     console.error('Error fetching featured shows:', error)
     throw new Error('Failed to fetch featured shows')
   }
 }
 
-export async function fetchAllShows(page = 1, limit = 10) {
+export async function fetchAllShows (page = 1, limit = 10) {
   try {
-    await connectDb();
+    await connectDb()
 
-    const skip = (page - 1) * limit;
+    const skip = (page - 1) * limit
     const shows = await Show.find({})
       .sort({ date: 1 })
       .skip(skip)
       .limit(limit)
-      .exec();
+      .exec()
 
-    const totalShows = await Show.countDocuments({});
+    const totalShows = await Show.countDocuments({})
 
-    return { shows, totalShows };
+    return { shows, totalShows }
   } catch (error) {
-    console.error('Error in fetchAllShows:', error);
-    throw new Error('Internal Server Error');
+    console.error('Error in fetchAllShows:', error)
+    throw new Error('Internal Server Error')
   }
 }
 
