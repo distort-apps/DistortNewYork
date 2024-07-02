@@ -232,7 +232,7 @@ function ContactForm () {
             />
           </div>
         </div>
-        <Button disabled={isSending}>Submit</Button>
+        <Button disabled={isSending}>submit</Button>
       </form>
     </section>
   )
