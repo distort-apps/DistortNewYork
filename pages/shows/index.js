@@ -16,7 +16,7 @@ function AllShowsPage ({ shows, totalShows, initialPage }) {
 
     router.push(fullPath)
   }
-
+ 
   function genSearchHandler (query) {
     const fullPath = `/search/${query}`
 
