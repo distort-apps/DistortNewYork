@@ -2,7 +2,7 @@ import Show from '../../../models/show-model'
 import { connectDb } from '@/helpers/db-util';
 
 async function handler(req, res) {
-  const { query, page = 1, limit = 10 } = req.query;
+  const { query, page = 1, limit = 15 } = req.query;
 
   if (req.method === 'GET') {
     try {

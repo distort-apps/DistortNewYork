@@ -78,7 +78,7 @@ export async function handlePostRequest(req, res) {
 }
 
 export async function handleGetRequest(req, res) {
-  const { year, month, page = 1, limit = 10 } = req.query;
+  const { year, month, page = 1, limit = 15 } = req.query;
 
   try {
     await connectDb();

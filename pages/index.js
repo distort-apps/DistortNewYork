@@ -15,7 +15,7 @@ function HomePage (props) {
     router.push(`/?page=${newPage}`)
   }
   
-  const totalPages = Math.ceil(props.totalShows / 10)
+  const totalPages = Math.ceil(props.totalShows / 15)
 
   useEffect(() => {
     function handleScroll() {
@@ -53,7 +53,7 @@ function HomePage (props) {
 }
 
 export async function getServerSideProps(context) {
-  const page = context.query.page ? parseInt(context.query.page, 10) : 1;
+  const page = context.query.page ? parseInt(context.query.page, 15) : 1;
 
   try {
     const { shows, totalShows } = await fetchFeaturedShows(page);

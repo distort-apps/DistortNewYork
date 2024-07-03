@@ -23,7 +23,7 @@ function DateFilterPage () {
   const numMonth = parseInt(filteredMonth, 10)
 
   const { data, error } = useSWR(
-    `/api/shows?year=${numYear}&month=${numMonth}&page=${currentPage}&limit=10`,
+    `/api/shows?year=${numYear}&month=${numMonth}&page=${currentPage}&limit=15`,
     url => fetch(url).then(res => res.json())
   )
 
@@ -34,14 +34,14 @@ function DateFilterPage () {
       const showsArr = data.shows.map(show => ({ ...show }))
       setLoadedShows(showsArr)
       setTotalShows(data.totalShows) // Update total number of shows
-      setTotalPages(Math.ceil(data.totalShows / 10))
+      setTotalPages(Math.ceil(data.totalShows / 15))
     }
   }, [data])
 
   useEffect(() => {
     const storedPage = JSON.parse(sessionStorage.getItem(router.asPath))?.page;
     if (storedPage) {
-      setCurrentPage(parseInt(storedPage, 10));
+      setCurrentPage(parseInt(storedPage, 15));
     }
   }, [router.asPath]);
 

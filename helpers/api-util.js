@@ -1,7 +1,7 @@
 import { connectDb } from './db-util'
 import Show from '@/models/show-model'
 
-export async function fetchFeaturedShows (page = 1, limit = 10) {
+export async function fetchFeaturedShows (page = 1, limit = 15) {
   try {
     await connectDb()
 
@@ -23,7 +23,7 @@ export async function fetchFeaturedShows (page = 1, limit = 10) {
   }
 }
 
-export async function fetchAllShows (page = 1, limit = 10) {
+export async function fetchAllShows (page = 1, limit = 15) {
   try {
     await connectDb()
 
