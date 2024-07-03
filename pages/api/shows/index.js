@@ -78,10 +78,32 @@ export async function handlePostRequest(req, res) {
 }
 
 export async function handleGetRequest(req, res) {
+  const { year, month, page = 1, limit = 10 } = req.query;
+
   try {
     await connectDb();
-    const shows = await Show.find().sort({ date: 1 });
-    res.status(200).json({ shows });
+    const numYear = parseInt(year, 10);
+    const numMonth = parseInt(month, 10);
+
+    if (isNaN(numYear) || isNaN(numMonth) || numYear > 2030 || numYear < 2021 || numMonth < 1 || numMonth > 12) {
+      res.status(400).json({ message: 'Invalid year or month' });
+      return;
+    }
+
+    const skip = (page - 1) * limit;
+
+    const startDate = new Date(numYear, numMonth - 1, 1);
+    const endDate = new Date(numYear, numMonth, 0, 23, 59, 59);
+
+    const totalShows = await Show.countDocuments({
+      date: { $gte: startDate, $lte: endDate }
+    });
+
+    const shows = await Show.find({
+      date: { $gte: startDate, $lte: endDate }
+    }).sort({ date: 1 }).skip(skip).limit(Number(limit));
+
+    res.status(200).json({ shows, totalShows });
   } catch (error) {
     res.status(500).json({ message: 'Error fetching shows', error: error.message });
   }

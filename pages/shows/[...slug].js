@@ -6,35 +6,64 @@ import ErrorAlert from '@/components/ui/error-alert'
 import Button from '@/components/ui/button'
 import Head from 'next/head'
 import ShowGrid from '@/components/shows/show-grid'
+import Pagination from '@/components/ui/pagination'
+import { useScrollRestorationGen } from '@/helpers/hooks/useScrollRestorationGen'
 
 function DateFilterPage () {
   const [loadedShows, setLoadedShows] = useState([])
+  const [totalShows, setTotalShows] = useState(0) // Store total number of shows
+  const [totalPages, setTotalPages] = useState(1)
+  const [currentPage, setCurrentPage] = useState(1)
+  const [isBottom, setIsBottom] = useState(false)
   const router = useRouter()
 
   const filterData = router.query.slug
+  const [filteredYear, filteredMonth] = filterData || []
+  const numYear = parseInt(filteredYear, 10)
+  const numMonth = parseInt(filteredMonth, 10)
 
   const { data, error } = useSWR(
-    '/api/shows',
+    `/api/shows?year=${numYear}&month=${numMonth}&page=${currentPage}&limit=10`,
     url => fetch(url).then(res => res.json())
   )
 
+  useScrollRestorationGen()
+
   useEffect(() => {
     if (data) {
-      const showsArr = []
-
-      for (const key in data.shows) {
-        showsArr.push({
-          ...data.shows[key]
-        })
-      }
+      const showsArr = data.shows.map(show => ({ ...show }))
       setLoadedShows(showsArr)
+      setTotalShows(data.totalShows) // Update total number of shows
+      setTotalPages(Math.ceil(data.totalShows / 10))
     }
   }, [data])
+
+  useEffect(() => {
+    const storedPage = JSON.parse(sessionStorage.getItem(router.asPath))?.page;
+    if (storedPage) {
+      setCurrentPage(parseInt(storedPage, 10));
+    }
+  }, [router.asPath]);
+
+  function handlePageChange (newPage) {
+    setCurrentPage(newPage)
+    router.push(`/shows/${numYear}/${numMonth}?page=${newPage}`, undefined, { shallow: true })
+  }
+
+  useEffect(() => {
+    function handleScroll() {
+      const bottom = Math.ceil(window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight
+      setIsBottom(bottom)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
 
   let pageHeadData = (
     <Head>
       <title>Filtered Shows</title>
-      <meta name='description' content={`A list of filtered shows.`} />
+      <meta name='description' content={`All shows for ${numMonth}/${numYear}.`} />
     </Head>
   )
 
@@ -46,22 +75,6 @@ function DateFilterPage () {
       </>
     )
   }
-
-  const filteredYear = filterData[0]
-  const filteredMonth = filterData[1]
-
-  const numYear = +filteredYear
-  const numMonth = +filteredMonth
-
-  pageHeadData = (
-    <Head>
-      <title>Filtered Shows</title>
-      <meta
-        name='description'
-        content={`All shows for ${numMonth}/${numYear}.`}
-      />
-    </Head>
-  )
 
   if (
     isNaN(numYear) ||
@@ -84,14 +97,8 @@ function DateFilterPage () {
       </>
     )
   }
-  const filteredShows = loadedShows.filter(loadedShow => {
-    const showDate = new Date(loadedShow.date)
-    return (
-      showDate.getFullYear() === numYear && showDate.getMonth() === numMonth - 1
-    )
-  })
 
-  if (!filteredShows || filteredShows.length === 0) {
+  if (!loadedShows.length) {
     return (
       <>
         {pageHeadData}
@@ -105,15 +112,20 @@ function DateFilterPage () {
     )
   }
 
-  console.log(filteredShows.length)
-
   const date = new Date(numYear, numMonth - 1)
 
   return (
     <>
       {pageHeadData}
-      <Results date={date} length={filteredShows.length} />
-      <ShowGrid items={filteredShows} />
+      <Results date={date} totalShows={totalShows} />
+      <ShowGrid items={loadedShows} />
+      {isBottom && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={handlePageChange}
+        />
+      )}
     </>
   )
 }
