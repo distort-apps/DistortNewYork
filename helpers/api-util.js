@@ -36,6 +36,7 @@ export async function fetchAllShows (page = 1, limit = 15) {
 
     const totalShows = await Show.countDocuments({})
 
+    console.log(totalShows)
     return { shows, totalShows }
   } catch (error) {
     console.error('Error in fetchAllShows:', error)

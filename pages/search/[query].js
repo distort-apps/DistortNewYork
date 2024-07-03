@@ -19,8 +19,9 @@ function GenSearchPage () {
 
   const query = (router.query.query || '').toLowerCase()
 
-  const { data, error } = useSWR(`/api/search/${query}?page=${currentPage}&limit=15`, url =>
-    fetch(url).then(res => res.json())
+  const { data, error } = useSWR(
+    `/api/search/${query}?page=${currentPage}&limit=15`,
+    url => fetch(url).then(res => res.json())
   )
 
   useScrollRestorationGen()
@@ -35,20 +36,24 @@ function GenSearchPage () {
   }, [data])
 
   useEffect(() => {
-    const storedPage = JSON.parse(sessionStorage.getItem(router.asPath))?.page;
+    const storedPage = JSON.parse(sessionStorage.getItem(router.asPath))?.page
     if (storedPage) {
-      setCurrentPage(parseInt(storedPage, 15));
+      setCurrentPage(parseInt(storedPage, 15))
     }
-  }, [router.asPath]);
+  }, [router.asPath])
 
   function handlePageChange (newPage) {
     setCurrentPage(newPage)
-    router.push(`/search/${query}?page=${newPage}`, undefined, { shallow: true })
+    router.push(`/search/${query}?page=${newPage}`, undefined, {
+      shallow: true
+    })
   }
 
   useEffect(() => {
-    function handleScroll() {
-      const bottom = Math.ceil(window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight
+    function handleScroll () {
+      const bottom =
+        Math.ceil(window.innerHeight + window.scrollY) >=
+        document.documentElement.scrollHeight
       setIsBottom(bottom)
     }
 
@@ -93,7 +98,7 @@ function GenSearchPage () {
     )
   }
 
-  if (!data && !loadedShows || loadedShows.length === 0) {
+  if ((!data && !loadedShows) || loadedShows.length === 0) {
     return (
       <>
         {pageHeadData}
@@ -112,13 +117,14 @@ function GenSearchPage () {
       {pageHeadData}
       <Results query={query} items={totalShows} />
       <ShowGrid items={loadedShows} />
-      {isBottom && (
+      <div className='pagination-wrapper-default'>
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}
           onPageChange={handlePageChange}
+          customClass='pagination-wrapper-default'
         />
-      )}
+      </div>
     </>
   )
 }

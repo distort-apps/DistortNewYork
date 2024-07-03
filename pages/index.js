@@ -1,21 +1,21 @@
-import { useState, useEffect } from 'react'
-import FeaturedShows from '@/components/home-page/featured-shows'
-import Newsletter from '@/components/input/newsletter'
-import Head from 'next/head'
-import { fetchFeaturedShows } from '@/helpers/api-util'
-import Pagination from '@/components/ui/pagination'
-import router from 'next/router'
+import { useState, useEffect } from 'react';
+import FeaturedShows from '@/components/home-page/featured-shows';
+import Newsletter from '@/components/input/newsletter';
+import Head from 'next/head';
+import { fetchFeaturedShows } from '@/helpers/api-util';
+import Pagination from '@/components/ui/pagination';
+import router from 'next/router';
 
-function HomePage (props) {
-  const [currentPage, setCurrentPage] = useState(props.initialPage)
+function HomePage(props) {
+  const [currentPage, setCurrentPage] = useState(props.initialPage);
   const [isBottom, setIsBottom] = useState(false);
 
-  function handlePageChange (newPage) {
-    setCurrentPage(newPage)
-    router.push(`/?page=${newPage}`)
+  function handlePageChange(newPage) {
+    setCurrentPage(newPage);
+    router.push(`/?page=${newPage}`);
   }
   
-  const totalPages = Math.ceil(props.totalShows / 15)
+  const totalPages = Math.ceil(props.totalShows / 15);
 
   useEffect(() => {
     function handleScroll() {
@@ -27,8 +27,7 @@ function HomePage (props) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-  }, [isBottom]);
+  useEffect(() => {}, [isBottom]);
 
   return (
     <>
@@ -41,19 +40,20 @@ function HomePage (props) {
       </Head>
       <Newsletter />
       <FeaturedShows shows={props.shows} />
-      {isBottom && (
+      <div className="pagination-wrapper-default">
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}
           onPageChange={handlePageChange}
+          customClass="pagination-wrapper-index"
         />
-      )}
+      </div>
     </>
-  )
+  );
 }
 
 export async function getServerSideProps(context) {
-  const page = context.query.page ? parseInt(context.query.page, 15) : 1;
+  const page = context.query.page ? parseInt(context.query.page, 10) : 1;
 
   try {
     const { shows, totalShows } = await fetchFeaturedShows(page);
@@ -62,8 +62,8 @@ export async function getServerSideProps(context) {
       props: {
         shows: JSON.parse(JSON.stringify(shows)),
         totalShows,
-        initialPage: page
-      }
+        initialPage: page,
+      },
     };
   } catch (error) {
     console.error('Error in getServerSideProps:', error);
@@ -73,10 +73,10 @@ export async function getServerSideProps(context) {
         shows: [],
         totalShows: 0,
         initialPage: 1,
-        error: 'Error in getFeaturedShows'
-      }
+        error: 'Error in getFeaturedShows',
+      },
     };
   }
 }
 
-export default HomePage
+export default HomePage;
