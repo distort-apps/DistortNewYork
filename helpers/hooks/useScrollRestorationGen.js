@@ -19,7 +19,7 @@ export function useScrollRestorationGen() {
       const scrollPos = JSON.parse(sessionStorage.getItem(url));
       if (scrollPos) {
         window.scrollTo(scrollPos.x, scrollPos.y);
-        sessionStorage.removeItem(url); // Clean up after restoring
+        sessionStorage.removeItem(url);
       }
     };
 
