@@ -1,11 +1,28 @@
+.pagination-wrapper-index {
+  position: sticky;
+  bottom: 50px; 
+  background-color: transparent; /* Ensure it stands out */
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  margin-top: -20px; 
+}
+
+.pagination-wrapper-default {
+  position: sticky;
+  bottom: 50px;
+  background-color: transparent;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  margin-top: -4px;
+  margin-bottom: 15px;
+}
+
 .pagination {
   display: flex;
   justify-content: center;
-  position: fixed;
-  bottom: 26px; 
   width: 100%;
-  padding: 10px 0;
-  z-index: 1000; 
 }
 
 .button {
@@ -19,7 +36,7 @@
 
 .button svg {
   width: 26px;
-  height: 26mpx;
+  height: 26px;
   fill: black;
 }
 
@@ -35,7 +52,7 @@
   display: flex;
   align-items: center;
   margin: 0 5px;
-  color: black; /* Default color */
+  color: rgb(239, 239, 239); /* Default color */
 }
 
 .pageNumber:hover {

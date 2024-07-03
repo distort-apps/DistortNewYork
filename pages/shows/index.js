@@ -16,7 +16,7 @@ function AllShowsPage ({ shows, totalShows, initialPage }) {
 
     router.push(fullPath)
   }
- 
+
   function genSearchHandler (query) {
     const fullPath = `/search/${query}`
 
@@ -53,13 +53,14 @@ function AllShowsPage ({ shows, totalShows, initialPage }) {
       <ShowDateFilter onSearch={findShowsByDateHandler} />
       <GenSearch onSearch={genSearchHandler} />
       <ShowGrid items={shows} />
-      {isBottom && (
+      <div className='pagination-wrapper-default'>
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}
           onPageChange={handlePageChange}
+          customClass='pagination-wrapper-default'
         />
-      )}
+      </div>
     </>
   )
 }

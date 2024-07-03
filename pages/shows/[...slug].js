@@ -39,20 +39,24 @@ function DateFilterPage () {
   }, [data])
 
   useEffect(() => {
-    const storedPage = JSON.parse(sessionStorage.getItem(router.asPath))?.page;
+    const storedPage = JSON.parse(sessionStorage.getItem(router.asPath))?.page
     if (storedPage) {
-      setCurrentPage(parseInt(storedPage, 15));
+      setCurrentPage(parseInt(storedPage, 15))
     }
-  }, [router.asPath]);
+  }, [router.asPath])
 
   function handlePageChange (newPage) {
     setCurrentPage(newPage)
-    router.push(`/shows/${numYear}/${numMonth}?page=${newPage}`, undefined, { shallow: true })
+    router.push(`/shows/${numYear}/${numMonth}?page=${newPage}`, undefined, {
+      shallow: true
+    })
   }
 
   useEffect(() => {
-    function handleScroll() {
-      const bottom = Math.ceil(window.innerHeight + window.scrollY) >= document.documentElement.scrollHeight
+    function handleScroll () {
+      const bottom =
+        Math.ceil(window.innerHeight + window.scrollY) >=
+        document.documentElement.scrollHeight
       setIsBottom(bottom)
     }
 
@@ -63,7 +67,10 @@ function DateFilterPage () {
   let pageHeadData = (
     <Head>
       <title>Filtered Shows</title>
-      <meta name='description' content={`All shows for ${numMonth}/${numYear}.`} />
+      <meta
+        name='description'
+        content={`All shows for ${numMonth}/${numYear}.`}
+      />
     </Head>
   )
 
@@ -119,13 +126,14 @@ function DateFilterPage () {
       {pageHeadData}
       <Results date={date} totalShows={totalShows} />
       <ShowGrid items={loadedShows} />
-      {isBottom && (
+      <div className='pagination-wrapper-default'>
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}
           onPageChange={handlePageChange}
+          customClass='pagination-wrapper-default'
         />
-      )}
+      </div>
     </>
   )
 }
