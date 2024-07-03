@@ -2,10 +2,10 @@
   display: flex;
   justify-content: center;
   position: fixed;
-  bottom: 26px; /* Adjust this value as needed */
+  bottom: 26px; 
   width: 100%;
   padding: 10px 0;
-  z-index: 1000; /* Make sure it's above other content */
+  z-index: 1000; 
 }
 
 .button {
@@ -19,10 +19,31 @@
 
 .button svg {
   width: 26px;
-  height: 26px;
+  height: 26mpx;
   fill: black;
 }
 
 .button:hover svg {
   fill: #555;
+}
+
+.pageNumber {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  margin: 0 5px;
+  color: black; /* Default color */
+}
+
+.pageNumber:hover {
+  color: #555;
+}
+
+.pageNumber.active {
+  font-weight: bold;
+  color: #555; /* Highlight color for active page */
+  border-bottom: 2px solid #555; /* Optional: add an underline to the active page */
 }
