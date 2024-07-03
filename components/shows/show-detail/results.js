@@ -2,7 +2,7 @@ import classes from './results.module.css'
 import Button from '@/components/ui/button'
 
 function Results (props) {
-  const { date, query, items, length } = props
+  const { date, query, items } = props
 
   const humanReadableDate = new Date(date).toLocaleDateString('en-US', {
     month: 'long',
@@ -12,7 +12,7 @@ function Results (props) {
   if (query) {
     return (
       <section className={classes.title}>
-        <h1>THER ARE {items.length} {query} EVENTS ...</h1>
+        <h1>THER ARE {items} {query} EVENTS ...</h1>
         <Button link='/shows'>show all events</Button>
       </section>
     )
@@ -20,7 +20,7 @@ function Results (props) {
 
   return (
     <section className={classes.title}>
-      <h1> There are {length} Events in {humanReadableDate}</h1>
+      <h1>Events in {humanReadableDate}</h1>
       <Button link='/shows'>show all events</Button>
     </section>
   )
