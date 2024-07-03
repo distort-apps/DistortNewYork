@@ -16,11 +16,19 @@
   text-transform: uppercase;
 }
 
+.excerpt h1 {
+  margin: 0.5rem;
+  font-size: 2.3rem;
+  text-transform: uppercase;
+  
+}
+
 .excerpt h2 {
   margin-bottom: auto;
   font-size: 1.5rem;
   text-transform: uppercase;
   margin: 0.5rem;
+  line-height: .9;
 }
 
 .excerpt h3 {
