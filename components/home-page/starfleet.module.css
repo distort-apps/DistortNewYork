@@ -1,0 +1,24 @@
+.Starfleet {
+  font: inherit;
+  margin: -1rem auto -1rem;
+  width: 90%;
+  max-width: 20rem;
+  text-align: center;
+}
+
+.Starfleet a {
+    color: rgba(
+        227,
+        227,
+        227,
+        1
+        );
+  color: var(--color-grey-500);
+}
+
+.Starfleet a:hover,
+.Starfleet a:active,
+.Starfleet
+  a.active {
+  opacity: 60%;
+}

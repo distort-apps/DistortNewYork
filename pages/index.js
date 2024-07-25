@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import FeaturedShows from '@/components/home-page/featured-shows';
 import Newsletter from '@/components/input/newsletter';
 import Head from 'next/head';
+import Starfleet from '@/components/home-page/starfleet';
 import { fetchFeaturedShows } from '@/helpers/api-util';
 import Pagination from '@/components/ui/pagination';
 import router from 'next/router';
@@ -38,6 +39,7 @@ function HomePage(props) {
           content='Our top picks for shows to see in NY'
         />
       </Head>
+      <Starfleet />
       <Newsletter />
       <FeaturedShows shows={props.shows} />
       <div className="pagination-wrapper-default">
