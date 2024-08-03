@@ -33,10 +33,10 @@ function HomePage(props) {
   return (
     <>
       <Head>
-        <title>Featured Shows in NY</title>
+        <title>Our top events in New York</title>
         <meta
           name='description'
-          content='Our top picks for shows to see in NY'
+          content='Our top picks for events in New York'
         />
       </Head>
       <Starfleet />
