@@ -5,11 +5,20 @@ function ContactBodyPage () {
   return (
     <div className={classes.contact}>
       <div>
-        <h2>Write DistortNewYork @:</h2>
+        <h2>Write distort new DistortNewYork @:</h2>
         <MailToButton
           label='contact@distortnewyork.com'
           mailto='mailto:contact@distortnewyork.com'
         />
+        <div>
+          <br/>
+        click{' '}
+        <Link
+          href="https://donate.stripe.com/5kA7wegxI9Bme4g289"
+          target='_blank'
+          rel='noopener noreferrer'
+        > here 🖤 </Link>{' '} to donate
+        </div>
         <hr />
       </div>
       <div>
