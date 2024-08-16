@@ -12,7 +12,16 @@ function Results (props) {
   if (query) {
     return (
       <section className={classes.title}>
-        <h1>THER ARE {items} {query} EVENTS ...</h1>
+        {items < 2 ? (
+          <h1>
+            THERE IS {items} {query} EVENT ...
+          </h1>
+        ) : (
+          <h1>
+            THERE ARE {items} {query} EVENTS ...
+          </h1>
+        )}
+
         <Button link='/shows'>show all events</Button>
       </section>
     )
@@ -20,7 +29,10 @@ function Results (props) {
 
   return (
     <section className={classes.title}>
-     <h1> There are {totalShows} Events in {humanReadableDate}</h1>
+      <h1>
+        {' '}
+        There are {totalShows} Events in {humanReadableDate}
+      </h1>
       <Button link='/shows'>show all events</Button>
     </section>
   )
