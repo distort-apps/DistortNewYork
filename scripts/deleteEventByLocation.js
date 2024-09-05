@@ -45,7 +45,7 @@ async function connectDb() {
     await connectDb();
 
     try {
-        const locationToDelete = 'at TV Eye'; 
+        const locationToDelete = 'House of Yes'; 
 
         const result = await Show.deleteMany({
             location: locationToDelete 
