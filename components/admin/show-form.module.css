@@ -81,6 +81,19 @@
   border-color: var(--color-accent);
 }
 
+.field input[aria-invalid='true'],
+.field textarea[aria-invalid='true'],
+.field select[aria-invalid='true'] {
+  border-color: var(--color-error);
+}
+
+.fieldError {
+  font-size: 0.8rem;
+  color: var(--color-error);
+  text-transform: none;
+  letter-spacing: normal;
+}
+
 .dropzone,
 .dropzoneActive {
   display: grid;
@@ -100,6 +113,11 @@
   border-color: var(--color-accent);
   background-color: var(--color-fill);
   color: var(--color-text);
+}
+
+.dropzone[aria-invalid='true'],
+.dropzoneActive[aria-invalid='true'] {
+  border-color: var(--color-error);
 }
 
 .preview {
